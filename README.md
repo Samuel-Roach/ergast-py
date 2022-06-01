@@ -80,7 +80,7 @@ There are 3 types of query available in the ``Ergast()`` class. <b>FILTER</b> fu
 
 The order of the builder functions is inconsequential, however the final function called should be a <i>return</i> function.
 ```
-    Ergast().{paging/filter}.{return}
+Ergast().{paging/filter}.{return}
 ```
 
 More detail on the available functions within the ``Ergast()`` class is available below.
