@@ -1,4 +1,4 @@
-# Ergast-Py
+# Ergast-py
 
 ![Stars](https://img.shields.io/github/stars/Samuel-Roach/ergast-py?color=purple&style=for-the-badge) ![Size](https://img.shields.io/github/languages/code-size/Samuel-Roach/ergast-py?style=for-the-badge) ![Commits](https://img.shields.io/github/commit-activity/m/Samuel-Roach/ergast-py?color=orange&style=for-the-badge)
 
@@ -14,7 +14,7 @@ Ergast-Py provides a clean, Python orientated wrapper for this API. It has been 
 
 ## How to install
 
-Ergast-py is part of PyPi, so can be installed with the pip command:
+Ergast-py is a [pip package](https://pypi.org/project/ergast-py/), so can be installed with the pip command:
 
 ```
 pip install ergast-py
