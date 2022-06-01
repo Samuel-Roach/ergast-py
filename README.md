@@ -1,6 +1,6 @@
 # Ergast-py
 
-![Stars](https://img.shields.io/github/stars/Samuel-Roach/ergast-py?color=purple&style=for-the-badge) ![Size](https://img.shields.io/github/languages/code-size/Samuel-Roach/ergast-py?style=for-the-badge) ![Commits](https://img.shields.io/github/commit-activity/m/Samuel-Roach/ergast-py?color=orange&style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/Samuel-Roach/ergast-py?color=purple&style=for-the-badge) ![Size](https://img.shields.io/github/languages/code-size/Samuel-Roach/ergast-py?style=for-the-badge) ![Commits](https://img.shields.io/github/commit-activity/m/Samuel-Roach/ergast-py?color=orange&style=for-the-badge) ![Downloads](https://img.shields.io/pypi/dm/ergast-py?style=for-the-badge)
 
 A comprehensive Python wrapper for the Ergast API. Built for easy use and functionality, Ergast-py aims to bring the Ergast API into the Python network as seemlessly as possible.
 
