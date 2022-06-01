@@ -24,8 +24,10 @@ pip install ergast-py
 
 Once ergast-py is installed on your system you can then begin using the library in querying the ergast API. To begin, initialise an instance of the ``Ergast()`` class.
 
+Note: Whilst the package is called ``ergast-py``, you need to import ``ergast_py``
+
 ```python
-from ergast-py import Ergast
+from ergast_py import ergast.Ergast
 
 e = Ergast()
 ```

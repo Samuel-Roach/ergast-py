@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "ergast-py"
 version = "0.1.0"
-description = ""
+description = "A comprehensive Python wrapper for the Ergast API. Available at: https://github.com/Samuel-Roach/ergast-py"
 authors = ["Samuel Roach <samuelroach.2000@gmail.com>"]
 
 [tool.poetry.dependencies]
