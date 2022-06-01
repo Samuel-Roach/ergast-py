@@ -1,0 +1,8 @@
+# Common Ignores
+.vscode
+__pycache__
+
+
+# Personal Ignores
+# Mostly notes and testing
+dist
