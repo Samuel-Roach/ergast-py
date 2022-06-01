@@ -27,9 +27,9 @@ Once ergast-py is installed on your system you can then begin using the library 
 Note: Whilst the package is called ``ergast-py``, you need to import ``ergast_py``
 
 ```python
-from ergast_py import ergast.Ergast
+import ergast_py
 
-e = Ergast()
+e = ergast_py.Ergast()
 ```
 
 Queries can then be built up with function calls in a sequential manner. Once you've built up a query, finally define what data you wish to get using a ``get_xyz()`` function.

@@ -1,3 +1,31 @@
+"""
+Ergast API Python Wrapper
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+A comprehensive Python wrapper for the Ergast Formula One API
+
+Basic usage:
+
+    >>> import ergast_py
+    >>> e = ergast_py.Ergast()
+    >>> e.driver_str("alonso").get_drivers()
+    [Driver(
+        driverId=alonso,
+        permanentNumber=14,
+        code=ALO,
+        url=http://en.wikipedia.org/wiki/Fernando_Alonso,
+        givenName=Fernando,
+        familyName=Alonso,
+        dateOfBirth=1981-07-29,
+        nationality=Spanish)]
+
+Full documentation can be found at https://github.com/Samuel-Roach/ergast-py.
+
+Ergast-py extends the publicly available and free Ergast API. For more information
+and a better understanding visit http://ergast.com/mrd/
+
+"""
+
 from ergast_py.models.average_speed import AverageSpeed
 from ergast_py.models.constructor_standing import ConstructorStanding
 from ergast_py.models.driver import Driver
