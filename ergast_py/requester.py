@@ -1,9 +1,6 @@
 import json
 import requests
 
-from ergast_py.models.circuit import Circuit
-from ergast_py.models.constructor import Constructor
-from ergast_py.models.driver import Driver
 from uritemplate import URITemplate
 
 host = 'https://ergast.com/api'
@@ -123,7 +120,7 @@ class Requester():
         }
 
 
-    def run_request(self, season, round, criteria, resource, value, limit, offset) -> dict:
+    def run_request(self, season, round, criteria, resource, value=None, limit=None, offset=None) -> dict:
         """ Takes values to run the request and return a dict """
         url_tmpl = URITemplate('https://ergast.com/api{/series}{/season}{/round}'
                            '{/criteria*}{/resource}{/value}.json{?limit,offset}')
@@ -132,7 +129,11 @@ class Requester():
                               criteria=criteria, resource=resource,
                               value=value, limit=limit, offset=offset)
 
-        return json.loads(requests.get(url).text)
+        response = requests.get(url)
+        if response.status_code == 200:
+            return json.loads(response.text)
+        else:
+            raise Exception(f"Failed with status code {response.status_code}. Error: {response.reason}")
 
     #
     #   Race and Results
