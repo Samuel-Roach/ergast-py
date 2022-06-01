@@ -148,4 +148,4 @@ More detail on the available functions within the ``Ergast()`` class is availabl
 
 ## Credits
 
-This library would not be possible without the freely available [Ergast](http://ergast.com/mrd/) API. For full information about the API and it's responsible use, please refer to their website. 
+This library would not be possible without the freely available [Ergast](http://ergast.com/mrd/) API. For full information about the API and it's responsible use, please refer to their website. [Poetry](https://python-poetry.org/) was used for package building and releasing.
