@@ -3,5 +3,6 @@ __pycache__
 .pytest_cache
 dist
 
-# Minor testing
+# Miscellaneous
 test.py
+*.afphoto

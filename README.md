@@ -1,18 +1,29 @@
-# Ergast-py
+<h1 align="center"><b>Ergast-Py</b></h1>
 
-![Stars](https://img.shields.io/github/stars/Samuel-Roach/ergast-py?color=purple&style=for-the-badge) ![Size](https://img.shields.io/github/languages/code-size/Samuel-Roach/ergast-py?style=for-the-badge) ![Commits](https://img.shields.io/github/commit-activity/m/Samuel-Roach/ergast-py?color=orange&style=for-the-badge) ![PyPI](https://img.shields.io/pypi/v/ergast-py?color=green&style=for-the-badge)
+<p align="center">
+    <img src="https://img.shields.io/github/stars/Samuel-Roach/ergast-py?color=purple&style=for-the-badge"/>
+    <img src="https://img.shields.io/github/languages/code-size/Samuel-Roach/ergast-py?style=for-the-badge"/>
+    <img src="https://img.shields.io/github/commit-activity/m/Samuel-Roach/ergast-py?color=orange&style=for-the-badge"/>
+    <img src="https://img.shields.io/pypi/v/ergast-py?color=green&style=for-the-badge"/>
+</p>
 
 A comprehensive Python wrapper for the Ergast API. Built for easy use and functionality, Ergast-py aims to bring the Ergast API into the Python network as seemlessly as possible.
 
-## What is Ergast?
+> NOTE: Ergast-py is still in active development, so all features are experimental and subject to change. Differences may occur between what is documented in this README.md and what is actually available in Ergast-py
+
+<p align="center">
+   <img width="500" src="images/../img/banner.png" alt="Command prompt example of how to use Ergast">
+</p>
+
+# What is Ergast?
 
 [Ergast](http://ergast.com/mrd/) is a free, experimental API for accessing motor-racing data, dating back to the beginning of World Championships in 1950. The website provides plenty of detail into how effective the API can be, and the many options that are available for data gathering using it.
 
-## Why should I use Ergast-Py?
+# Why should I use Ergast-Py?
 
 Ergast-Py provides a clean, Python orientated wrapper for this API. It has been designed to remove the heavy lifting of handling the API formatting behind the scenes, allowing developers to easily access the data that is relevant to them. All the data is conformed into clean class code, allowing for users to keep a Python-centric mindset whilst developing.
 
-## How to install
+# How to install
 
 Ergast-py is a [pip package](https://pypi.org/project/ergast-py/), so can be installed with the pip command:
 
@@ -20,7 +31,7 @@ Ergast-py is a [pip package](https://pypi.org/project/ergast-py/), so can be ins
 pip install ergast-py
 ```
 
-## Usage
+# Usage
 
 Once ergast-py is installed on your system you can then begin using the library in querying the ergast API. To begin, initialise an instance of the ``Ergast()`` class.
 
@@ -50,7 +61,7 @@ felipe_massa = e.driver_str("massa").get_drivers()
 constructor_standings = e.season().standing(3).get_constructor_standings()
 ```
 
-## Structure and Types
+# Structure and Types
 
 Ergast-py has many models which allow the user to more effectively use and manipulate the data available to them through Ergast. All models of data are available through ``.models.xyz``.
 
@@ -79,7 +90,7 @@ Ergast-py has many models which allow the user to more effectively use and manip
 
 </details>
 
-## Query building
+# Query building
 
 There are 3 types of query available in the ``Ergast()`` class. <b>FILTER</b> functions build up the query, by filtering down the data that you will receive. <b>PAGING</b> functions control the flow of data if there is excessive amounts, limiting it to not overflow the API. <b>RETURN</b> functions detail what type of data you're expecting back from the query.
 
@@ -136,21 +147,34 @@ More detail on the available functions within the ``Ergast()`` class is availabl
 | Name                      | Return Type           |
 | ------------------------- | --------------------- |
 | get_circuits              | list[Circuit]         |
+| get_circuit               | Circuit               |
 | get_constructors          | list[Constructor]     |
+| get_constructor           | Constructor           |
 | get_drivers               | list[Driver]          |
-| get_qualifying            | list[Race]            |
+| get_driver                | Driver                |
+| get_qualifyings           | list[Race]            |
+| get_qualifying            | Race                  |
 | get_sprints               | list[Race]            |
+| get_sprint                | Race                  |
 | get_results               | list[Race]            |
+| get_result                | Race                  |
 | get_races                 | list[Race]            |
+| get_race                  | Race                  |
 | get_seasons               | list[Season]          |
+| get_season                | Season                |
 | get_statuses              | list[Status]          |
+| get_status                | Status                |
 | get_driver_standings      | list[StandingsList]   |
+| get_driver_standing       | StandingsList         |
 | get_constructor_standings | list[StandingsList]   |
+| get_constructor_standing  | StandingsList         |
 | get_laps                  | list[Race]            |
+| get_lap                   | Race                  |
 | get_pit_stops             | list[Race]            |
+| get_pit_stop              | Race                  |
 
 </details>
 
-## Credits
+# Credits
 
 This library would not be possible without the freely available [Ergast](http://ergast.com/mrd/) API. For full information about the API and it's responsible use, please refer to their website. [Poetry](https://python-poetry.org/) was used for package building and releasing.

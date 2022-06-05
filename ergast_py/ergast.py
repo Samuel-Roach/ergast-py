@@ -147,11 +147,23 @@ class Ergast():
         self.reset()
         return circuits
 
+    def get_circuit(self) -> Circuit:
+        circuits_json = self.requester.get_circuits(self.params)
+        circuits = self.type_constructor.construct_circuits(circuits_json)
+        self.reset()
+        return circuits[0]
+
     def get_constructors(self) -> list[Constructor]:
         constructors_json = self.requester.get_constructors(self.params)
         constructors = self.type_constructor.construct_constructors(constructors_json)
         self.reset()
         return constructors
+
+    def get_constructor(self) -> Constructor:
+        constructors_json = self.requester.get_constructors(self.params)
+        constructors = self.type_constructor.construct_constructors(constructors_json)
+        self.reset()
+        return constructors[0]
 
     def get_drivers(self) -> list[Driver]:
         drivers_json = self.requester.get_drivers(self.params)
@@ -159,11 +171,23 @@ class Ergast():
         self.reset()
         return drivers
 
-    def get_qualifying(self) -> list[Race]:
+    def get_driver(self) -> Driver:
+        drivers_json = self.requester.get_drivers(self.params)
+        drivers = self.type_constructor.construct_drivers(drivers_json)
+        self.reset()
+        return drivers[0]
+
+    def get_qualifyings(self) -> list[Race]:
         qualify_json = self.requester.get_qualifying(self.params)
         qualifying = self.type_constructor.construct_races(qualify_json)
         self.reset()
         return qualifying
+
+    def get_qualifying(self) -> Race:
+        qualify_json = self.requester.get_qualifying(self.params)
+        qualifying = self.type_constructor.construct_races(qualify_json)
+        self.reset()
+        return qualifying[0]
 
     def get_sprints(self) -> list[Race]:
         sprint_json = self.requester.get_sprints(self.params)
@@ -171,11 +195,23 @@ class Ergast():
         self.reset()
         return sprint
 
+    def get_sprint(self) -> Race:
+        sprint_json = self.requester.get_sprints(self.params)
+        sprint = self.type_constructor.construct_races(sprint_json)
+        self.reset()
+        return sprint[0]
+
     def get_results(self) -> list[Race]:
         results_json = self.requester.get_results(self.params)
         results = self.type_constructor.construct_races(results_json)
         self.reset()
         return results
+
+    def get_result(self) -> Race:
+        results_json = self.requester.get_results(self.params)
+        results = self.type_constructor.construct_races(results_json)
+        self.reset()
+        return results[0]
 
     def get_races(self) -> list[Race]:
         races_json = self.requester.get_races(self.params)
@@ -183,17 +219,35 @@ class Ergast():
         self.reset()
         return races
 
+    def get_race(self) -> Race:
+        races_json = self.requester.get_races(self.params)
+        races = self.type_constructor.construct_races(races_json)
+        self.reset()
+        return races[0]
+
     def get_seasons(self) -> list[Season]:
         seasons_json = self.requester.get_seasons(self.params)
         seasons = self.type_constructor.construct_seasons(seasons_json)
         self.reset()
         return seasons
 
+    def get_season(self) -> Season:
+        seasons_json = self.requester.get_seasons(self.params)
+        seasons = self.type_constructor.construct_seasons(seasons_json)
+        self.reset()
+        return seasons[0]
+
     def get_statuses(self) -> list[Status]:
         statuses_json = self.requester.get_statuses(self.params)
         statuses = self.type_constructor.construct_statuses(statuses_json)
         self.reset()
         return statuses
+
+    def get_status(self) -> Status:
+        statuses_json = self.requester.get_statuses(self.params)
+        statuses = self.type_constructor.construct_statuses(statuses_json)
+        self.reset()
+        return statuses[0]
 
     #   Standings Queries
 
@@ -203,11 +257,23 @@ class Ergast():
         self.reset()
         return standings_lists
 
+    def get_driver_standing(self) -> StandingsList:
+        standings_lists_json = self.requester.get_driver_standings(self.params)
+        standings_lists = self.type_constructor.construct_standings_lists(standings_lists_json)
+        self.reset()
+        return standings_lists[0]
+
     def get_constructor_standings(self) -> list[StandingsList]:
         standings_lists_json = self.requester.get_constructor_standings(self.params)
         standings_lists = self.type_constructor.construct_standings_lists(standings_lists_json)
         self.reset()
         return standings_lists
+
+    def get_constructor_standing(self) -> StandingsList:
+        standings_lists_json = self.requester.get_constructor_standings(self.params)
+        standings_lists = self.type_constructor.construct_standings_lists(standings_lists_json)
+        self.reset()
+        return standings_lists[0]
 
     #   Laps and Pit Stops Queries
 
@@ -217,8 +283,20 @@ class Ergast():
         self.reset()
         return laps
 
+    def get_lap(self) -> Race:
+        laps_json = self.requester.get_laps(self.params)
+        laps = self.type_constructor.construct_races(laps_json)
+        self.reset()
+        return laps[0]
+
     def get_pit_stops(self) -> list[Race]:
         pit_stops_json = self.requester.get_pit_stops(self.params)
         pit_stops = self.type_constructor.construct_races(pit_stops_json)
         self.reset()
         return pit_stops
+
+    def get_pit_stop(self) -> Race:
+        pit_stops_json = self.requester.get_pit_stops(self.params)
+        pit_stops = self.type_constructor.construct_races(pit_stops_json)
+        self.reset()
+        return pit_stops[0]
