@@ -1,17 +1,18 @@
 from __future__ import annotations
+
 from typing import Callable
 
-from ergast_py.models.driver import Driver
+from ergast_py.constants.status_type import StatusType
 from ergast_py.models.circuit import Circuit
 from ergast_py.models.constructor import Constructor
+from ergast_py.models.driver import Driver
+from ergast_py.models.race import Race
+from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
-from ergast_py.constants.status_type import StatusType
-from ergast_py.models.season import Season
-from ergast_py.models.race import Race
-
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
+
 
 class Ergast():
     """

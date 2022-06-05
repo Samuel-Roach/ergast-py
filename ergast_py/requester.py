@@ -3,8 +3,8 @@ import requests
 
 from uritemplate import URITemplate
 
-host = 'https://ergast.com/api'
-series = 'f1'
+HOST = 'https://ergast.com/api'
+SERIES = 'f1'
 
 class Requester():
     """
@@ -124,7 +124,7 @@ class Requester():
         """ Takes values to run the request and return a dict """
         url_tmpl = URITemplate('https://ergast.com/api{/series}{/season}{/round}'
                            '{/criteria*}{/resource}{/value}.json{?limit,offset}')
-        url = url_tmpl.expand(host=host, series=series, 
+        url = url_tmpl.expand(host=HOST, series=SERIES, 
                               season=season, round=round,
                               criteria=criteria, resource=resource,
                               value=value, limit=limit, offset=offset)

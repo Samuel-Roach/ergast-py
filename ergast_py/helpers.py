@@ -1,6 +1,5 @@
 import datetime
 
-from ergast_py.constants.status_type import StatusType
 
 class Helpers:
     def construct_datetime_str(self, date: str, time: str) -> datetime.datetime:
