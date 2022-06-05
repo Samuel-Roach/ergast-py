@@ -17,8 +17,10 @@ class Timing:
         self.time = time
         pass
 
-    def __str__(self):
-        return f"Timing(driverId={self.driverId}, position={self.position}, time={self.time})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"Timing(driverId={self.driverId}, position={self.position}, time={self.time})"
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

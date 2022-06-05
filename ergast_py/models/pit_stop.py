@@ -22,8 +22,10 @@ class PitStop:
         self.duration = duration
         pass
 
-    def __str__(self):
-        return f"PitStop(driverId={self.driverId}, lap={self.lap}, stop={self.stop}, localTime={self.localTime}, duration={self.duration})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"PitStop(driverId={self.driverId}, lap={self.lap}, stop={self.stop}, localTime={self.localTime}, duration={self.duration})"
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

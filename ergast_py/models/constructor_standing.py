@@ -22,8 +22,10 @@ class ConstructorStanding:
         self.constructor = constructor
         pass
 
-    def __str__(self):
-        return f"ConstructorStanding(position={self.position}, positionText={self.positionText}, points={self.points}, wins={self.wins}, constructor={self.constructor})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"ConstructorStanding(position={self.position}, positionText={self.positionText}, points={self.points}, wins={self.wins}, constructor={self.constructor})"
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

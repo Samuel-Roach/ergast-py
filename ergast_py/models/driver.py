@@ -29,9 +29,10 @@ class Driver:
         self.nationality = nationality
         pass
 
-    def __str__(self):
-        return f"Driver(driverId={self.driverId}, permanentNumber={self.permanentNumber}, code={self.code}, url={self.url}, givenName={self.givenName}, familyName={self.familyName}, dateOfBirth={self.dateOfBirth}, nationality={self.nationality})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"Driver(driverId={self.driverId}, permanentNumber={self.permanentNumber}, code={self.code}, url={self.url}, givenName={self.givenName}, familyName={self.familyName}, dateOfBirth={self.dateOfBirth}, nationality={self.nationality})"
- 
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

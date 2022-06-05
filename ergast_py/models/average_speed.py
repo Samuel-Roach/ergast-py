@@ -14,8 +14,10 @@ class AverageSpeed:
         self.speed = speed
         pass
 
-    def __str__(self):
-        return f"AverageSpeed(units={self.units}, speed={self.speed})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"AverageSpeed(units={self.units}, speed={self.speed})"
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

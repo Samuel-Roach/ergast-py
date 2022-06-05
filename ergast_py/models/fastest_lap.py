@@ -20,8 +20,10 @@ class FastestLap:
         self.averageSpeed = averageSpeed
         pass
 
-    def __str__(self):
-        return f"FastestLap(rank={self.rank}, lap={self.lap}, time={self.time}, averageSpeed={self.averageSpeed})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"FastestLap(rank={self.rank}, lap={self.lap}, time={self.time}, averageSpeed={self.averageSpeed})"
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

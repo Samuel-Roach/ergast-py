@@ -21,8 +21,10 @@ class StandingsList:
         self.constructorStandings = constructorStandings
         pass
 
-    def __str__(self):
-        return f"StandingsList(season={self.season}, round={self.round}, driverStandings={self.driverStandings}, constructorStandings={self.constructorStandings})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"StandingsList(season={self.season}, round={self.round}, driverStandings={self.driverStandings}, constructorStandings={self.constructorStandings})"
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

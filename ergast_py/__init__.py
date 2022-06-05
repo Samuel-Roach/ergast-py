@@ -8,8 +8,8 @@ Basic usage:
 
     >>> import ergast_py
     >>> e = ergast_py.Ergast()
-    >>> e.driver_str("alonso").get_drivers()
-    [Driver(
+    >>> e.driver_str("alonso").get_driver()
+    Driver(
         driverId=alonso,
         permanentNumber=14,
         code=ALO,
@@ -17,7 +17,7 @@ Basic usage:
         givenName=Fernando,
         familyName=Alonso,
         dateOfBirth=1981-07-29,
-        nationality=Spanish)]
+        nationality=Spanish)
 
 Full documentation can be found at https://github.com/Samuel-Roach/ergast-py.
 

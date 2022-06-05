@@ -45,8 +45,10 @@ class Result:
         self.q3 = q3
         pass
 
-    def __str__(self):
-        return f"Result(number={self.number}, position={self.position}, positionText={self.positionText}, points={self.points}, driver={self.driver}, constructor={self.constructor}, grid={self.grid}, laps={self.laps}, status={self.status}, time={self.time}, fastestLap={self.fastestLap}, q1={self.q1}, q2={self.q2}, q3={self.q3})"
+    def __str__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
 
-    def __repr__(self):
-        return f"Result(number={self.number}, position={self.position}, positionText={self.positionText}, points={self.points}, driver={self.driver}, constructor={self.constructor}, grid={self.grid}, laps={self.laps}, status={self.status}, time={self.time}, fastestLap={self.fastestLap}, q1={self.q1}, q2={self.q2}, q3={self.q3})"
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
