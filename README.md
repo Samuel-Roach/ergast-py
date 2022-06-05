@@ -57,7 +57,7 @@ Queries can then be built up with function calls in a sequential manner. Once yo
 race_results = e.season(2008).round(5).get_results()
 
 # http://ergast.com/api/f1/drivers/massa
-felipe_massa = e.driver_str("massa").get_drivers()
+felipe_massa = e.driver_str("massa").get_driver()
 
 # http://ergast.com/api/f1/current/constructorStandings/3
 constructor_standings = e.season().standing(3).get_constructor_standings()
@@ -145,6 +145,8 @@ More detail on the available functions within the ``Ergast()`` class is availabl
 <details>
 <summary><b>RETURN</b> functions</summary>
 </br>
+
+> NOTE: All the return types that return a single object will raise an Exception if your query is returning more than one item.
 
 | Name                      | Return Type           |
 | ------------------------- | --------------------- |
