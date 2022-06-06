@@ -110,7 +110,7 @@ More detail on the available functions within the ``Ergast()`` class is availabl
 | Name            | Arguments                | Notes                                                                          |
 | --------------- | ------------------------ | ------------------------------------------------------------------------------ |
 | season          | year: int                | If you call season with no arguments it will default to the current season     |
-| round           | round: int               | If you call round with no arguments it will default to the last round          |
+| round           | round_no: int            | If you call round with no arguments it will default to the last round          |
 | driver          | driver: Driver           | The Driver equivalent of ``driver_str``                                        |
 | driver_str      | driver: str              | The String equivalent of ``driver``. Must use driver's driverId                |
 | constructor     | constructor: Constructor | The Constructor equivalent of ``constructor_str``                              |
