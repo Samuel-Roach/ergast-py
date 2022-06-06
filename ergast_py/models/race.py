@@ -1,62 +1,58 @@
-from dataclasses import dataclass
-import datetime
+""" Race class """
 
-from ergast_py.helpers import Helpers
+import datetime
+from dataclasses import dataclass
+
 from ergast_py.models.circuit import Circuit
 from ergast_py.models.lap import Lap
-from ergast_py.models.result import Result
+from ergast_py.models.model import Model
 from ergast_py.models.pit_stop import PitStop
+from ergast_py.models.result import Result
+
 
 @dataclass
-class Race:
+class Race(Model):
     """
     Representation of a single Race from a Formula One season
+
     Races may contain:
         season: Integer
-        round: Integer
+        round_no: Integer
         url: String
-        raceName: String
+        race_name: String
         circuit: Circuit
         date: datetime.datetime
         results: Result[]
-        firstPractice: datetime.datetime
-        secondPractice: datetime.datetime
-        thirdPractice: datetime.datetime
+        first_practice: datetime.datetime
+        second_practice: datetime.datetime
+        third_practice: datetime.datetime
         sprint: datetime.datetime
-        sprintResults: Result[]
+        sprint_results: Result[]
         qualifying: datetime.datetime
-        qualifyingResults: Result[]
-        pitStops: PitStop[]
+        qualifying_results: Result[]
+        pit_stops: PitStop[]
         laps: Lap[]
     """
 
-    def __init__(self, season: int, round: int, url: str, raceName: str, circuit: Circuit, date: datetime.datetime,
-                 results: list[Result], firstPractice: datetime.datetime, secondPractice: datetime.datetime,
-                 thirdPractice: datetime.datetime, sprint: datetime.datetime, sprintResults: list[Result],
-                 qualifying: datetime.datetime, qualifyingResults: list[Result], pitStops: list[PitStop],
-                 laps: list[Lap]) -> None:
+    def __init__(self, season: int, round_no: int, url: str, race_name: str, circuit: Circuit,
+                 date: datetime.datetime, results: list[Result], first_practice: datetime.datetime,
+                 second_practice: datetime.datetime, third_practice: datetime.datetime,
+                 sprint: datetime.datetime, sprint_results: list[Result],
+                 qualifying: datetime.datetime, qualifying_results: list[Result],
+                 pit_stops: list[PitStop], laps: list[Lap]) -> None:
         self.season = season
-        self.round = round
+        self.round_no = round_no
         self.url = url
-        self.raceName = raceName
+        self.race_name = race_name
         self.circuit = circuit
         self.date = date
         self.results = results
-        self.firstPractice = firstPractice
-        self.secondPractice = secondPractice
-        self.thirdPractice = thirdPractice
+        self.first_practice = first_practice
+        self.second_practice = second_practice
+        self.third_practice = third_practice
         self.sprint = sprint
-        self.sprintResults = sprintResults
+        self.sprint_results = sprint_results
         self.qualifying = qualifying
-        self.qualifyingResults = qualifyingResults
-        self.pitStops = pitStops
+        self.qualifying_results = qualifying_results
+        self.pit_stops = pit_stops
         self.laps = laps
-        pass
-
-    def __str__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"

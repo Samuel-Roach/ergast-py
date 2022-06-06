@@ -146,7 +146,7 @@ More detail on the available functions within the ``Ergast()`` class is availabl
 <summary><b>RETURN</b> functions</summary>
 </br>
 
-> NOTE: All the return types that return a single object will raise an Exception if your query is returning more than one item.
+> NOTE: All the functions that return a single object will raise an Exception if your query is returning more than one item.
 
 | Name                      | Return Type           |
 | ------------------------- | --------------------- |

@@ -1,3 +1,5 @@
+""" Ergast class """
+
 from __future__ import annotations
 
 from typing import Callable
@@ -14,9 +16,21 @@ from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
 
 
+#pylint: disable=too-many-public-methods
 class Ergast():
     """
-    Class for querying the Ergast API
+    Ergast
+    ~~~~~~
+    Class for querying the Ergast API.
+
+    Build up the queries using the available functions.
+
+    >>> e = ergast_py.Ergast()
+    >>> e.season(2021).round(1).driver_str("alonso")
+
+    Get the data using ``.get_xyz()`` functions.
+
+    >>> print(e.get_result())
     """
 
     def __init__(self) -> None:
@@ -26,6 +40,11 @@ class Ergast():
 
 
     def reset(self) -> None:
+        """
+        Reset the Ergast query building.
+
+        Should be called after a query is run to prevent forward interraction.
+        """
         self.params = {
             "season": None,
             "seasons": None,
@@ -52,74 +71,167 @@ class Ergast():
     #
 
     def season(self, year: int="current") -> Ergast:
+        """
+        Add a season to the current query
+
+        >>> e.season(2022).get_races()
+        """
         self.params["season"] = year
         return self
 
     def round(self, round_no: int="last") -> Ergast:
+        """
+        Add a round to the current query
+
+        >>> e.season(1999).round(3).get_circuit()
+        """
         self.params["round"] = round_no
         return self
 
     def driver(self, driver: Driver) -> Ergast:
+        """
+        Add a driver to the current query
+
+        >>> alonso = e.driver_str("alonso").get_driver()
+        >>> e.driver(alonso).get_results()
+        """
         self.params["driver"] = driver.driverId
         return self
 
     def driver_str(self, driver: str) -> Ergast:
+        """
+        Add a driver to the current query
+
+        >>> e.driver_str("alonso").get_driver()
+        """
         self.params["driver"] = driver
         return self
 
     def constructor(self, constructor: Constructor) -> Ergast:
+        """
+        Add a constructor to the current query
+
+        >>> mercedes = e.constructor_str("mercedes").get_constructor()
+        >>> e.constructor(mercedes).get_constructor_standings()
+        """
         self.params["constructor"] = constructor.constructorId
         return self
 
     def constructor_str(self, constructor: str) -> Ergast:
+        """
+        Add a constructor to the current query
+
+        >>> e.constructor_str("mercedes").get_constructor()
+        """
         self.params["constructor"] = constructor
         return self
 
     def qualifying(self, position: int) -> Ergast:
+        """
+        Add a qualifying position to the current query
+
+        >>> e.season(2021).qualifying(1).get_drivers()
+        """
         self.params["qualifying"] = position
         return self
 
     def sprint(self, position: int) -> Ergast:
+        """
+        Add a sprint result to the current query
+
+        >>> e.season(2021).sprint(3).get_sprints()
+        """
         self.params["sprint"] = position
         return self
 
     def grid(self, position: int) -> Ergast:
+        """
+        Add a starting grid position to the current query
+
+        >>> e.season(2021).round(1).grid(1).get_result()
+        """
         self.params["grid"] = position
         return self
 
     def result(self, position: int) -> Ergast:
+        """
+        Add a final result to the current query
+
+        >>> e.season(2021).round(1).result(20).get_result()
+        """
         self.params["result"] = position
         return self
 
     def fastest(self, position: int) -> Ergast:
+        """
+        Add a driver's fastest lap ranking to the current query
+
+        >>> e.season(2021).round(1).fastest(1).get_driver()
+        """
         self.params["fastest"] = position
         return self
 
     def circuit(self, circuit: Circuit) -> Ergast:
+        """
+        Add a circuit to the current query
+
+        >>> silverstone = e.circuit_str("silverstone").get_circuit()
+        >>> e.circuit(silverstone)
+        """
         self.params["circuit"] = circuit.circuitId
         return self
 
     def circuit_str(self, circuit: str) -> Ergast:
+        """
+        Add a circuit to the current query
+
+        >>> e.circuit_str("silverstone").get_circuit()
+        """
         self.params["circuit"] = circuit
         return self
 
     def status(self, status: int) -> Ergast:
+        """
+        Add a finishing status to the current query
+
+        >>> e.driver_str("alonso").status(2)
+        """
         self.params["status"] = status
         return self
 
     def status_str(self, status: str) -> Ergast:
-        self.params["status"] = StatusType().status_map[status]
+        """
+        Add a finishing status to the current query
+
+        >>> e.season(2021).round(1).status_str("Disqualified")
+        """
+        self.params["status"] = StatusType().string_to_id[status]
         return self
 
     def standing(self, position: int) -> Ergast:
+        """
+        Add a position in the standings to the current query
+
+        >>> e.standing(1).get_driver_standings()
+        """
         self.params["standing"] = position
         return self
 
     def lap(self, lap_number: int) -> Ergast:
+        """
+        Add a certain lap to the current query
+
+        >>> e.season(2021).round(1).lap(1).get_laps()
+        """
         self.params["lap"] = lap_number
         return self
 
     def pit_stop(self, stop_number: int) -> Ergast:
+        """
+        Add a certain pit stop to the current query
+
+        >>> e.season(2021).round(1).pit_stop(1).get_pit_stops()
+        """
         self.params["pit_stop"] = stop_number
         return self
 
@@ -128,10 +240,20 @@ class Ergast():
     #
 
     def limit(self, amount: int) -> Ergast:
+        """
+        Limit the results in the current query
+
+        >>> e.season(2021).limit(2).get_drivers()
+        """
         self.params["limit"] = amount
         return self
 
     def offset(self, amount: int) -> Ergast:
+        """
+        Offset the results in the current query
+
+        >>> e.season(2021).limit(2).offset(4).get_drivers()
+        """
         self.params["offset"] = amount
         return self
 
@@ -156,191 +278,187 @@ class Ergast():
     #   Race and Results Queries
 
     def get_circuits(self) -> list[Circuit]:
-        return self._get_items(self.requester.get_circuits, self.type_constructor.construct_circuits)
+        """
+        Get a list of circuits from the current query
+        """
+        return self._get_items(self.requester.get_circuits,
+                               self.type_constructor.construct_circuits)
 
     def get_circuit(self) -> Circuit:
-        return self._get_item(self.requester.get_circuits, self.type_constructor.construct_circuits)
+        """
+        Get a circuit from the current query
+        """
+        return self._get_item(self.requester.get_circuits,
+                              self.type_constructor.construct_circuits)
 
     def get_constructors(self) -> list[Constructor]:
-        constructors_json = self.requester.get_constructors(self.params)
-        constructors = self.type_constructor.construct_constructors(constructors_json)
-        self.reset()
-        return constructors
+        """
+        Get a list of constructors from the current query
+        """
+        return self._get_items(self.requester.get_constructors,
+                               self.type_constructor.construct_constructors)
 
     def get_constructor(self) -> Constructor:
-        constructors_json = self.requester.get_constructors(self.params)
-        constructors = self.type_constructor.construct_constructors(constructors_json)
-        self.reset()
-        if len(constructors) == 1:
-            return constructors[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a constructor from the current query
+        """
+        return self._get_item(self.requester.get_constructors,
+                              self.type_constructor.construct_constructors)
 
     def get_drivers(self) -> list[Driver]:
-        drivers_json = self.requester.get_drivers(self.params)
-        drivers = self.type_constructor.construct_drivers(drivers_json)
-        self.reset()
-        return drivers
+        """
+        Get a list of drivers from the current query
+        """
+        return self._get_items(self.requester.get_drivers,
+                               self.type_constructor.construct_drivers)
 
     def get_driver(self) -> Driver:
-        drivers_json = self.requester.get_drivers(self.params)
-        drivers = self.type_constructor.construct_drivers(drivers_json)
-        self.reset()
-        if len(drivers) == 1:
-            return drivers[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a driver from the current query
+        """
+        return self._get_item(self.requester.get_drivers,
+                              self.type_constructor.construct_drivers)
 
     def get_qualifyings(self) -> list[Race]:
-        qualify_json = self.requester.get_qualifying(self.params)
-        qualifying = self.type_constructor.construct_races(qualify_json)
-        self.reset()
-        return qualifying
+        """
+        Get a list of qualifyings from the current query
+        """
+        return self._get_items(self.requester.get_qualifying,
+                               self.type_constructor.construct_races)
 
     def get_qualifying(self) -> Race:
-        qualify_json = self.requester.get_qualifying(self.params)
-        qualifying = self.type_constructor.construct_races(qualify_json)
-        self.reset()
-        if len(qualifying) == 1:
-            return qualifying[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a qualifying from the current query
+        """
+        return self._get_item(self.requester.get_qualifying,
+                              self.type_constructor.construct_races)
 
     def get_sprints(self) -> list[Race]:
-        sprint_json = self.requester.get_sprints(self.params)
-        sprint = self.type_constructor.construct_races(sprint_json)
-        self.reset()
-        return sprint
+        """
+        Get a list of sprints from the current query
+        """
+        return self._get_items(self.requester.get_sprints,
+                               self.type_constructor.construct_races)
 
     def get_sprint(self) -> Race:
-        sprint_json = self.requester.get_sprints(self.params)
-        sprint = self.type_constructor.construct_races(sprint_json)
-        self.reset()
-        if len(sprint) == 1:
-            return sprint[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a sprint from the current query
+        """
+        return self._get_item(self.requester.get_sprints,
+                              self.type_constructor.construct_races)
 
     def get_results(self) -> list[Race]:
-        results_json = self.requester.get_results(self.params)
-        results = self.type_constructor.construct_races(results_json)
-        self.reset()
-        return results
+        """
+        Get a list of results from the current query
+        """
+        return self._get_items(self.requester.get_results,
+                               self.type_constructor.construct_races)
 
     def get_result(self) -> Race:
-        results_json = self.requester.get_results(self.params)
-        results = self.type_constructor.construct_races(results_json)
-        self.reset()
-        if len(results) == 1:
-            return results[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a result from the current query
+        """
+        return self._get_item(self.requester.get_results,
+                              self.type_constructor.construct_races)
 
     def get_races(self) -> list[Race]:
-        races_json = self.requester.get_races(self.params)
-        races = self.type_constructor.construct_races(races_json)
-        self.reset()
-        return races
+        """
+        Get a list of races from the current query
+        """
+        return self._get_items(self.requester.get_races,
+                               self.type_constructor.construct_races)
 
     def get_race(self) -> Race:
-        races_json = self.requester.get_races(self.params)
-        races = self.type_constructor.construct_races(races_json)
-        self.reset()
-        if len(races) == 1:
-            return races[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a race from the current query
+        """
+        return self._get_item(self.requester.get_races,
+                              self.type_constructor.construct_races)
 
     def get_seasons(self) -> list[Season]:
-        seasons_json = self.requester.get_seasons(self.params)
-        seasons = self.type_constructor.construct_seasons(seasons_json)
-        self.reset()
-        return seasons
+        """
+        Get a list of seasons from the current query
+        """
+        return self._get_items(self.requester.get_seasons,
+                               self.type_constructor.construct_seasons)
 
     def get_season(self) -> Season:
-        seasons_json = self.requester.get_seasons(self.params)
-        seasons = self.type_constructor.construct_seasons(seasons_json)
-        self.reset()
-        if len(seasons) == 1:
-            return seasons[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a season from the current query
+        """
+        return self._get_item(self.requester.get_seasons,
+                              self.type_constructor.construct_seasons)
 
     def get_statuses(self) -> list[Status]:
-        statuses_json = self.requester.get_statuses(self.params)
-        statuses = self.type_constructor.construct_statuses(statuses_json)
-        self.reset()
-        return statuses
+        """
+        Get a list of statuses from the current query
+        """
+        return self._get_items(self.requester.get_statuses,
+                               self.type_constructor.construct_statuses)
 
     def get_status(self) -> Status:
-        statuses_json = self.requester.get_statuses(self.params)
-        statuses = self.type_constructor.construct_statuses(statuses_json)
-        self.reset()
-        if len(statuses) == 1:
-            return statuses[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a status from the current query
+        """
+        return self._get_item(self.requester.get_statuses,
+                              self.type_constructor.construct_statuses)
 
     #   Standings Queries
 
     def get_driver_standings(self) -> list[StandingsList]:
-        standings_lists_json = self.requester.get_driver_standings(self.params)
-        standings_lists = self.type_constructor.construct_standings_lists(standings_lists_json)
-        self.reset()
-        return standings_lists
+        """
+        Get a list of driver standings from the current query
+        """
+        return self._get_items(self.requester.get_driver_standings,
+                               self.type_constructor.construct_driver_standings)
 
     def get_driver_standing(self) -> StandingsList:
-        standings_lists_json = self.requester.get_driver_standings(self.params)
-        standings_lists = self.type_constructor.construct_standings_lists(standings_lists_json)
-        self.reset()
-        if len(standings_lists) == 1:
-            return standings_lists[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a driver standing from the current query
+        """
+        return self._get_item(self.requester.get_driver_standings,
+                              self.type_constructor.construct_driver_standings)
 
     def get_constructor_standings(self) -> list[StandingsList]:
-        standings_lists_json = self.requester.get_constructor_standings(self.params)
-        standings_lists = self.type_constructor.construct_standings_lists(standings_lists_json)
-        self.reset()
-        return standings_lists
+        """
+        Get a list of constructor standings from the current query
+        """
+        return self._get_items(self.requester.get_constructor_standings,
+                               self.type_constructor.construct_constructor_standings)
 
     def get_constructor_standing(self) -> StandingsList:
-        standings_lists_json = self.requester.get_constructor_standings(self.params)
-        standings_lists = self.type_constructor.construct_standings_lists(standings_lists_json)
-        self.reset()
-        if len(standings_lists) == 1:
-            return standings_lists[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a constructor standing from the current query
+        """
+        return self._get_item(self.requester.get_constructor_standings,
+                              self.type_constructor.construct_constructor_standings)
 
     #   Laps and Pit Stops Queries
 
     def get_laps(self) -> list[Race]:
-        laps_json = self.requester.get_laps(self.params)
-        laps = self.type_constructor.construct_races(laps_json)
-        self.reset()
-        return laps
+        """
+        Get a list of laps from the current query
+        """
+        return self._get_items(self.requester.get_laps,
+                               self.type_constructor.construct_races)
 
     def get_lap(self) -> Race:
-        laps_json = self.requester.get_laps(self.params)
-        laps = self.type_constructor.construct_races(laps_json)
-        self.reset()
-        if len(laps) == 1:
-            return laps[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a lap from the current query
+        """
+        return self._get_item(self.requester.get_laps,
+                              self.type_constructor.construct_races)
 
     def get_pit_stops(self) -> list[Race]:
-        pit_stops_json = self.requester.get_pit_stops(self.params)
-        pit_stops = self.type_constructor.construct_races(pit_stops_json)
-        self.reset()
-        return pit_stops
+        """
+        Get a list of pit stops from the current query
+        """
+        return self._get_items(self.requester.get_pit_stops,
+                               self.type_constructor.construct_races)
 
     def get_pit_stop(self) -> Race:
-        pit_stops_json = self.requester.get_pit_stops(self.params)
-        pit_stops = self.type_constructor.construct_races(pit_stops_json)
-        self.reset()
-        if len(pit_stops) == 1:
-            return pit_stops[0]
-        else:
-            raise Exception("More than 1 item found")
+        """
+        Get a pit stop from the current query
+        """
+        return self._get_item(self.requester.get_pit_stops,
+                              self.type_constructor.construct_races)

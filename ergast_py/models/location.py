@@ -1,9 +1,15 @@
+""" Location class """
+
 from dataclasses import dataclass
 
+from ergast_py.models.model import Model
+
+
 @dataclass
-class Location:
+class Location(Model):
     """
     Representation of a Location for a Formula One Circuit
+
     Locations may contain:
         lat: Float
         long: Float
@@ -16,12 +22,3 @@ class Location:
         self.longitude = longitude
         self.locality = locality
         self.country = country
-        pass
-
-    def __str__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"

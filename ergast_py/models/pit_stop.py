@@ -1,31 +1,28 @@
-from dataclasses import dataclass
+""" PitStop class """
+
 import datetime
+from dataclasses import dataclass
+
+from ergast_py.models.model import Model
+
 
 @dataclass
-class PitStop:
+class PitStop(Model):
     """
     Representation of a single Pit Stop from a Formula One race
+
     PitStops may contain:
-        driverId: String
+        driver_id: String
         lap: Integer
         stop: Integer
-        localTime: datetime.datetime
+        local_time: datetime.datetime
         duration: datetime.time
     """
 
-    def __init__(self, driverId: str, lap: int, stop: int, localTime: datetime.datetime,
+    def __init__(self, driver_id: str, lap: int, stop: int, local_time: datetime.datetime,
                  duration: datetime.time) -> None:
-        self.driverId = driverId
+        self.driver_id = driver_id
         self.lap = lap
         self.stop = stop
-        self.localTime = localTime
+        self.local_time = local_time
         self.duration = duration
-        pass
-
-    def __str__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"

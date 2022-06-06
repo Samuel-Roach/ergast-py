@@ -1,26 +1,30 @@
+""" TypeConstructor class """
+
+from ergast_py.constants.expected import Expected
+from ergast_py.constants.status_type import StatusType
+from ergast_py.helpers import Helpers
 from ergast_py.models.average_speed import AverageSpeed
+from ergast_py.models.circuit import Circuit
+from ergast_py.models.constructor import Constructor
 from ergast_py.models.constructor_standing import ConstructorStanding
 from ergast_py.models.driver import Driver
 from ergast_py.models.driver_standing import DriverStanding
 from ergast_py.models.fastest_lap import FastestLap
 from ergast_py.models.lap import Lap
 from ergast_py.models.location import Location
-from ergast_py.models.circuit import Circuit
-from ergast_py.models.constructor import Constructor
 from ergast_py.models.pit_stop import PitStop
 from ergast_py.models.race import Race
 from ergast_py.models.result import Result
-from ergast_py.helpers import Helpers
-from ergast_py.constants.status_type import StatusType
 from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
-from ergast_py.constants.expected import Expected
 
+
+#pylint: disable=too-many-public-methods
 class TypeConstructor():
     """
-        Class for constructing types out of dicts
+    Class for constructing types out of dicts
     """
 
     def __init__(self) -> None:
@@ -96,6 +100,9 @@ class TypeConstructor():
     #
 
     def construct_location(self, location: dict) -> Location:
+        """
+        Construct a Location from a JSON dictionary
+        """
         location = self._populate_missing_location(location=location)
         return Location(
             latitude=float(location["lat"]),
@@ -105,101 +112,137 @@ class TypeConstructor():
         )
 
     def construct_circuit(self, circuit: dict) -> Circuit:
+        """
+        Construct a Circuit from a JSON dictionary
+        """
         circuit = self._populate_missing_circuit(circuit)
         return Circuit(
-            circuitId=circuit["circuitId"],
+            circuit_id=circuit["circuitId"],
             url=circuit["url"],
-            circuitName=circuit["circuitName"],
+            circuit_name=circuit["circuitName"],
             location=self.construct_location(circuit["Location"])
         )
 
     def construct_circuits(self, circuits: dict) -> list[Circuit]:
+        """
+        Construct a list of Circuits from a JSON dictionary
+        """
         return [self.construct_circuit(circuit) for circuit in circuits]
 
     def construct_constructor(self, constructor: dict) -> Constructor:
+        """
+        Construct a Constructor from a JSON dictionary
+        """
         constructor = self._populate_missing_constructor(constructor)
         return Constructor(
-            constructorId=constructor["constructorId"],
+            constructor_id=constructor["constructorId"],
             url=constructor["url"],
             name=constructor["name"],
             nationality=constructor["nationality"]
         )
 
     def construct_constructors(self, constructors: dict) -> list[Constructor]:
+        """
+        Construct a list of Constructors from a JSON dictionary
+        """
         return [self.construct_constructor(constructor) for constructor in constructors]
 
     def construct_driver(self, driver: dict) -> Driver:
+        """
+        Construct a Driver from a JSON dictionary
+        """
         driver = self._populate_missing_driver(driver)
         return Driver(
-            driverId=driver["driverId"],
-            permanentNumber=int(driver["permanentNumber"]),
+            driver_id=driver["driverId"],
+            permanent_number=int(driver["permanentNumber"]),
             code=driver["code"],
             url=driver["url"],
-            givenName=driver["givenName"],
-            familyName=driver["familyName"],
-            dateOfBirth=Helpers().construct_date(driver["dateOfBirth"]),
+            given_name=driver["givenName"],
+            family_name=driver["familyName"],
+            date_of_birth=Helpers().construct_date(driver["dateOfBirth"]),
             nationality=driver["nationality"]
         )
 
     def construct_drivers(self, drivers: dict) -> list[Driver]:
+        """
+        Construct a list of Drivers from a JSON dictionary
+        """
         return [self.construct_driver(driver) for driver in drivers]
 
     def construct_race(self, race: dict) -> Race:
+        """
+        Construct a Race from a JSON dictionary
+        """
         race = self._populate_missing_race(race)
         return Race(
             season=int(race["season"]),
-            round=int(race["round"]),
+            round_no=int(race["round"]),
             url=race["url"],
-            raceName=race["raceName"],
+            race_name=race["raceName"],
             circuit=self.construct_circuit(race["Circuit"]),
             date=Helpers().construct_datetime_str(date=race["date"], time=race["time"]),
             results=self.construct_results(race["Results"]),
-            firstPractice=Helpers().construct_datetime_dict(race["FirstPractice"]),
-            secondPractice=Helpers().construct_datetime_dict(race["SecondPractice"]),
-            thirdPractice=Helpers().construct_datetime_dict(race["ThirdPractice"]),
+            first_practice=Helpers().construct_datetime_dict(race["FirstPractice"]),
+            second_practice=Helpers().construct_datetime_dict(race["SecondPractice"]),
+            third_practice=Helpers().construct_datetime_dict(race["ThirdPractice"]),
             sprint=Helpers().construct_datetime_dict(race["Sprint"]),
-            sprintResults=self.construct_results(race["SprintResults"]),
+            sprint_results=self.construct_results(race["SprintResults"]),
             qualifying=Helpers().construct_datetime_dict(race["Qualifying"]),
-            qualifyingResults=self.construct_results(race["QualifyingResults"]),
-            pitStops=self.construct_pit_stops(race["PitStops"]),
+            qualifying_results=self.construct_results(race["QualifyingResults"]),
+            pit_stops=self.construct_pit_stops(race["PitStops"]),
             laps=self.construct_laps(race["Laps"])
         )
 
     def construct_races(self, races: dict) -> list[Race]:
+        """
+        Construct a list of Races from a JSON dictionary
+        """
         return [self.construct_race(race) for race in races]
 
     def construct_result(self, result: dict) -> Result:
+        """
+        Construct a Result from a JSON dictionary
+        """
         result = self._populate_missing_result(result)
         return Result(
             number=int(result["number"]),
             position=int(result["position"]),
-            positionText=result["positionText"],
+            position_text=result["positionText"],
             points=float(result["points"]),
             driver=self.construct_driver(result["Driver"]),
             constructor=self.construct_constructor(result["Constructor"]),
             grid=int(result["grid"]),
             laps=int(result["laps"]),
-            status=int(StatusType().status_map[result["status"]]),
+            status=int(StatusType().string_to_id[result["status"]]),
             time=Helpers().construct_lap_time_millis(millis=result["Time"]),
-            fastestLap=self.construct_fastest_lap(result["FastestLap"]),
-            q1=Helpers().format_lap_time(time=result["Q1"]),
-            q2=Helpers().format_lap_time(time=result["Q2"]),
-            q3=Helpers().format_lap_time(time=result["Q3"]),
+            fastest_lap=self.construct_fastest_lap(result["FastestLap"]),
+            qual_1=Helpers().format_lap_time(time=result["Q1"]),
+            qual_2=Helpers().format_lap_time(time=result["Q2"]),
+            qual_3=Helpers().format_lap_time(time=result["Q3"]),
         )
 
     def construct_results(self, results: dict) -> list[Result]:
+        """
+        Construct a list of Results from a JSON dictionary
+        """
         return [self.construct_result(result) for result in results]
 
     def construct_fastest_lap(self, fastest_lap: dict) -> FastestLap:
+        """
+        Construct a FastestLap from a JSON dictionary
+        """
         fastest_lap = self._populate_missing_fastest_lap(fastest_lap)
         return FastestLap(
             rank=int(fastest_lap["rank"]),
             lap=int(fastest_lap["lap"]),
             time=Helpers().construct_lap_time(time=fastest_lap["Time"]),
-            averageSpeed=self.construct_average_speed(fastest_lap["AverageSpeed"])
+            average_speed=self.construct_average_speed(fastest_lap["AverageSpeed"])
         )
 
     def construct_average_speed(self, average_speed: dict) -> AverageSpeed:
+        """
+        Construct an AverageSpeed from a JSON dictionary
+        """
         average_speed = self._populate_missing_average_speed(average_speed)
         return AverageSpeed(
             units=average_speed["units"],
@@ -207,40 +250,61 @@ class TypeConstructor():
         )
 
     def construct_pit_stop(self, pit_stop: dict) -> PitStop:
+        """
+        Construct a PitStop from a JSON dictionary
+        """
         pit_stop = self._populate_missing_pit_stop(pit_stop)
         return PitStop(
-            driverId=pit_stop["driverId"],
+            driver_id=pit_stop["driverId"],
             lap=int(pit_stop["lap"]),
             stop=int(pit_stop["stop"]),
-            localTime=Helpers().construct_local_time(pit_stop["time"]),
+            local_time=Helpers().construct_local_time(pit_stop["time"]),
             duration=Helpers().construct_pitstop_duration(pit_stop["duration"])
         )
 
     def construct_pit_stops(self, pit_stops: dict) -> list[PitStop]:
+        """
+        Construct a list of PitStops from a JSON dictionary
+        """
         return [self.construct_pit_stop(pit_stop) for pit_stop in pit_stops]
 
     def construct_lap(self, lap: dict) -> Lap:
+        """
+        Construct a Lap from a JSON dictionary
+        """
         lap = self._populate_missing_lap(lap)
         return Lap(
             number=int(lap["number"]),
             timings=self.construct_timings(lap["Timings"])
         )
-    
+
     def construct_laps(self, laps: dict) -> list[Lap]:
+        """
+        Construct a list of Laps from a JSON dictionary
+        """
         return [self.construct_lap(lap) for lap in laps]
 
     def construct_timing(self, timing: dict) -> Timing:
+        """
+        Construct a Timing from a JSON dictionary
+        """
         timing = self._populate_missing_timing(timing)
         return Timing(
-            driverId=timing["driverId"],
+            driver_id=timing["driverId"],
             position=int(timing["position"]),
             time=Helpers().format_lap_time(time=timing["time"])
         )
 
     def construct_timings(self, timings: dict) -> list[Timing]:
+        """
+        Construct a list of Timings from a JSON dictionary
+        """
         return [self.construct_timing(timing) for timing in timings]
 
     def construct_season(self, season: dict) -> Season:
+        """
+        Construct a Season from a JSON dictionary
+        """
         season = self._populate_missing_season(season)
         return Season(
             season=int(season["season"]),
@@ -248,24 +312,36 @@ class TypeConstructor():
         )
 
     def construct_seasons(self, seasons: dict) -> list[Season]:
+        """
+        Construct a list of Seasons from a JSON dictionary
+        """
         return [self.construct_season(season) for season in seasons]
 
     def construct_status(self, status: dict) -> Status:
+        """
+        Construct a Status from a JSON dictionary
+        """
         status = self._populate_missing_status(status)
         return Status(
-            statusId=int(status["statusId"]),
+            status_id=int(status["statusId"]),
             count=int(status["count"]),
             status=status["status"]
         )
 
-    def construct_statuses(self, statuses: dict) -> list[Season]:
+    def construct_statuses(self, statuses: dict) -> list[Status]:
+        """
+        Construct a list of Statuses from a JSON dictionary
+        """
         return [self.construct_status(status) for status in statuses]
 
     def construct_driver_standing(self, standing: dict) -> DriverStanding:
+        """
+        Construct a DriverStanding from a JSON dictionary
+        """
         standing = self._populate_missing_driver_standing(standing)
         return DriverStanding(
             position=int(standing["position"]),
-            positionText=standing["positionText"],
+            position_text=standing["positionText"],
             points=float(standing["points"]),
             wins=int(standing["wins"]),
             driver=self.construct_driver(standing["Driver"]),
@@ -273,29 +349,45 @@ class TypeConstructor():
         )
 
     def construct_driver_standings(self, standings: dict) -> list[DriverStanding]:
+        """
+        Construct a list of DriverStandings from a JSON dictionary
+        """
         return [self.construct_driver_standing(standing) for standing in standings]
 
     def construct_constructor_standing(self, standing: dict) -> ConstructorStanding:
+        """
+        Construct a ConstructorStanding from a JSON dictionary
+        """
         standing = self._populate_missing_constructor_standing(standing)
         return ConstructorStanding(
             position=int(standing["position"]),
-            positionText=standing["positionText"],
+            position_text=standing["positionText"],
             points=float(standing["points"]),
             wins=int(standing["wins"]),
             constructor=self.construct_constructor(standing["Constructor"])
         )
 
     def construct_constructor_standings(self, standings: dict) -> list[ConstructorStanding]:
+        """
+        Construct a list of ConstructorStandings from a JSON dictionary
+        """
         return [self.construct_constructor_standing(standing) for standing in standings]
 
     def construct_standings_list(self, standings_list: dict) -> StandingsList:
+        """
+        Construct a StandingsList from a JSON dictionary
+        """
         standings_list = self._populate_missing_standings_list(standings_list)
         return StandingsList(
             season=int(standings_list["season"]),
-            round=int(standings_list["round"]),
-            driverStandings=self.construct_driver_standings(standings_list["DriverStandings"]),
-            constructorStandings=self.construct_constructor_standings(standings_list["ConstructorStandings"])
+            round_no=int(standings_list["round"]),
+            driver_standings=self.construct_driver_standings(standings_list["DriverStandings"]),
+            constructor_standings=self.construct_constructor_standings(
+                                        standings_list["ConstructorStandings"])
         )
 
     def construct_standings_lists(self, standings_lists: dict) -> list[StandingsList]:
+        """
+        Construct a list of StandingsLists from a JSON dictionary
+        """
         return [self.construct_standings_list(standings_list) for standings_list in standings_lists]

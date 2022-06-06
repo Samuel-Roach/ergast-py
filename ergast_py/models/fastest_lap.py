@@ -1,29 +1,27 @@
-from dataclasses import dataclass
-from ergast_py.models.average_speed import AverageSpeed
+""" FastestLap class """
+
 import datetime
+from dataclasses import dataclass
+
+from ergast_py.models.average_speed import AverageSpeed
+from ergast_py.models.model import Model
+
 
 @dataclass
-class FastestLap:
+class FastestLap(Model):
     """
     Representation of a Fastest Lap for a Formula One Driver
+
     Fastest Laps may contain:
         rank: Integer
         lap: Integer
         time: datetime.time
-        averageSpeed: AverageSpeed
+        average_speed: AverageSpeed
     """
 
-    def __init__(self, rank: int, lap: int, time: datetime.time, averageSpeed: AverageSpeed) -> None:
+    def __init__(self, rank: int, lap: int, time: datetime.time,
+                 average_speed: AverageSpeed) -> None:
         self.rank = rank
         self.lap = lap
         self.time = time
-        self.averageSpeed = averageSpeed
-        pass
-
-    def __str__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
+        self.average_speed = average_speed
