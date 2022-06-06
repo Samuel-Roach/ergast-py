@@ -4,11 +4,10 @@ from dataclasses import dataclass
 
 from ergast_py.models.constructor import Constructor
 from ergast_py.models.driver import Driver
-from ergast_py.models.model import Model
 
 
 @dataclass
-class DriverStanding(Model):
+class DriverStanding():
     """
     Representation of a Formula One Driver's standing in a Season
 
@@ -29,3 +28,7 @@ class DriverStanding(Model):
         self.wins = wins
         self.driver = driver
         self.constructors = constructors
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

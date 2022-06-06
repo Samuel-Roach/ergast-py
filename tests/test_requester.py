@@ -1,6 +1,8 @@
 import ergast_py
 import pytest
+
 import tests.test_constants as test_constants
+
 
 class TestRequester():
     """

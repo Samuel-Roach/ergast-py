@@ -3,11 +3,9 @@
 import datetime
 from dataclasses import dataclass
 
-from ergast_py.models.model import Model
-
 
 @dataclass
-class Driver(Model):
+class Driver():
     """
     Representation of a Formula One driver
 
@@ -32,3 +30,7 @@ class Driver(Model):
         self.family_name = family_name
         self.date_of_birth = date_of_birth
         self.nationality = nationality
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

@@ -3,11 +3,10 @@
 from dataclasses import dataclass
 
 from ergast_py.models.constructor import Constructor
-from ergast_py.models.model import Model
 
 
 @dataclass
-class ConstructorStanding(Model):
+class ConstructorStanding():
     """
     Representation of a Formula One Constructor's standing in a Season
 
@@ -26,3 +25,7 @@ class ConstructorStanding(Model):
         self.points = points
         self.wins = wins
         self.constructor = constructor
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

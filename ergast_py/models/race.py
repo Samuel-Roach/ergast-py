@@ -5,13 +5,12 @@ from dataclasses import dataclass
 
 from ergast_py.models.circuit import Circuit
 from ergast_py.models.lap import Lap
-from ergast_py.models.model import Model
 from ergast_py.models.pit_stop import PitStop
 from ergast_py.models.result import Result
 
 
 @dataclass
-class Race(Model):
+class Race():
     """
     Representation of a single Race from a Formula One season
 
@@ -56,3 +55,7 @@ class Race(Model):
         self.qualifying_results = qualifying_results
         self.pit_stops = pit_stops
         self.laps = laps
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

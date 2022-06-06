@@ -3,11 +3,9 @@
 import datetime
 from dataclasses import dataclass
 
-from ergast_py.models.model import Model
-
 
 @dataclass
-class Timing(Model):
+class Timing():
     """
     Representation of a single timing from a lap in Formula One
     Timings may contain:
@@ -20,3 +18,7 @@ class Timing(Model):
         self.driver_id = driver_id
         self.position = position
         self.time = time
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

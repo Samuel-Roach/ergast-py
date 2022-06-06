@@ -6,11 +6,10 @@ from dataclasses import dataclass
 from ergast_py.models.constructor import Constructor
 from ergast_py.models.driver import Driver
 from ergast_py.models.fastest_lap import FastestLap
-from ergast_py.models.model import Model
 
 
 @dataclass
-class Result(Model):
+class Result():
     """
     Representation of a single Result from a Formula One race
 
@@ -49,3 +48,7 @@ class Result(Model):
         self.qual_1 = qual_1
         self.qual_2 = qual_2
         self.qual_3 = qual_3
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

@@ -4,11 +4,10 @@ from dataclasses import dataclass
 
 from ergast_py.models.constructor_standing import ConstructorStanding
 from ergast_py.models.driver_standing import DriverStanding
-from ergast_py.models.model import Model
 
 
 @dataclass
-class StandingsList(Model):
+class StandingsList():
     """
     Representation of a set of Standings from a time in Formula One
 
@@ -25,3 +24,7 @@ class StandingsList(Model):
         self.round_no = round_no
         self.driver_standings = driver_standings
         self.constructor_standings = constructor_standings
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"

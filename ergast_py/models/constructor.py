@@ -2,11 +2,9 @@
 
 from dataclasses import dataclass
 
-from ergast_py.models.model import Model
-
 
 @dataclass
-class Constructor(Model):
+class Constructor():
     """
     Representation of a Formula One Team
 
@@ -22,3 +20,7 @@ class Constructor(Model):
         self.url = url
         self.name = name
         self.nationality = nationality
+
+    def __repr__(self) -> str:
+        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
+        return f"{type(self).__name__}({members})"
