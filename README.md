@@ -7,6 +7,7 @@
     <br>
     <img src="https://img.shields.io/pypi/v/ergast-py?color=yellow&style=for-the-badge"/>
     <img alt="GitHub" src="https://img.shields.io/github/license/Samuel-roach/Ergast-py?color=orange&style=for-the-badge">
+    <img alt="Downloads" src="https://img.shields.io/pypi/dw/ergast-py?color=red&style=for-the-badge">
 </p>
 
 A comprehensive Python wrapper for the Ergast API. Built for easy use and functionality, Ergast-py aims to bring the Ergast API into the Python network as seemlessly as possible.
