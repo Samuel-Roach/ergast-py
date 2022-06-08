@@ -44,4 +44,4 @@ from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
 
-__version__ = '0.1.0'
+__version__ = '0.3.0'
