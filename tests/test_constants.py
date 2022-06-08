@@ -53,3 +53,14 @@ SILVERSTONE = {
         "country":"UK"
     }
 }
+
+LECLERC = {
+    "driverId":"leclerc",
+    "permanentNumber":"16",
+    "code":"LEC",
+    "url":"http://en.wikipedia.org/wiki/Charles_Leclerc",
+    "givenName":"Charles",
+    "familyName":"Leclerc",
+    "dateOfBirth":"1997-10-16",
+    "nationality":"Monegasque"
+}

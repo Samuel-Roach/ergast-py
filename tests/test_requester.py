@@ -1,7 +1,7 @@
-import ergast_py
 import pytest
 
 import tests.test_constants as test_constants
+from ergast_py.requester import Requester
 
 
 class TestRequester():
@@ -11,7 +11,7 @@ class TestRequester():
     <Note>
     """
 
-    r = ergast_py.Requester()
+    r = Requester()
 
     def _construct_test_params(self, season=None, seasons=None, round=None, driver=None, constructor=None, grid=None,
                                qualifying=None, sprint=None, result=None, fastest=None, circuit=None, status=None,
@@ -39,12 +39,12 @@ class TestRequester():
 
 
     def test_run_request(self):
-        self.r.run_request(season=2008, round=5, criteria=["drivers", "alonso"], resource="driverStandings")
+        self.r.run_request(season=2008, round_no=5, criteria=["drivers", "alonso"], resource="driverStandings")
 
 
     def test_run_request_fails(self):
         with pytest.raises(Exception):
-            self.r.run_request(season=2008, round=5, criteria=["drivers", "alonso"], resource="bad request")
+            self.r.run_request(season=2008, round_no=5, criteria=["drivers", "alonso"], resource="bad request")
 
 
     def test_get_circuit(self):

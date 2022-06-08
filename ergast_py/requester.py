@@ -112,8 +112,11 @@ class Requester():
             "criteria": criteria
         }
 
-    def _run_request(self, season, round_no, criteria, resource, value=None, limit=None,
+    def run_request(self, season, round_no, criteria, resource, value=None, limit=None,
                     offset=None) -> dict:
+        """
+        Run a request against the API and return the JSON dictionary result
+        """
         url_tmpl = URITemplate('https://ergast.com/api{/series}{/season}{/round}'
                            '{/criteria*}{/resource}{/value}.json{?limit,offset}')
         url = url_tmpl.expand(host=HOST, series=SERIES,
@@ -131,7 +134,7 @@ class Requester():
         params = get_params(param)
         filters = get_criteria(params, resource)
 
-        return self._run_request(season=params["season"], round_no=params["round"],
+        return self.run_request(season=params["season"], round_no=params["round"],
                                 criteria=filters["criteria"], resource=filters["resource"],
                                 value=filters["value"], limit=params["paging"]["limit"],
                                 offset=params["paging"]["offset"])
