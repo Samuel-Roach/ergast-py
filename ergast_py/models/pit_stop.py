@@ -13,11 +13,11 @@ class PitStop():
         driver_id: String
         lap: Integer
         stop: Integer
-        local_time: datetime.datetime
+        local_time: datetime.time
         duration: datetime.time
     """
 
-    def __init__(self, driver_id: str, lap: int, stop: int, local_time: datetime.datetime,
+    def __init__(self, driver_id: str, lap: int, stop: int, local_time: datetime.time,
                  duration: datetime.time) -> None:
         self.driver_id = driver_id
         self.lap = lap

@@ -8,6 +8,7 @@ from ergast_py.models.constructor import Constructor
 from ergast_py.models.driver import Driver
 from ergast_py.models.fastest_lap import FastestLap
 from ergast_py.models.location import Location
+from ergast_py.models.pit_stop import PitStop
 from ergast_py.models.result import Result
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
@@ -129,7 +130,23 @@ class TestTypeConstructor():
         assert expected == self.t.construct_results(params)
 
     def test_construct_pit_stops(self):
-        pass
+        params = [{
+            "driverId":"alonso",
+            "lap":"11",
+            "stop":"1",
+            "time":"18:22:10",
+            "duration":"25.365"
+        }]
+
+        expected = [PitStop(
+            driver_id="alonso",
+            lap=11,
+            stop=1,
+            local_time=datetime.time(hour=18, minute=22, second=10),
+            duration=datetime.time(second=25, microsecond=365000)
+        )]
+        
+        assert expected == self.t.construct_pit_stops(params)
 
     def test_construct_laps(self):
         # Check Timings too
