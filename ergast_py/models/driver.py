@@ -34,3 +34,15 @@ class Driver():
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
         return f"{type(self).__name__}({members})"
+
+    def __eq__(self, __o: object) -> bool:
+        return isinstance(__o, Driver) and (
+            self.driver_id == __o.driver_id and
+            self.permanent_number == __o.permanent_number and
+            self.code == __o.code and
+            self.url == __o.url and
+            self.given_name == __o.given_name and
+            self.family_name == __o.family_name and
+            self.date_of_birth == __o.date_of_birth and
+            self.nationality == __o.nationality
+        )
