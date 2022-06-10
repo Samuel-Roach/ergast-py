@@ -64,3 +64,15 @@ LECLERC = {
     "dateOfBirth":"1997-10-16",
     "nationality":"Monegasque"
 }
+
+BAHRAIN = {
+    "circuitId":"bahrain",
+    "url":"http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
+    "circuitName":"Bahrain International Circuit",
+    "Location":{
+        "lat":"26.0325",
+        "long":"50.5106",
+        "locality":"Sakhir",
+        "country":"Bahrain"
+    }
+}
