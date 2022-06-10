@@ -116,7 +116,8 @@ class TestTypeConstructor():
         expected = [Race(
                 season=2022, round_no=1, url="http://en.wikipedia.org/wiki/2022_Bahrain_Grand_Prix",
                 race_name="Bahrain Grand Prix", circuit=bahrain,
-                date=datetime.datetime(year=2022, month=3, day=20, hour=15, tzinfo=datetime.timezone.utc), results=[],
+                date=datetime.datetime(year=2022, month=3, day=20, hour=15, tzinfo=datetime.timezone.utc),
+                results=[],
                 first_practice=datetime.datetime(year=2022, month=3, day=18, hour=12, tzinfo=datetime.timezone.utc),
                 second_practice=datetime.datetime(year=2022, month=3, day=18, hour=15, tzinfo=datetime.timezone.utc),
                 third_practice=datetime.datetime(year=2022, month=3, day=19, hour=12, tzinfo=datetime.timezone.utc),
