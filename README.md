@@ -15,7 +15,7 @@ A comprehensive Python wrapper for the Ergast API. Built for easy use and functi
 > NOTE: Ergast-py is still in active development, so all features are experimental and subject to change. Differences may occur between what is documented in this README.md and what is actually available in Ergast-py
 
 <p align="center">
-   <img width="500" src="images/../img/banner.png" alt="Command prompt example of how to use Ergast">
+   <img width="500" src="images/../img/carbon.png" alt="Command prompt example of how to use Ergast">
 </p>
 
 # What is Ergast?
