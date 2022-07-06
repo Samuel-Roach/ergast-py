@@ -1,15 +1,15 @@
-from copyreg import constructor
-import datetime
-from this import d
-from ergast_py.constants import expected
-from ergast_py.models.average_speed import AverageSpeed
+""" Tests for the Type Constructor class """
 
+import datetime
+
+from ergast_py.models.average_speed import AverageSpeed
 from ergast_py.models.circuit import Circuit
 from ergast_py.models.constructor import Constructor
 from ergast_py.models.constructor_standing import ConstructorStanding
 from ergast_py.models.driver import Driver
 from ergast_py.models.driver_standing import DriverStanding
 from ergast_py.models.fastest_lap import FastestLap
+from ergast_py.models.lap import Lap
 from ergast_py.models.location import Location
 from ergast_py.models.pit_stop import PitStop
 from ergast_py.models.race import Race
@@ -18,11 +18,10 @@ from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
-from ergast_py.models.lap import Lap
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
 
-import tests.test_constants as test_constants
+from tests import test_constants
 
 
 class TestTypeConstructor():
@@ -38,6 +37,7 @@ class TestTypeConstructor():
     #
 
     def test_construct_circuit(self):
+        """ Assert construct_circuit function works"""
         params = [test_constants.BAHRAIN]
 
         location = Location(latitude=26.0325,
@@ -53,6 +53,7 @@ class TestTypeConstructor():
         assert expected == self.t.construct_circuits(params)
 
     def test_construct_constructor(self):
+        """ Assert construct_constructor function works"""
         params = [test_constants.ALPINE]
 
         expected = [Constructor(constructor_id="alpine",
@@ -63,6 +64,7 @@ class TestTypeConstructor():
         assert expected == self.t.construct_constructors(params)
 
     def test_construct_driver(self):
+        """ Assert construct_driver function works"""
         params = [test_constants.ALONSO]
 
         expected = [Driver(driver_id="alonso",
@@ -78,6 +80,7 @@ class TestTypeConstructor():
         assert expected == self.t.construct_drivers(params)
 
     def test_construct_races(self):
+        """ Assert construct_races function works"""
         params = [{
             "season":"2022",
             "round":"1",
@@ -116,19 +119,25 @@ class TestTypeConstructor():
         expected = [Race(
                 season=2022, round_no=1, url="http://en.wikipedia.org/wiki/2022_Bahrain_Grand_Prix",
                 race_name="Bahrain Grand Prix", circuit=bahrain,
-                date=datetime.datetime(year=2022, month=3, day=20, hour=15, tzinfo=datetime.timezone.utc),
+                date=datetime.datetime(year=2022, month=3, day=20, hour=15,
+                                       tzinfo=datetime.timezone.utc),
                 results=[],
-                first_practice=datetime.datetime(year=2022, month=3, day=18, hour=12, tzinfo=datetime.timezone.utc),
-                second_practice=datetime.datetime(year=2022, month=3, day=18, hour=15, tzinfo=datetime.timezone.utc),
-                third_practice=datetime.datetime(year=2022, month=3, day=19, hour=12, tzinfo=datetime.timezone.utc),
+                first_practice=datetime.datetime(year=2022, month=3, day=18, hour=12,
+                                                 tzinfo=datetime.timezone.utc),
+                second_practice=datetime.datetime(year=2022, month=3, day=18, hour=15,
+                                                  tzinfo=datetime.timezone.utc),
+                third_practice=datetime.datetime(year=2022, month=3, day=19, hour=12,
+                                                 tzinfo=datetime.timezone.utc),
                 sprint=None, sprint_results=[],
-                qualifying=datetime.datetime(year=2022, month=3, day=19, hour=15, tzinfo=datetime.timezone.utc),
+                qualifying=datetime.datetime(year=2022, month=3, day=19, hour=15,
+                                             tzinfo=datetime.timezone.utc),
                 qualifying_results=[], pit_stops=[], laps=[]
         )]
 
         assert expected == self.t.construct_races(params)
 
     def test_construct_results(self):
+        """ Assert construct_results function works"""
         params = [{
             "number":"16",
             "position":"1",
@@ -168,7 +177,7 @@ class TestTypeConstructor():
         constructor = Constructor(constructor_id="ferrari",
                                   url="http://en.wikipedia.org/wiki/Scuderia_Ferrari",
                                   name="Ferrari", nationality="Italian")
-        
+
         expected = [Result(number=16, position=1, position_text="1", points=26, driver=driver,
                            constructor=constructor, grid=1, laps=57, status=1,
                            time=datetime.time(hour=1, minute=37, second=33, microsecond=584000),
@@ -177,6 +186,7 @@ class TestTypeConstructor():
         assert expected == self.t.construct_results(params)
 
     def test_construct_pit_stops(self):
+        """ Assert construct_pit_stops function works"""
         params = [{
             "driverId":"alonso",
             "lap":"11",
@@ -192,10 +202,11 @@ class TestTypeConstructor():
             local_time=datetime.time(hour=18, minute=22, second=10),
             duration=datetime.time(second=25, microsecond=365000)
         )]
-        
+
         assert expected == self.t.construct_pit_stops(params)
 
     def test_construct_laps(self):
+        """ Assert construct_laps function works"""
         params = [{
             "number":"1",
             "Timings":[{
@@ -215,6 +226,7 @@ class TestTypeConstructor():
         assert expected == self.t.construct_laps(params)
 
     def test_construct_seasons(self):
+        """ Assert construct_seasons function works"""
         params = [{
             "season":"2022",
             "url":"http://en.wikipedia.org/wiki/2022_Formula_One_World_Championship"
@@ -228,6 +240,7 @@ class TestTypeConstructor():
         assert expected == self.t.construct_seasons(params)
 
     def test_construct_statuses(self):
+        """ Assert construct_statuses function works"""
         params = [{
             "statusId":"1",
             "count":"1",
@@ -243,6 +256,7 @@ class TestTypeConstructor():
         assert expected == self.t.construct_statuses(params)
 
     def test_construct_standings_lists(self):
+        """ Assert construct_standings_lists function works"""
         # Check Driver Standings
         # Check constructor standings
         params = [{

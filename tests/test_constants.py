@@ -1,3 +1,5 @@
+""" List of constants for use in testing """
+
 ALONSO = {
     "driverId":"alonso",
     "permanentNumber":"14",

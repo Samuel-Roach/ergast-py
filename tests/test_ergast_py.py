@@ -1,3 +1,5 @@
+""" Tests for Ergast Py """
+
 from ergast_py import __version__
 
 
@@ -7,4 +9,9 @@ class TestErgastPy():
     """
 
     def test_version(self):
+        """ Assert the version of the system """
         assert __version__ == '0.3.0'
+
+    def test_ergast(self):
+        """ Basic test to check Ergast functions """
+        pass

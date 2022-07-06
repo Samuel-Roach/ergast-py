@@ -1,3 +1,5 @@
+""" Tests for the Ergast class """
+
 import ergast_py
 
 class TestErgast():
@@ -8,16 +10,17 @@ class TestErgast():
     e = ergast_py.Ergast()
 
     def test_filters_add(self):
-        # Test that when I add all the filters the params has them all
+        """ Assert adding filters adds them to the Ergast class """
         pass
 
     def test_paging(self):
-        # Test that paging works when querying large data amounts
+        """ Assert that paging changes the results pages """
         pass
 
     def test_reset(self):
-        # Test that when I've run a query the params are reset
+        """ Assert the function resetting works """
         pass
 
     def test_full(self):
+        """ Assert the full Ergast class works """
         pass

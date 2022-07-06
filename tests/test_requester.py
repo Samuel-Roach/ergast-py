@@ -1,7 +1,9 @@
-import pytest
+""" Tests for the Requester class """
 
-import tests.test_constants as test_constants
+import pytest
 from ergast_py.requester import Requester
+
+from tests import test_constants
 
 
 class TestRequester():
@@ -13,13 +15,14 @@ class TestRequester():
 
     r = Requester()
 
-    def _construct_test_params(self, season=None, seasons=None, round=None, driver=None, constructor=None, grid=None,
-                               qualifying=None, sprint=None, result=None, fastest=None, circuit=None, status=None,
-                               standing=None, races=None, limit=None, offset=None, lap=None, pit_stop=None):
+    def _construct_test_params(self, season=None, seasons=None, round_no=None, driver=None,
+                               constructor=None, grid=None, qualifying=None, sprint=None,
+                               result=None, fastest=None, circuit=None, status=None, standing=None,
+                               races=None, limit=None, offset=None, lap=None, pit_stop=None):
         return {
             "season": season,
             "seasons": seasons,
-            "round": round,
+            "round": round_no,
             "driver": driver,
             "constructor": constructor,
             "grid": grid,
@@ -38,24 +41,30 @@ class TestRequester():
         }
 
 
-    def test_run_request(self):
-        self.r.run_request(season=2008, round_no=5, criteria=["drivers", "alonso"], resource="driverStandings")
+    def test_run_request_doesnt_fail(self):
+        """ Assert a valid request doesn't fail """
+        self.r.run_request(season=2008, round_no=5, criteria=["drivers", "alonso"],
+                           resource="driverStandings")
 
 
     def test_run_request_fails(self):
+        """ Assert an invalid request fails """
         with pytest.raises(Exception):
-            self.r.run_request(season=2008, round_no=5, criteria=["drivers", "alonso"], resource="bad request")
+            self.r.run_request(season=2008, round_no=5, criteria=["drivers", "alonso"],
+                               resource="bad request")
 
 
     def test_get_circuit(self):
+        """ Test the get_circuit function """
         expected = [test_constants.ISTANBUL]
 
-        params = self._construct_test_params(season=2008, round=5)
+        params = self._construct_test_params(season=2008, round_no=5)
 
         assert self.r.get_circuits(params) == expected
 
 
     def test_get_constructors(self):
+        """ Test the get_constructors function """
         expected = [test_constants.FERRARI]
 
         params = self._construct_test_params(constructor="ferrari")
@@ -64,6 +73,7 @@ class TestRequester():
 
 
     def test_get_drivers(self):
+        """ Test the get_drivers function """
         expected = [test_constants.ALONSO]
 
         params = self._construct_test_params(driver="alonso")
@@ -72,6 +82,7 @@ class TestRequester():
 
 
     def test_get_qualifying(self):
+        """ Test the get_qualifying function """
         expected = [
             {
                 "season":"2008",
@@ -95,12 +106,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2008, round=5, qualifying=7)
+        params = self._construct_test_params(season=2008, round_no=5, qualifying=7)
 
         assert self.r.get_qualifying(params) == expected
 
 
     def test_get_sprints(self):
+        """ Test the get_sprints function """
         expected = [
             {
                 "season":"2021",
@@ -136,12 +148,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2021, round=10, sprint=7)
+        params = self._construct_test_params(season=2021, round_no=10, sprint=7)
 
         assert self.r.get_sprints(params) == expected
 
 
     def test_get_results(self):
+        """ Test the get_results function """
         expected = [
             {
                 "season":"2021",
@@ -178,12 +191,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2021, round=16, result=16)
+        params = self._construct_test_params(season=2021, round_no=16, result=16)
 
         assert self.r.get_results(params) == expected
 
 
     def test_get_races(self):
+        """ Test the get_races function """
         expected = [
             {
                 "season":"2021",
@@ -208,12 +222,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2021, round=16)
+        params = self._construct_test_params(season=2021, round_no=16)
 
         assert self.r.get_races(params) == expected
 
 
     def test_get_seasons(self):
+        """ Test the get_seasons function """
         expected = [
             {
                 "season":"2021",
@@ -227,6 +242,7 @@ class TestRequester():
 
 
     def test_get_statuses(self):
+        """ Test the get_statuses function """
         expected = [
             {
                 "statusId":"11",
@@ -235,12 +251,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2021, round=16, result=16)
+        params = self._construct_test_params(season=2021, round_no=16, result=16)
 
         assert self.r.get_statuses(params) == expected
 
 
     def test_get_driver_standings(self):
+        """ Test the get_driver_standings function """
         expected = [
             {
                 "season":"2021",
@@ -260,12 +277,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2021, round=16, driver="alonso")
+        params = self._construct_test_params(season=2021, round_no=16, driver="alonso")
 
         assert self.r.get_driver_standings(params) == expected
 
 
     def test_get_constructor_standings(self):
+        """ Test the get_constructor_standi function """
         expected = [
             {
                 "season":"2021",
@@ -282,12 +300,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2021, round=16, standing=5)
+        params = self._construct_test_params(season=2021, round_no=16, standing=5)
 
         assert self.r.get_constructor_standings(params) == expected
 
 
     def test_get_laps(self):
+        """ Test the get_laps function """
         expected = [
             {
                 "season":"2008",
@@ -312,12 +331,13 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2008, round=5, driver="alonso", lap=1)
+        params = self._construct_test_params(season=2008, round_no=5, driver="alonso", lap=1)
 
         assert self.r.get_laps(params) == expected
 
 
     def test_get_pit_stops(self):
+        """ Test the get_pit_stops function """
         expected = [
             {
                 "season":"2021",
@@ -339,6 +359,6 @@ class TestRequester():
             }
         ]
 
-        params = self._construct_test_params(season=2021, round=16, driver="alonso", pit_stop=1)
+        params = self._construct_test_params(season=2021, round_no=16, driver="alonso", pit_stop=1)
 
         assert self.r.get_pit_stops(params) == expected
