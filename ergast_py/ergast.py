@@ -26,7 +26,7 @@ class Ergast():
     Build up the queries using the available functions.
 
     >>> e = ergast_py.Ergast()
-    >>> e.season(2021).round(1).driver_str("alonso")
+    >>> e.season(2021).round(1).driver("alonso")
 
     Get the data using ``.get_xyz()`` functions.
 
@@ -88,42 +88,34 @@ class Ergast():
         self.params["round"] = round_no
         return self
 
-    def driver(self, driver: Driver) -> Ergast:
+    def driver(self, driver) -> Ergast:
         """
         Add a driver to the current query
 
-        >>> alonso = e.driver_str("alonso").get_driver()
+        >>> alonso = e.driver("alonso").get_driver()
         >>> e.driver(alonso).get_results()
         """
-        self.params["driver"] = driver.driverId
-        return self
-
-    def driver_str(self, driver: str) -> Ergast:
-        """
-        Add a driver to the current query
-
-        >>> e.driver_str("alonso").get_driver()
-        """
-        self.params["driver"] = driver
+        if isinstance(driver, str):
+            self.params["driver"] = driver
+        elif isinstance(driver, Driver):
+            self.params["driver"] = driver.driverId
+        else:
+            raise TypeError("Function parameter must be of type Driver or str")
         return self
 
     def constructor(self, constructor: Constructor) -> Ergast:
         """
         Add a constructor to the current query
 
-        >>> mercedes = e.constructor_str("mercedes").get_constructor()
+        >>> mercedes = e.constructor("mercedes").get_constructor()
         >>> e.constructor(mercedes).get_constructor_standings()
         """
-        self.params["constructor"] = constructor.constructorId
-        return self
-
-    def constructor_str(self, constructor: str) -> Ergast:
-        """
-        Add a constructor to the current query
-
-        >>> e.constructor_str("mercedes").get_constructor()
-        """
-        self.params["constructor"] = constructor
+        if isinstance(constructor, str):
+            self.params["constructor"] = constructor
+        elif isinstance(constructor, Constructor):
+            self.params["constructor"] = constructor.constructorId
+        else:
+            raise TypeError("Function parameter must be of type Constructor or str")
         return self
 
     def qualifying(self, position: int) -> Ergast:
@@ -171,41 +163,33 @@ class Ergast():
         self.params["fastest"] = position
         return self
 
-    def circuit(self, circuit: Circuit) -> Ergast:
+    def circuit(self, circuit) -> Ergast:
         """
         Add a circuit to the current query
 
-        >>> silverstone = e.circuit_str("silverstone").get_circuit()
+        >>> silverstone = e.circuit("silverstone").get_circuit()
         >>> e.circuit(silverstone)
         """
-        self.params["circuit"] = circuit.circuitId
+        if isinstance(circuit, str):
+            self.params["circuit"] = circuit
+        elif isinstance(circuit, Circuit):
+            self.params["circuit"] = circuit.circuitId
+        else:
+            raise TypeError("Function parameter must be of type Circuit or str")
         return self
 
-    def circuit_str(self, circuit: str) -> Ergast:
-        """
-        Add a circuit to the current query
-
-        >>> e.circuit_str("silverstone").get_circuit()
-        """
-        self.params["circuit"] = circuit
-        return self
-
-    def status(self, status: int) -> Ergast:
+    def status(self, status) -> Ergast:
         """
         Add a finishing status to the current query
 
-        >>> e.driver_str("alonso").status(2)
+        >>> e.driver("alonso").status(2)
         """
-        self.params["status"] = status
-        return self
-
-    def status_str(self, status: str) -> Ergast:
-        """
-        Add a finishing status to the current query
-
-        >>> e.season(2021).round(1).status_str("Disqualified")
-        """
-        self.params["status"] = StatusType().string_to_id[status]
+        if isinstance(status, str):
+            self.params["status"] = status
+        elif isinstance(status, int):
+            self.params["status"] = StatusType().string_to_id[status]
+        else:
+            raise TypeError("Function parameter must be of type int or str")
         return self
 
     def standing(self, position: int) -> Ergast:

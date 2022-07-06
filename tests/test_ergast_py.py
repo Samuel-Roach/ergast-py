@@ -10,7 +10,7 @@ class TestErgastPy():
 
     def test_version(self):
         """ Assert the version of the system """
-        assert __version__ == '0.3.0'
+        assert __version__ == '0.5.0'
 
     def test_ergast(self):
         """ Basic test to check Ergast functions """

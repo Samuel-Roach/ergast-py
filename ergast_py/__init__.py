@@ -8,7 +8,7 @@ Basic usage:
 
     >>> import ergast_py
     >>> e = ergast_py.Ergast()
-    >>> e.driver_str("alonso").get_driver()
+    >>> e.driver("alonso").get_driver()
     Driver(
         driverId=alonso,
         permanentNumber=14,
@@ -44,4 +44,4 @@ from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
 
-__version__ = '0.3.0'
+__version__ = '0.5.0'

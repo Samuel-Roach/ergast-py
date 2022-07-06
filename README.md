@@ -58,7 +58,7 @@ Queries can then be built up with function calls in a sequential manner. Once yo
 race_results = e.season(2008).round(5).get_results()
 
 # http://ergast.com/api/f1/drivers/massa
-felipe_massa = e.driver_str("massa").get_driver()
+felipe_massa = e.driver("massa").get_driver()
 
 # http://ergast.com/api/f1/current/constructorStandings/3
 constructor_standings = e.season().standing(3).get_constructor_standings()
@@ -112,19 +112,15 @@ More detail on the available functions within the ``Ergast()`` class is availabl
 | --------------- | ------------------------ | ------------------------------------------------------------------------------ |
 | season          | year: int                | If you call season with no arguments it will default to the current season     |
 | round           | round_no: int            | If you call round with no arguments it will default to the last round          |
-| driver          | driver: Driver           | The Driver equivalent of ``driver_str``                                        |
-| driver_str      | driver: str              | The String equivalent of ``driver``. Must use driver's driverId                |
-| constructor     | constructor: Constructor | The Constructor equivalent of ``constructor_str``                              |
-| constructor_str | constructor: str         | The String equivalent of ``constructor``. Must use constructor's constructorId |
+| driver          | driver: Driver           |                                                                                |
+| constructor     | constructor: Constructor |                                                                                |
 | qualifying      | position: int            | Position at the <i>end</i> of qualifying                                       |
 | sprint          | position: int            |                                                                                |
 | grid            | position: int            | Position lined up on the grid                                                  |
 | result          | position: int            |                                                                                |
 | fastest         | position: int            | Ranking in list of each drivers fastest lap                                    |
-| circuit         | circuit: Circuit         | The Circuit equivalent of ``circuit_str``                                      |
-| circuit_str     | circuit: str             | The String equivalent of ``circuit``. Must use circuit's circuitId             |
-| status          | status: int              | The Integer equivalent of ``status_string``. Must use statusId                 |
-| status_str      | status: str              | The String equivalent of ``status``                                            |
+| circuit         | circuit: Circuit         |                                                                                |
+| status          | status: int              | Must use statusId or string representation                                     |
 | standing        | position: int            | Position of Driver or Constructor in standing                                  |
 | lap             | lap_number: int          |                                                                                |
 | pit_stop        | stop_number: int         |                                                                                |
