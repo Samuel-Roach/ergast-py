@@ -44,11 +44,6 @@ Note: Whilst the package is called ``ergast-py``, you need to import ``ergast_py
 import ergast_py
 
 e = ergast_py.Ergast()
-
-# For v0.1.0 and prior
-from ergast_py import ergast.Ergast
-
-e = Ergast()
 ```
 
 Queries can then be built up with function calls in a sequential manner. Once you've built up a query, finally define what data you wish to get using a ``get_xyz()`` function.
