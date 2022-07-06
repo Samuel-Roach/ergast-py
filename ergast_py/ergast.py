@@ -257,7 +257,8 @@ class Ergast():
         items = self._get_items(get_items, construct_items)
         if len(items) == 1:
             return items[0]
-        raise Warning("More than 1 element found")
+        raise Exception(f'Data loss will occur with this query. 1 item' \
+            f' requested but {len(items)} found.')
 
     #   Race and Results Queries
 
