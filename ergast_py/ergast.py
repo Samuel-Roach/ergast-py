@@ -395,7 +395,7 @@ class Ergast():
         Get a list of driver standings from the current query
         """
         return self._get_items(self.requester.get_driver_standings,
-                               self.type_constructor.construct_driver_standings)
+                               self.type_constructor.construct_standings_lists)
 
     def get_driver_standing(self) -> StandingsList:
         """
@@ -409,7 +409,7 @@ class Ergast():
         Get a list of constructor standings from the current query
         """
         return self._get_items(self.requester.get_constructor_standings,
-                               self.type_constructor.construct_constructor_standings)
+                               self.type_constructor.construct_standings_lists)
 
     def get_constructor_standing(self) -> StandingsList:
         """

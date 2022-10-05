@@ -258,9 +258,7 @@ class Requester():
                                       "driverStandings",
                                       param)
 
-        return api_json["MRData"]["StandingsTable"]["StandingsLists"][0][
-            "DriverStandings"
-        ]
+        return api_json["MRData"]["StandingsTable"]["StandingsLists"]
 
     def get_constructor_standings(self, param: dict) -> dict:
         """
@@ -271,9 +269,7 @@ class Requester():
                                       "constructorStandings",
                                       param)
 
-        return api_json["MRData"]["StandingsTable"]["StandingsLists"][0][
-            "ConstructorStandings"
-        ]
+        return api_json["MRData"]["StandingsTable"]["StandingsLists"]
 
     #
     #   Laps and Pit Stops
