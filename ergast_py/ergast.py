@@ -402,7 +402,7 @@ class Ergast():
         Get a driver standing from the current query
         """
         return self._get_item(self.requester.get_driver_standings,
-                              self.type_constructor.construct_driver_standings)
+                              self.type_constructor.construct_standings_lists)
 
     def get_constructor_standings(self) -> list[StandingsList]:
         """
@@ -416,7 +416,7 @@ class Ergast():
         Get a constructor standing from the current query
         """
         return self._get_item(self.requester.get_constructor_standings,
-                              self.type_constructor.construct_constructor_standings)
+                              self.type_constructor.construct_standings_lists)
 
     #   Laps and Pit Stops Queries
 
