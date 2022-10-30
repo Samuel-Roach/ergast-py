@@ -1,6 +1,7 @@
 """ Helpers class """
 
 import datetime
+import pytz
 
 
 class Helpers:
@@ -41,7 +42,7 @@ class Helpers:
         """
         if "millis" in millis:
             value = int(millis["millis"])
-            return datetime.datetime.fromtimestamp(value/1000.0).time()
+            return datetime.datetime.fromtimestamp(value/1000.0, pytz.utc).time()
         return None
 
     def format_lap_time(self, time: str) -> datetime.time:
