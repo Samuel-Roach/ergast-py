@@ -14,6 +14,10 @@ class Helpers:
 
         Looking for the format of ``%Y-%m-%d %H:%M:%SZ``
         """
+        
+        if not time.strip():
+            time = "00:00:00Z"
+
         new_datetime = datetime.datetime.strptime(f"{date} {time}", "%Y-%m-%d %H:%M:%SZ")
         new_datetime = new_datetime.replace(tzinfo=datetime.timezone.utc)
         return new_datetime
