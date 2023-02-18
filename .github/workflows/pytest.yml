@@ -22,7 +22,7 @@ jobs:
         virtualenvs-in-project: true
     - run: |
         poetry install
-        poetry run python -m pytest
+        poetry run pytest
   black:
     name: Black
     runs-on: ubuntu-latest
