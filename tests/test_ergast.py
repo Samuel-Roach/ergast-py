@@ -2,7 +2,8 @@
 
 import ergast_py
 
-class TestErgast():
+
+class TestErgast:
     """
     Tests for the Ergast class
     """
@@ -10,17 +11,17 @@ class TestErgast():
     e = ergast_py.Ergast()
 
     def test_filters_add(self):
-        """ Assert adding filters adds them to the Ergast class """
+        """Assert adding filters adds them to the Ergast class"""
         pass
 
     def test_paging(self):
-        """ Assert that paging changes the results pages """
+        """Assert that paging changes the results pages"""
         pass
 
     def test_reset(self):
-        """ Assert the function resetting works """
+        """Assert the function resetting works"""
         pass
 
     def test_full(self):
-        """ Assert the full Ergast class works """
+        """Assert the full Ergast class works"""
         pass

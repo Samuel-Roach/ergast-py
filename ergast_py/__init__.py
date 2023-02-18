@@ -44,24 +44,24 @@ from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
 
-__version__ = '0.7.0'
+__version__ = "0.7.0"
 
 __all__ = [
-    'Ergast',
-    'AverageSpeed',
-    'Circuit',
-    'Constructor',
-    'ConstructorStanding',
-    'Driver',
-    'DriverStanding',
-    'FastestLap',
-    'Lap',
-    'Location',
-    'PitStop',
-    'Race',
-    'Result',
-    'Season',
-    'StandingsList',
-    'Status',
-    'Timing'
+    "Ergast",
+    "AverageSpeed",
+    "Circuit",
+    "Constructor",
+    "ConstructorStanding",
+    "Driver",
+    "DriverStanding",
+    "FastestLap",
+    "Lap",
+    "Location",
+    "PitStop",
+    "Race",
+    "Result",
+    "Season",
+    "StandingsList",
+    "Status",
+    "Timing",
 ]

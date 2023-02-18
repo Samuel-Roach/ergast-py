@@ -21,8 +21,8 @@ from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
 
 
-#pylint: disable=too-many-public-methods
-class TypeConstructor():
+# pylint: disable=too-many-public-methods
+class TypeConstructor:
     """
     Class for constructing types out of dicts
     """
@@ -54,7 +54,9 @@ class TypeConstructor():
         return self._populate_missing(expected=Expected().circuit, actual=circuit)
 
     def _populate_missing_constructor(self, constructor: dict) -> dict:
-        return self._populate_missing(expected=Expected().constructor, actual=constructor)
+        return self._populate_missing(
+            expected=Expected().constructor, actual=constructor
+        )
 
     def _populate_missing_driver(self, driver: dict) -> dict:
         return self._populate_missing(expected=Expected().driver, actual=driver)
@@ -66,10 +68,14 @@ class TypeConstructor():
         return self._populate_missing(expected=Expected().result, actual=result)
 
     def _populate_missing_fastest_lap(self, fastest_lap: dict) -> dict:
-        return self._populate_missing(expected=Expected().fastest_lap, actual=fastest_lap)
+        return self._populate_missing(
+            expected=Expected().fastest_lap, actual=fastest_lap
+        )
 
     def _populate_missing_average_speed(self, average_speed: dict) -> dict:
-        return self._populate_missing(expected=Expected().average_speed, actual=average_speed)
+        return self._populate_missing(
+            expected=Expected().average_speed, actual=average_speed
+        )
 
     def _populate_missing_pit_stop(self, pit_stop: dict) -> dict:
         return self._populate_missing(expected=Expected().pit_stop, actual=pit_stop)
@@ -87,13 +93,19 @@ class TypeConstructor():
         return self._populate_missing(expected=Expected().status, actual=status)
 
     def _populate_missing_driver_standing(self, standing: dict) -> dict:
-        return self._populate_missing(expected=Expected().driver_standing, actual=standing)
+        return self._populate_missing(
+            expected=Expected().driver_standing, actual=standing
+        )
 
     def _populate_missing_constructor_standing(self, standing: dict) -> dict:
-        return self._populate_missing(expected=Expected().constructor_standing, actual=standing)
+        return self._populate_missing(
+            expected=Expected().constructor_standing, actual=standing
+        )
 
     def _populate_missing_standings_list(self, standings_list: dict) -> dict:
-        return self._populate_missing(expected=Expected().standings_list, actual=standings_list)
+        return self._populate_missing(
+            expected=Expected().standings_list, actual=standings_list
+        )
 
     #
     #   PUBLIC METHODS
@@ -108,7 +120,7 @@ class TypeConstructor():
             latitude=float(location["lat"]),
             longitude=float(location["long"]),
             locality=location["locality"],
-            country=location["country"]
+            country=location["country"],
         )
 
     def construct_circuit(self, circuit: dict) -> Circuit:
@@ -120,7 +132,7 @@ class TypeConstructor():
             circuit_id=circuit["circuitId"],
             url=circuit["url"],
             circuit_name=circuit["circuitName"],
-            location=self.construct_location(circuit["Location"])
+            location=self.construct_location(circuit["Location"]),
         )
 
     def construct_circuits(self, circuits: dict) -> list[Circuit]:
@@ -138,7 +150,7 @@ class TypeConstructor():
             constructor_id=constructor["constructorId"],
             url=constructor["url"],
             name=constructor["name"],
-            nationality=constructor["nationality"]
+            nationality=constructor["nationality"],
         )
 
     def construct_constructors(self, constructors: dict) -> list[Constructor]:
@@ -160,7 +172,7 @@ class TypeConstructor():
             given_name=driver["givenName"],
             family_name=driver["familyName"],
             date_of_birth=Helpers().construct_date(driver["dateOfBirth"]),
-            nationality=driver["nationality"]
+            nationality=driver["nationality"],
         )
 
     def construct_drivers(self, drivers: dict) -> list[Driver]:
@@ -190,7 +202,7 @@ class TypeConstructor():
             qualifying=Helpers().construct_datetime_dict(race["Qualifying"]),
             qualifying_results=self.construct_results(race["QualifyingResults"]),
             pit_stops=self.construct_pit_stops(race["PitStops"]),
-            laps=self.construct_laps(race["Laps"])
+            laps=self.construct_laps(race["Laps"]),
         )
 
     def construct_races(self, races: dict) -> list[Race]:
@@ -236,7 +248,7 @@ class TypeConstructor():
             rank=int(fastest_lap["rank"]),
             lap=int(fastest_lap["lap"]),
             time=Helpers().construct_lap_time(time=fastest_lap["Time"]),
-            average_speed=self.construct_average_speed(fastest_lap["AverageSpeed"])
+            average_speed=self.construct_average_speed(fastest_lap["AverageSpeed"]),
         )
 
     def construct_average_speed(self, average_speed: dict) -> AverageSpeed:
@@ -245,8 +257,7 @@ class TypeConstructor():
         """
         average_speed = self._populate_missing_average_speed(average_speed)
         return AverageSpeed(
-            units=average_speed["units"],
-            speed=float(average_speed["speed"])
+            units=average_speed["units"], speed=float(average_speed["speed"])
         )
 
     def construct_pit_stop(self, pit_stop: dict) -> PitStop:
@@ -259,7 +270,7 @@ class TypeConstructor():
             lap=int(pit_stop["lap"]),
             stop=int(pit_stop["stop"]),
             local_time=Helpers().construct_local_time(pit_stop["time"]),
-            duration=Helpers().construct_pitstop_duration(pit_stop["duration"])
+            duration=Helpers().construct_pitstop_duration(pit_stop["duration"]),
         )
 
     def construct_pit_stops(self, pit_stops: dict) -> list[PitStop]:
@@ -274,8 +285,7 @@ class TypeConstructor():
         """
         lap = self._populate_missing_lap(lap)
         return Lap(
-            number=int(lap["number"]),
-            timings=self.construct_timings(lap["Timings"])
+            number=int(lap["number"]), timings=self.construct_timings(lap["Timings"])
         )
 
     def construct_laps(self, laps: dict) -> list[Lap]:
@@ -292,7 +302,7 @@ class TypeConstructor():
         return Timing(
             driver_id=timing["driverId"],
             position=int(timing["position"]),
-            time=Helpers().format_lap_time(time=timing["time"])
+            time=Helpers().format_lap_time(time=timing["time"]),
         )
 
     def construct_timings(self, timings: dict) -> list[Timing]:
@@ -306,10 +316,7 @@ class TypeConstructor():
         Construct a Season from a JSON dictionary
         """
         season = self._populate_missing_season(season)
-        return Season(
-            season=int(season["season"]),
-            url=season["url"]
-        )
+        return Season(season=int(season["season"]), url=season["url"])
 
     def construct_seasons(self, seasons: dict) -> list[Season]:
         """
@@ -325,7 +332,7 @@ class TypeConstructor():
         return Status(
             status_id=int(status["statusId"]),
             count=int(status["count"]),
-            status=status["status"]
+            status=status["status"],
         )
 
     def construct_statuses(self, statuses: dict) -> list[Status]:
@@ -345,7 +352,7 @@ class TypeConstructor():
             points=float(standing["points"]),
             wins=int(standing["wins"]),
             driver=self.construct_driver(standing["Driver"]),
-            constructors=self.construct_constructors(standing["Constructors"])
+            constructors=self.construct_constructors(standing["Constructors"]),
         )
 
     def construct_driver_standings(self, standings: dict) -> list[DriverStanding]:
@@ -364,10 +371,12 @@ class TypeConstructor():
             position_text=standing["positionText"],
             points=float(standing["points"]),
             wins=int(standing["wins"]),
-            constructor=self.construct_constructor(standing["Constructor"])
+            constructor=self.construct_constructor(standing["Constructor"]),
         )
 
-    def construct_constructor_standings(self, standings: dict) -> list[ConstructorStanding]:
+    def construct_constructor_standings(
+        self, standings: dict
+    ) -> list[ConstructorStanding]:
         """
         Construct a list of ConstructorStandings from a JSON dictionary
         """
@@ -381,13 +390,19 @@ class TypeConstructor():
         return StandingsList(
             season=int(standings_list["season"]),
             round_no=int(standings_list["round"]),
-            driver_standings=self.construct_driver_standings(standings_list["DriverStandings"]),
+            driver_standings=self.construct_driver_standings(
+                standings_list["DriverStandings"]
+            ),
             constructor_standings=self.construct_constructor_standings(
-                                        standings_list["ConstructorStandings"])
+                standings_list["ConstructorStandings"]
+            ),
         )
 
     def construct_standings_lists(self, standings_lists: dict) -> list[StandingsList]:
         """
         Construct a list of StandingsLists from a JSON dictionary
         """
-        return [self.construct_standings_list(standings_list) for standings_list in standings_lists]
+        return [
+            self.construct_standings_list(standings_list)
+            for standings_list in standings_lists
+        ]

@@ -14,7 +14,9 @@ class Helpers:
 
         Looking for the format of ``%Y-%m-%d %H:%M:%SZ``
         """
-        new_datetime = datetime.datetime.strptime(f"{date} {time}", "%Y-%m-%d %H:%M:%SZ")
+        new_datetime = datetime.datetime.strptime(
+            f"{date} {time}", "%Y-%m-%d %H:%M:%SZ"
+        )
         new_datetime = new_datetime.replace(tzinfo=datetime.timezone.utc)
         return new_datetime
 
@@ -33,7 +35,9 @@ class Helpers:
         Construct a datetime.date from a date string
         """
         elements = date.split("-")
-        return datetime.date(year=int(elements[0]), month=int(elements[1]), day=int(elements[2]))
+        return datetime.date(
+            year=int(elements[0]), month=int(elements[1]), day=int(elements[2])
+        )
 
     def construct_lap_time_millis(self, millis: dict) -> datetime.time:
         """
@@ -41,7 +45,7 @@ class Helpers:
         """
         if "millis" in millis:
             value = int(millis["millis"])
-            return datetime.datetime.fromtimestamp(value/1000.0).time()
+            return datetime.datetime.fromtimestamp(value / 1000.0).time()
         return None
 
     def format_lap_time(self, time: str) -> datetime.time:
