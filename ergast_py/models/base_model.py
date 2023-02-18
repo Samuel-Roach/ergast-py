@@ -10,3 +10,7 @@ class BaseModel:
         return isinstance(__o, type(self)) and all(
             getattr(self, key) == getattr(__o, key) for key in vars(self)
         )
+
+    def __str__(self) -> str:
+        attrs = '\n\t'.join(f"{key}: {value}" for key, value in vars(self).items())
+        return f"{type(self).__name__} (\n\t{attrs}\n)"
