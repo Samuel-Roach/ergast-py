@@ -3,10 +3,11 @@
 from dataclasses import dataclass
 
 from ergast_py.models.constructor import Constructor
+from ergast_py.models.base_model import BaseModel
 
 
 @dataclass
-class ConstructorStanding():
+class ConstructorStanding(BaseModel):
     """
     Representation of a Formula One Constructor's standing in a Season
 
@@ -23,16 +24,3 @@ class ConstructorStanding():
     points: float
     wins: int
     constructor: Constructor
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __eq__(self, __o: object) -> bool:
-        return isinstance(__o, ConstructorStanding) and (
-            self.position == __o.position and
-            self.position_text == __o.position_text and
-            self.points == __o.points and
-            self.wins == __o.wins and
-            self.constructor == __o.constructor
-        )

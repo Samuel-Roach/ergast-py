@@ -2,9 +2,11 @@
 
 from dataclasses import dataclass
 
+from ergast_py.models.base_model import BaseModel
+
 
 @dataclass
-class AverageSpeed():
+class AverageSpeed(BaseModel):
     """
     Representation of a Drivers Average Speed
 
@@ -15,13 +17,3 @@ class AverageSpeed():
 
     units: str
     speed: float
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __eq__(self, __o: object) -> bool:
-        return isinstance(__o, AverageSpeed) and (
-            self.units == __o.units and
-            self.speed == __o.speed
-        )

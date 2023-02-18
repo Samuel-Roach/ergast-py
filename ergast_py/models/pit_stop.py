@@ -3,9 +3,11 @@
 import datetime
 from dataclasses import dataclass
 
+from ergast_py.models.base_model import BaseModel
+
 
 @dataclass
-class PitStop():
+class PitStop(BaseModel):
     """
     Representation of a single Pit Stop from a Formula One race
 
@@ -22,16 +24,3 @@ class PitStop():
     stop: int
     local_time: datetime.time
     duration: datetime.time
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __eq__(self, __o: object) -> bool:
-        return isinstance(__o, PitStop) and (
-            self.driver_id == __o.driver_id and
-            self.lap == __o.lap and
-            self.stop == __o.stop and
-            self.local_time == __o.local_time and
-            self.duration == __o.duration
-        )

@@ -3,10 +3,11 @@
 from dataclasses import dataclass
 
 from ergast_py.models.timing import Timing
+from ergast_py.models.base_model import BaseModel
 
 
 @dataclass
-class Lap():
+class Lap(BaseModel):
     """
     Representation of a single Lap from a Formula One race
 
@@ -17,13 +18,3 @@ class Lap():
 
     number: int
     timings: list[Timing]
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __eq__(self, __o: object) -> bool:
-        return isinstance(__o, Lap) and (
-            self.number == __o.number and
-            self.timings == __o.timings
-        )

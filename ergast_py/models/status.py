@@ -2,9 +2,11 @@
 
 from dataclasses import dataclass
 
+from ergast_py.models.base_model import BaseModel
+
 
 @dataclass
-class Status():
+class Status(BaseModel):
     """
     Representation of the finishing status of a Driver in a Race
 
@@ -17,14 +19,3 @@ class Status():
     status_id: int
     count: int
     status: str
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __eq__(self, __o: object) -> bool:
-        return isinstance(__o, Status) and (
-            self.status_id == __o.status_id and
-            self.count == __o.count and
-            self.status == __o.status
-        )
