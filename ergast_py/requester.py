@@ -15,7 +15,8 @@ class Requester:
     Perform requests to the Ergast API
     """
 
-    def _get_race_results_params(self, param: dict) -> dict:
+    @staticmethod
+    def _get_race_results_params(param: dict) -> dict:
         return {
             "season": param["season"],
             "round": param["round"],
@@ -38,7 +39,8 @@ class Requester:
             },
         }
 
-    def _get_race_results_criteria(self, params: dict, resource: str) -> dict:
+    @staticmethod
+    def _get_race_results_criteria(params: dict, resource: str) -> dict:
         criteria = []
         for key, value in params["filters"].items():
             if key != resource and value is not None:
@@ -49,7 +51,8 @@ class Requester:
 
         return {"resource": resource, "value": value, "criteria": criteria}
 
-    def _get_standings_params(self, param: dict) -> dict:
+    @staticmethod
+    def _get_standings_params(param: dict) -> dict:
         return {
             "season": param["season"],
             "round": param["round"],
@@ -64,7 +67,8 @@ class Requester:
             },
         }
 
-    def _get_standings_criteria(self, params: dict, resource: str) -> dict:
+    @staticmethod
+    def _get_standings_criteria(params: dict, resource: str) -> dict:
         criteria = []
         for key, value in params["filters"].items():
             if key != "standing" and value is not None:
@@ -75,7 +79,8 @@ class Requester:
 
         return {"resource": resource, "value": value, "criteria": criteria}
 
-    def _get_laps_pit_stops_params(self, param: dict) -> dict:
+    @staticmethod
+    def _get_laps_pit_stops_params(param: dict) -> dict:
         return {
             "season": param["season"],
             "round": param["round"],
@@ -90,7 +95,8 @@ class Requester:
             },
         }
 
-    def _get_laps_pit_stops_criteria(self, params: dict, resource: str) -> dict:
+    @staticmethod
+    def _get_laps_pit_stops_criteria(params: dict, resource: str) -> dict:
         criteria = []
         for key, value in params["filters"].items():
             if key != resource and value is not None:
@@ -101,8 +107,9 @@ class Requester:
 
         return {"resource": resource, "value": value, "criteria": criteria}
 
+    @staticmethod
     def run_request(
-        self, season, round_no, criteria, resource, value=None, limit=None, offset=None
+            season, round_no, criteria, resource, value=None, limit=None, offset=None
     ) -> dict:
         """
         Run a request against the API and return the JSON dictionary result

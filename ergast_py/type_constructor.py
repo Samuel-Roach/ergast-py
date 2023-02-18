@@ -34,7 +34,8 @@ class TypeConstructor:
     #   PRIVATE METHODS
     #
 
-    def _populate_missing(self, expected: dict, actual: dict) -> dict:
+    @staticmethod
+    def _populate_missing(expected: dict, actual: dict) -> dict:
         for item in expected:
             if item not in actual:
                 if expected[item] == "dict":

@@ -8,7 +8,8 @@ class Helpers:
     Helpers for the construction of models
     """
 
-    def construct_datetime_str(self, date: str, time: str) -> datetime.datetime:
+    @staticmethod
+    def construct_datetime_str(date: str, time: str) -> datetime.datetime:
         """
         Construct a datetime.datetime from the date and time strings.
 
@@ -30,7 +31,8 @@ class Helpers:
             raise ValueError("Dictionary must contain keys 'date' and 'time'")
         return self.construct_datetime_str(datetime_dict["date"], datetime_dict["time"])
 
-    def construct_date(self, date: str) -> datetime.date:
+    @staticmethod
+    def construct_date(date: str) -> datetime.date:
         """
         Construct a datetime.date from a date string
         """
@@ -39,7 +41,8 @@ class Helpers:
             year=int(elements[0]), month=int(elements[1]), day=int(elements[2])
         )
 
-    def construct_lap_time_millis(self, millis: dict) -> datetime.time:
+    @staticmethod
+    def construct_lap_time_millis(millis: dict) -> datetime.time:
         """
         Construct a datetime.time (lap time) from a dict containing the millis
         """
@@ -48,7 +51,8 @@ class Helpers:
             return datetime.datetime.fromtimestamp(value / 1000.0).time()
         raise ValueError("Dictionary must contain key 'millis'")
 
-    def format_lap_time(self, time: str) -> datetime.time:
+    @staticmethod
+    def format_lap_time(time: str) -> datetime.time:
         """
         Construct a datetime.time (lap time) from a time string
         """
@@ -67,7 +71,8 @@ class Helpers:
             return self.format_lap_time(value)
         raise ValueError("Dictionary must contain key 'time'")
 
-    def construct_local_time(self, time: str) -> datetime.time:
+    @staticmethod
+    def construct_local_time(time: str) -> datetime.time:
         """
         Construct a datetime.time from a time string
 
@@ -77,7 +82,8 @@ class Helpers:
             return datetime.datetime.strptime(f"{time}", "%H:%M:%S").time()
         raise ValueError("Time string cannot be empty")
 
-    def construct_pitstop_duration(self, time: str) -> datetime.time:
+    @staticmethod
+    def construct_pitstop_duration(time: str) -> datetime.time:
         """
         Construct a datetime.time (pit stop duration) from a time string
 
