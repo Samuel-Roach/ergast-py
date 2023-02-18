@@ -21,7 +21,7 @@ from ergast_py.models.timing import Timing
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
 
-from tests import test_constants
+from tests import constants
 
 
 class TestTypeConstructor():
@@ -38,7 +38,7 @@ class TestTypeConstructor():
 
     def test_construct_circuit(self):
         """ Assert construct_circuit function works"""
-        params = [test_constants.BAHRAIN]
+        params = [constants.BAHRAIN]
 
         location = Location(latitude=26.0325,
                             longitude=50.5106,
@@ -54,7 +54,7 @@ class TestTypeConstructor():
 
     def test_construct_constructor(self):
         """ Assert construct_constructor function works"""
-        params = [test_constants.ALPINE]
+        params = [constants.ALPINE]
 
         expected = [Constructor(constructor_id="alpine",
                                 url="http://en.wikipedia.org/wiki/Alpine_F1_Team",
@@ -65,7 +65,7 @@ class TestTypeConstructor():
 
     def test_construct_driver(self):
         """ Assert construct_driver function works"""
-        params = [test_constants.ALONSO]
+        params = [constants.ALONSO]
 
         expected = [Driver(driver_id="alonso",
                            code="ALO",
@@ -86,7 +86,7 @@ class TestTypeConstructor():
             "round":"1",
             "url":"http://en.wikipedia.org/wiki/2022_Bahrain_Grand_Prix",
             "raceName":"Bahrain Grand Prix",
-            "Circuit": test_constants.BAHRAIN,
+            "Circuit": constants.BAHRAIN,
             "date":"2022-03-20",
             "time":"15:00:00Z",
             "FirstPractice":{
@@ -143,8 +143,8 @@ class TestTypeConstructor():
             "position":"1",
             "positionText":"1",
             "points":"26",
-            "Driver": test_constants.LECLERC,
-            "Constructor": test_constants.FERRARI,
+            "Driver": constants.LECLERC,
+            "Constructor": constants.FERRARI,
             "grid":"1",
             "laps":"57",
             "status":"Finished",
@@ -267,15 +267,15 @@ class TestTypeConstructor():
                 "positionText":"1",
                 "points":"133",
                 "wins":"7",
-                "Driver":test_constants.ALONSO,
-                "Constructors":[test_constants.ALPINE]
+                "Driver":constants.ALONSO,
+                "Constructors":[constants.ALPINE]
             }],
             "ConstructorStandings":[{
                 "position":"1",
                 "positionText":"1",
                 "points":"235",
                 "wins":"5",
-                "Constructor": test_constants.FERRARI
+                "Constructor": constants.FERRARI
             }]
         }]
 

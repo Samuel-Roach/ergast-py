@@ -4,6 +4,7 @@
 name = "attrs"
 version = "22.2.0"
 description = "Classes Without Boilerplate"
+
 category = "dev"
 optional = false
 python-versions = ">=3.6"
@@ -336,6 +337,14 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 
 [package.extras]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
+
+[[package]]
+name = "pytz"
+version = "2022.5"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "requests"

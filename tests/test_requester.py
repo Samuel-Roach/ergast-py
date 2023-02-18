@@ -3,7 +3,7 @@
 import pytest
 from ergast_py.requester import Requester
 
-from tests import test_constants
+from tests import constants
 
 
 class TestRequester():
@@ -56,7 +56,7 @@ class TestRequester():
 
     def test_get_circuit(self):
         """ Test the get_circuit function """
-        expected = [test_constants.ISTANBUL]
+        expected = [constants.ISTANBUL]
 
         params = self._construct_test_params(season=2008, round_no=5)
 
@@ -65,7 +65,7 @@ class TestRequester():
 
     def test_get_constructors(self):
         """ Test the get_constructors function """
-        expected = [test_constants.FERRARI]
+        expected = [constants.FERRARI]
 
         params = self._construct_test_params(constructor="ferrari")
 
@@ -74,7 +74,7 @@ class TestRequester():
 
     def test_get_drivers(self):
         """ Test the get_drivers function """
-        expected = [test_constants.ALONSO]
+        expected = [constants.ALONSO]
 
         params = self._construct_test_params(driver="alonso")
 
@@ -89,15 +89,15 @@ class TestRequester():
                 "round":"5",
                 "url":"http://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix",
                 "raceName":"Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
+                "Circuit": constants.ISTANBUL,
                 "date":"2008-05-11",
                 "time":"12:00:00Z",
                 "QualifyingResults":[
                     {
                         "number":"5",
                         "position":"7",
-                        "Driver": test_constants.ALONSO,
-                        "Constructor": test_constants.RENAULT,
+                        "Driver": constants.ALONSO,
+                        "Constructor": constants.RENAULT,
                         "Q1":"1:26.836",
                         "Q2":"1:26.522",
                         "Q3":"1:28.422"
@@ -119,7 +119,7 @@ class TestRequester():
                 "round":"10",
                 "url":"http://en.wikipedia.org/wiki/2021_British_Grand_Prix",
                 "raceName":"British Grand Prix",
-                "Circuit": test_constants.SILVERSTONE,
+                "Circuit": constants.SILVERSTONE,
                 "date":"2021-07-18",
                 "time":"14:00:00Z",
                 "SprintResults":[
@@ -128,8 +128,8 @@ class TestRequester():
                         "position":"7",
                         "positionText":"7",
                         "points":"0",
-                        "Driver": test_constants.ALONSO,
-                        "Constructor": test_constants.ALPINE,
+                        "Driver": constants.ALONSO,
+                        "Constructor": constants.ALPINE,
                         "grid":"11",
                         "laps":"17",
                         "status":"Finished",
@@ -161,7 +161,7 @@ class TestRequester():
                 "round":"16",
                 "url":"http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
                 "raceName":"Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
+                "Circuit": constants.ISTANBUL,
                 "date":"2021-10-10",
                 "time":"12:00:00Z",
                 "Results":[
@@ -170,8 +170,8 @@ class TestRequester():
                         "position":"16",
                         "positionText":"16",
                         "points":"0",
-                        "Driver": test_constants.ALONSO,
-                        "Constructor": test_constants.ALPINE,
+                        "Driver": constants.ALONSO,
+                        "Constructor": constants.ALPINE,
                         "grid":"5",
                         "laps":"57",
                         "status":"+1 Lap",
@@ -204,7 +204,7 @@ class TestRequester():
                 "round":"16",
                 "url":"http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
                 "raceName":"Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
+                "Circuit": constants.ISTANBUL,
                 "date":"2021-10-10",
                 "time":"12:00:00Z",
                 "FirstPractice":{
@@ -268,9 +268,9 @@ class TestRequester():
                         "positionText":"10",
                         "points":"58",
                         "wins":"0",
-                        "Driver": test_constants.ALONSO,
+                        "Driver": constants.ALONSO,
                         "Constructors":[
-                            test_constants.ALPINE
+                            constants.ALPINE
                         ]
                     }
                 ]
@@ -294,7 +294,7 @@ class TestRequester():
                         "positionText":"5",
                         "points":"104",
                         "wins":"1",
-                        "Constructor": test_constants.ALPINE
+                        "Constructor": constants.ALPINE
                     }
                 ]
             }
@@ -313,7 +313,7 @@ class TestRequester():
                 "round":"5",
                 "url":"http://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix",
                 "raceName":"Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
+                "Circuit": constants.ISTANBUL,
                 "date":"2008-05-11",
                 "time":"12:00:00Z",
                 "Laps":[
@@ -344,7 +344,7 @@ class TestRequester():
                 "round":"16",
                 "url":"http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
                 "raceName":"Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
+                "Circuit": constants.ISTANBUL,
                 "date":"2021-10-10",
                 "time":"12:00:00Z",
                 "PitStops":[
