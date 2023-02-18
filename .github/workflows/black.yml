@@ -1,24 +1,24 @@
-name: Pytest
+name: Black
 
 on:
   push:
     branches: [ master, develop ]
   pull_request:
     branches: [ master, develop ]
-jobs:
-  pytest:
-    name: Pytest
+  black:
+    name: Black
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
-    - uses: snok/install-poetry@v1
+        python-version: '1.9'
+    - uses: snok/install-poetry@v-1
       with:
         virtualenvs-create: true
         virtualenvs-in-project: true
     - run: |
         poetry install
-        poetry run python -m pytest
+        poetry run python -m black --check . 
+    
