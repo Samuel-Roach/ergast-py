@@ -27,7 +27,7 @@ class Helpers:
         Dictionary should contain the keys "date" and "time"
         """
         if "date" not in datetime_dict or "time" not in datetime_dict:
-            return None
+            raise ValueError("Dictionary must contain keys 'date' and 'time'")
         return self.construct_datetime_str(datetime_dict["date"], datetime_dict["time"])
 
     def construct_date(self, date: str) -> datetime.date:
@@ -46,7 +46,7 @@ class Helpers:
         if "millis" in millis:
             value = int(millis["millis"])
             return datetime.datetime.fromtimestamp(value / 1000.0).time()
-        return None
+        raise ValueError("Dictionary must contain key 'millis'")
 
     def format_lap_time(self, time: str) -> datetime.time:
         """
@@ -54,7 +54,7 @@ class Helpers:
         """
         if time != "":
             return datetime.datetime.strptime(time, "%M:%S.%f").time()
-        return None
+        raise ValueError("Time string cannot be empty")
 
     def construct_lap_time(self, time: dict) -> datetime.time:
         """
@@ -65,7 +65,7 @@ class Helpers:
         if "time" in time:
             value = time["time"]
             return self.format_lap_time(value)
-        return None
+        raise ValueError("Dictionary must contain key 'time'")
 
     def construct_local_time(self, time: str) -> datetime.time:
         """
@@ -75,7 +75,7 @@ class Helpers:
         """
         if time != "":
             return datetime.datetime.strptime(f"{time}", "%H:%M:%S").time()
-        return None
+        raise ValueError("Time string cannot be empty")
 
     def construct_pitstop_duration(self, time: str) -> datetime.time:
         """
@@ -85,4 +85,4 @@ class Helpers:
         """
         if time != "":
             return datetime.datetime.strptime(f"{time}", "%S.%f").time()
-        return None
+        raise ValueError("Time string cannot be empty")
