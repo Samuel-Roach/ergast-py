@@ -34,6 +34,7 @@ class Ergast:
     """
 
     def __init__(self) -> None:
+        self.params = {}
         self.reset()
         self.requester = Requester()
         self.type_constructor = TypeConstructor()
@@ -97,7 +98,7 @@ class Ergast:
         if isinstance(driver, str):
             self.params["driver"] = driver
         elif isinstance(driver, Driver):
-            self.params["driver"] = driver.driverId
+            self.params["driver"] = driver.driver_id
         else:
             raise TypeError("Function parameter must be of type Driver or str")
         return self
@@ -112,7 +113,7 @@ class Ergast:
         if isinstance(constructor, str):
             self.params["constructor"] = constructor
         elif isinstance(constructor, Constructor):
-            self.params["constructor"] = constructor.constructorId
+            self.params["constructor"] = constructor.constructor_id
         else:
             raise TypeError("Function parameter must be of type Constructor or str")
         return self
@@ -172,7 +173,7 @@ class Ergast:
         if isinstance(circuit, str):
             self.params["circuit"] = circuit
         elif isinstance(circuit, Circuit):
-            self.params["circuit"] = circuit.circuitId
+            self.params["circuit"] = circuit.circuit_id
         else:
             raise TypeError("Function parameter must be of type Circuit or str")
         return self
