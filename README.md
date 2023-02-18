@@ -65,26 +65,26 @@ Ergast-py has many models which allow the user to more effectively use and manip
 
 <details>
 <summary>Available models in ergast-py</summary>
-</br>
+<br>
 
-| Name                  | Description                                               |
-| --------------------- | --------------------------------------------------------- |
-| AverageSpeed          | The average speed achieved during a fastest lap           |
-| Circuit               | Details about a Formula One circuit                       |
-| ConstructorStanding   | A single constructor's representation in the standings    |
-| Constructor           | A Formula One constructor                                 |
-| DriverStanding        | A single driver's representation in the standings         |
-| Driver                | A Formula One driver                                      |
-| FastestLap            | A fastest lap achieved by a driver                        |
-| Lap                   | Details about a drivers lap                               |
-| Location              | The position of a circuit                                 |
-| PitStop               | Details about a driver's pit stop                         |
-| Race                  | Full representation of a Formula One race                 |
-| Result                | Details about a driver's result                           |
-| Season                | Details about a Formula One season                        |
-| StandingsList         | A list of standings; constructors or drivers              |
-| Status                | Details about the final status of a driver in a race      |
-| Timing                | Details about the timings of a driver during a lap        |
+| Name                | Description                                            |
+|---------------------|--------------------------------------------------------|
+| AverageSpeed        | The average speed achieved during a fastest lap        |
+| Circuit             | Details about a Formula One circuit                    |
+| ConstructorStanding | A single constructor's representation in the standings |
+| Constructor         | A Formula One constructor                              |
+| DriverStanding      | A single driver's representation in the standings      |
+| Driver              | A Formula One driver                                   |
+| FastestLap          | A fastest lap achieved by a driver                     |
+| Lap                 | Details about a drivers lap                            |
+| Location            | The position of a circuit                              |
+| PitStop             | Details about a driver's pit stop                      |
+| Race                | Full representation of a Formula One race              |
+| Result              | Details about a driver's result                        |
+| Season              | Details about a Formula One season                     |
+| StandingsList       | A list of standings; constructors or drivers           |
+| Status              | Details about the final status of a driver in a race   |
+| Timing              | Details about the timings of a driver during a lap     |
 
 </details>
 
@@ -101,73 +101,73 @@ More detail on the available functions within the ``Ergast()`` class is availabl
 
 <details>
 <summary><b>FILTER</b> functions</summary>
-</br>
+<br>
 
-| Name            | Arguments                | Notes                                                                          |
-| --------------- | ------------------------ | ------------------------------------------------------------------------------ |
-| season          | year: int                | If you call season with no arguments it will default to the current season     |
-| round           | round_no: int            | If you call round with no arguments it will default to the last round          |
-| driver          | driver: Driver           |                                                                                |
-| constructor     | constructor: Constructor |                                                                                |
-| qualifying      | position: int            | Position at the <i>end</i> of qualifying                                       |
-| sprint          | position: int            |                                                                                |
-| grid            | position: int            | Position lined up on the grid                                                  |
-| result          | position: int            |                                                                                |
-| fastest         | position: int            | Ranking in list of each drivers fastest lap                                    |
-| circuit         | circuit: Circuit         |                                                                                |
-| status          | status: int              | Must use statusId or string representation                                     |
-| standing        | position: int            | Position of Driver or Constructor in standing                                  |
-| lap             | lap_number: int          |                                                                                |
-| pit_stop        | stop_number: int         |                                                                                |
+| Name        | Arguments                | Notes                                                                      |
+|-------------|--------------------------|----------------------------------------------------------------------------|
+| season      | year: int                | If you call season with no arguments it will default to the current season |
+| round       | round_no: int            | If you call round with no arguments it will default to the last round      |
+| driver      | driver: Driver           |                                                                            |
+| constructor | constructor: Constructor |                                                                            |
+| qualifying  | position: int            | Position at the <i>end</i> of qualifying                                   |
+| sprint      | position: int            |                                                                            |
+| grid        | position: int            | Position lined up on the grid                                              |
+| result      | position: int            |                                                                            |
+| fastest     | position: int            | Ranking in list of each drivers fastest lap                                |
+| circuit     | circuit: Circuit         |                                                                            |
+| status      | status: int              | Must use statusId or string representation                                 |
+| standing    | position: int            | Position of Driver or Constructor in standing                              |
+| lap         | lap_number: int          |                                                                            |
+| pit_stop    | stop_number: int         |                                                                            |
 
 </details>
 
 <details>
 <summary><b>PAGING</b> functions</summary>
-</br>
+<br>
 
-| Name             | Arguments   |
-| ---------------- | ----------- |
-| limit            | amount: int |
-| offset           | amount: int |
+| Name   | Arguments   |
+|--------|-------------|
+| limit  | amount: int |
+| offset | amount: int |
 
 
 </details>
 
 <details>
 <summary><b>RETURN</b> functions</summary>
-</br>
+<br>
 
 > NOTE: All the functions that return a single object will raise an Exception if your query is returning more than one item.
 
-| Name                      | Return Type           |
-| ------------------------- | --------------------- |
-| get_circuits              | list[Circuit]         |
-| get_circuit               | Circuit               |
-| get_constructors          | list[Constructor]     |
-| get_constructor           | Constructor           |
-| get_drivers               | list[Driver]          |
-| get_driver                | Driver                |
-| get_qualifyings           | list[Race]            |
-| get_qualifying            | Race                  |
-| get_sprints               | list[Race]            |
-| get_sprint                | Race                  |
-| get_results               | list[Race]            |
-| get_result                | Race                  |
-| get_races                 | list[Race]            |
-| get_race                  | Race                  |
-| get_seasons               | list[Season]          |
-| get_season                | Season                |
-| get_statuses              | list[Status]          |
-| get_status                | Status                |
-| get_driver_standings      | list[StandingsList]   |
-| get_driver_standing       | StandingsList         |
-| get_constructor_standings | list[StandingsList]   |
-| get_constructor_standing  | StandingsList         |
-| get_laps                  | list[Race]            |
-| get_lap                   | Race                  |
-| get_pit_stops             | list[Race]            |
-| get_pit_stop              | Race                  |
+| Name                      | Return Type         |
+|---------------------------|---------------------|
+| get_circuits              | list[Circuit]       |
+| get_circuit               | Circuit             |
+| get_constructors          | list[Constructor]   |
+| get_constructor           | Constructor         |
+| get_drivers               | list[Driver]        |
+| get_driver                | Driver              |
+| get_qualifyings           | list[Race]          |
+| get_qualifying            | Race                |
+| get_sprints               | list[Race]          |
+| get_sprint                | Race                |
+| get_results               | list[Race]          |
+| get_result                | Race                |
+| get_races                 | list[Race]          |
+| get_race                  | Race                |
+| get_seasons               | list[Season]        |
+| get_season                | Season              |
+| get_statuses              | list[Status]        |
+| get_status                | Status              |
+| get_driver_standings      | list[StandingsList] |
+| get_driver_standing       | StandingsList       |
+| get_constructor_standings | list[StandingsList] |
+| get_constructor_standing  | StandingsList       |
+| get_laps                  | list[Race]          |
+| get_lap                   | Race                |
+| get_pit_stops             | list[Race]          |
+| get_pit_stop              | Race                |
 
 </details>
 
