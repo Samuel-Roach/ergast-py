@@ -43,7 +43,7 @@ class Ergast():
         """
         Reset the Ergast query building.
 
-        Should be called after a query is run to prevent forward interraction.
+        Should be called after a query is run to prevent forward interaction.
         """
         self.params = {
             "season": None,
