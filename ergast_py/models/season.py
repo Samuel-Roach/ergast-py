@@ -13,9 +13,8 @@ class Season():
         url: String
     """
 
-    def __init__(self, season: int, url: str) -> None:
-        self.season = season
-        self.url = url
+    season: int
+    url: str
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

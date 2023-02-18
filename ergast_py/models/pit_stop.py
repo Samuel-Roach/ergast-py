@@ -17,13 +17,11 @@ class PitStop():
         duration: datetime.time
     """
 
-    def __init__(self, driver_id: str, lap: int, stop: int, local_time: datetime.time,
-                 duration: datetime.time) -> None:
-        self.driver_id = driver_id
-        self.lap = lap
-        self.stop = stop
-        self.local_time = local_time
-        self.duration = duration
+    driver_id: str
+    lap: int
+    stop: int
+    local_time: datetime.time
+    duration: datetime.time
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

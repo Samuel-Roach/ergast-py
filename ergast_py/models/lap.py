@@ -15,9 +15,8 @@ class Lap():
         timings: Timing[]
     """
 
-    def __init__(self, number: int, timings: list[Timing]) -> None:
-        self.number = number
-        self.timings = timings
+    number: int
+    timings: list[Timing]
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

@@ -15,11 +15,10 @@ class Location():
         country: String
     """
 
-    def __init__(self, latitude: float, longitude: float, locality: str, country: str) -> None:
-        self.latitude = latitude
-        self.longitude = longitude
-        self.locality = locality
-        self.country = country
+    latitude: float
+    longitude: float
+    locality: str
+    country: str
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

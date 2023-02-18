@@ -14,10 +14,9 @@ class Status():
         status: String
     """
 
-    def __init__(self, status_id: int, count: int, status: str) -> None:
-        self.status_id = status_id
-        self.count = count
-        self.status = status
+    status_id: int
+    count: int
+    status: str
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

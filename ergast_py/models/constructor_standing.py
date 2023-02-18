@@ -18,13 +18,11 @@ class ConstructorStanding():
         constructor: Constructor
     """
 
-    def __init__(self, position: int, position_text: str, points: float, wins: int, #pylint: disable=too-many-arguments
-                 constructor: Constructor) -> None:
-        self.position = position
-        self.position_text = position_text
-        self.points = points
-        self.wins = wins
-        self.constructor = constructor
+    position: int
+    position_text: str
+    points: float
+    wins: int
+    constructor: Constructor
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

@@ -18,12 +18,10 @@ class FastestLap():
         average_speed: AverageSpeed
     """
 
-    def __init__(self, rank: int, lap: int, time: datetime.time,
-                 average_speed: AverageSpeed) -> None:
-        self.rank = rank
-        self.lap = lap
-        self.time = time
-        self.average_speed = average_speed
+    rank: int
+    lap: int
+    time: datetime.time
+    average_speed: AverageSpeed
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

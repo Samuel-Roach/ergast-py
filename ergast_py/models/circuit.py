@@ -17,11 +17,10 @@ class Circuit():
         location: Location
     """
 
-    def __init__(self, circuit_id: str, url: str, circuit_name: str, location: Location) -> None:
-        self.circuit_id = circuit_id
-        self.url = url
-        self.circuit_name = circuit_name
-        self.location = location
+    circuit_id: str
+    url: str
+    circuit_name: str
+    location: Location
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())

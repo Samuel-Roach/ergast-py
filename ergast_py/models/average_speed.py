@@ -13,9 +13,8 @@ class AverageSpeed():
         speed: Float
     """
 
-    def __init__(self, units: str, speed: float) -> None:
-        self.units = units
-        self.speed = speed
+    units: str
+    speed: float
 
     def __repr__(self) -> str:
         members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
