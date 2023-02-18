@@ -4,7 +4,6 @@
 name = "attrs"
 version = "22.2.0"
 description = "Classes Without Boilerplate"
-
 category = "dev"
 optional = false
 python-versions = ">=3.6"
@@ -340,11 +339,15 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 
 [[package]]
 name = "pytz"
-version = "2022.5"
+version = "2022.7.1"
 description = "World timezone definitions, modern and historical"
 category = "main"
 optional = false
 python-versions = "*"
+files = [
+    {file = "pytz-2022.7.1-py2.py3-none-any.whl", hash = "sha256:78f4f37d8198e0627c5f1143240bb0206b8691d8d7ac6d78fee88b78733f8c4a"},
+    {file = "pytz-2022.7.1.tar.gz", hash = "sha256:01a0681c4b9684a28304615eba55d1ab31ae00bf68ec157ec3708a8182dbbcd0"},
+]
 
 [[package]]
 name = "requests"
@@ -424,4 +427,4 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "394f5bd33389cf45f8450d6b49faaeba4afc6ea6bbe2a91333a956f68bc47c2b"
+content-hash = "18d650f04fcadc432a7599dde6c74523ff8607b8c7db71fef66c85e7d2c3f40a"
