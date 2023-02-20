@@ -37,7 +37,7 @@ class TestTypeConstructor:
     #
 
     def test_construct_circuit(self):
-        """ Assert construct_circuit function works"""
+        """Assert construct_circuit function works"""
         params = [constants.BAHRAIN]
 
         location = Location(
@@ -56,7 +56,7 @@ class TestTypeConstructor:
         assert expected == self.t.construct_circuits(params)
 
     def test_construct_constructor(self):
-        """ Assert construct_constructor function works"""
+        """Assert construct_constructor function works"""
         params = [constants.ALPINE]
 
         expected = [
@@ -71,7 +71,7 @@ class TestTypeConstructor:
         assert expected == self.t.construct_constructors(params)
 
     def test_construct_driver(self):
-        """ Assert construct_driver function works"""
+        """Assert construct_driver function works"""
         params = [constants.ALONSO]
 
         expected = [
@@ -90,32 +90,22 @@ class TestTypeConstructor:
         assert expected == self.t.construct_drivers(params)
 
     def test_construct_races(self):
-        """ Assert construct_races function works"""
-        params = [{
-            "season":"2022",
-            "round":"1",
-            "url":"http://en.wikipedia.org/wiki/2022_Bahrain_Grand_Prix",
-            "raceName":"Bahrain Grand Prix",
-            "Circuit": constants.BAHRAIN,
-            "date":"2022-03-20",
-            "time":"15:00:00Z",
-            "FirstPractice":{
-                "date":"2022-03-18",
-                "time":"12:00:00Z"
-            },
-            "SecondPractice":{
-                "date":"2022-03-18",
-                "time":"15:00:00Z"
-            },
-            "ThirdPractice":{
-                "date":"2022-03-19",
-                "time":"12:00:00Z"
-            },
-            "Qualifying":{
-                "date":"2022-03-19",
-                "time":"15:00:00Z"
+        """Assert construct_races function works"""
+        params = [
+            {
+                "season": "2022",
+                "round": "1",
+                "url": "http://en.wikipedia.org/wiki/2022_Bahrain_Grand_Prix",
+                "raceName": "Bahrain Grand Prix",
+                "Circuit": constants.BAHRAIN,
+                "date": "2022-03-20",
+                "time": "15:00:00Z",
+                "FirstPractice": {"date": "2022-03-18", "time": "12:00:00Z"},
+                "SecondPractice": {"date": "2022-03-18", "time": "15:00:00Z"},
+                "ThirdPractice": {"date": "2022-03-19", "time": "12:00:00Z"},
+                "Qualifying": {"date": "2022-03-19", "time": "15:00:00Z"},
             }
-        }]
+        ]
 
         location = Location(
             latitude=26.0325, longitude=50.5106, locality="Sakhir", country="Bahrain"
@@ -161,29 +151,26 @@ class TestTypeConstructor:
         assert expected == self.t.construct_races(params)
 
     def test_construct_results(self):
-        """ Assert construct_results function works"""
-        params = [{
-            "number":"16",
-            "position":"1",
-            "positionText":"1",
-            "points":"26",
-            "Driver": constants.LECLERC,
-            "Constructor": constants.FERRARI,
-            "grid":"1",
-            "laps":"57",
-            "status":"Finished",
-            "Time":{
-                "millis":"5853584",
-                "time":"1:37:33.584"
-            },
-            "FastestLap":{
-                "rank":"1",
-                "lap":"51",
-                "Time":{
-                    "time":"1:34.570"
+        """Assert construct_results function works"""
+        params = [
+            {
+                "number": "16",
+                "position": "1",
+                "positionText": "1",
+                "points": "26",
+                "Driver": constants.LECLERC,
+                "Constructor": constants.FERRARI,
+                "grid": "1",
+                "laps": "57",
+                "status": "Finished",
+                "Time": {"millis": "5853584", "time": "1:37:33.584"},
+                "FastestLap": {
+                    "rank": "1",
+                    "lap": "51",
+                    "Time": {"time": "1:34.570"},
                 },
             }
-        }]
+        ]
 
         avg_speed = AverageSpeed(units="kph", speed=206.018)
         fastest_lap = FastestLap(
@@ -305,25 +292,31 @@ class TestTypeConstructor:
         """Assert construct_standings_lists function works"""
         # Check Driver Standings
         # Check constructor standings
-        params = [{
-            "season":"2005",
-            "round":"19",
-            "DriverStandings":[{
-                "position":"1",
-                "positionText":"1",
-                "points":"133",
-                "wins":"7",
-                "Driver":constants.ALONSO,
-                "Constructors":[constants.ALPINE]
-            }],
-            "ConstructorStandings":[{
-                "position":"1",
-                "positionText":"1",
-                "points":"235",
-                "wins":"5",
-                "Constructor": constants.FERRARI
-            }]
-        }]
+        params = [
+            {
+                "season": "2005",
+                "round": "19",
+                "DriverStandings": [
+                    {
+                        "position": "1",
+                        "positionText": "1",
+                        "points": "133",
+                        "wins": "7",
+                        "Driver": constants.ALONSO,
+                        "Constructors": [constants.ALPINE],
+                    }
+                ],
+                "ConstructorStandings": [
+                    {
+                        "position": "1",
+                        "positionText": "1",
+                        "points": "235",
+                        "wins": "5",
+                        "Constructor": constants.FERRARI,
+                    }
+                ],
+            }
+        ]
 
         alpine = Constructor(
             constructor_id="alpine",

@@ -109,7 +109,7 @@ class Requester:
 
     @staticmethod
     def run_request(
-            season, round_no, criteria, resource, value=None, limit=None, offset=None
+        season, round_no, criteria, resource, value=None, limit=None, offset=None
     ) -> dict:
         """
         Run a request against the API and return the JSON dictionary result
