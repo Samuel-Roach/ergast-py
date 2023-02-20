@@ -32,6 +32,7 @@ class Helpers:
         """
         if "date" not in datetime_dict or "time" not in datetime_dict:
             raise ValueError("Dictionary must contain keys 'date' and 'time'")
+
         return self.construct_datetime_str(datetime_dict["date"], datetime_dict["time"])
 
     @staticmethod
@@ -49,19 +50,21 @@ class Helpers:
         """
         Construct a datetime.time (lap time) from a dict containing the millis
         """
-        if "millis" in millis:
-            value = int(millis["millis"])
-            return datetime.datetime.fromtimestamp(value / 1000.0).time()
-        raise ValueError("Dictionary must contain key 'millis'")
+        if "millis" not in millis:
+            raise ValueError("Dictionary must contain key 'millis'")
+
+        value = int(millis["millis"])
+        return datetime.datetime.fromtimestamp(value / 1000.0).time()
 
     @staticmethod
     def format_lap_time(time: str) -> datetime.time:
         """
         Construct a datetime.time (lap time) from a time string
         """
-        if time != "":
-            return datetime.datetime.strptime(time, "%M:%S.%f").time()
-        raise ValueError("Time string cannot be empty")
+        if time == "":
+            raise ValueError("Time string cannot be empty")
+
+        return datetime.datetime.strptime(time, "%M:%S.%f").time()
 
     def construct_lap_time(self, time: dict) -> datetime.time:
         """
@@ -69,10 +72,11 @@ class Helpers:
 
         The dictionary should contain the key "time"
         """
-        if "time" in time:
-            value = time["time"]
-            return self.format_lap_time(value)
-        raise ValueError("Dictionary must contain key 'time'")
+        if "time" not in time:
+            raise ValueError("Dictionary must contain key 'time'")
+
+        value = time["time"]
+        return self.format_lap_time(value)
 
     @staticmethod
     def construct_local_time(time: str) -> datetime.time:
@@ -81,9 +85,10 @@ class Helpers:
 
         Looking for the format of ``%H:%M:%S``
         """
-        if time != "":
-            return datetime.datetime.strptime(f"{time}", "%H:%M:%S").time()
-        raise ValueError("Time string cannot be empty")
+        if time == "":
+            raise ValueError("Time string cannot be empty")
+
+        return datetime.datetime.strptime(f"{time}", "%H:%M:%S").time()
 
     @staticmethod
     def construct_pitstop_duration(time: str) -> datetime.time:
@@ -92,6 +97,7 @@ class Helpers:
 
         Looking for the format of ``%S.%f``
         """
-        if time != "":
-            return datetime.datetime.strptime(f"{time}", "%S.%f").time()
-        raise ValueError("Time string cannot be empty")
+        if time == "":
+            raise ValueError("Time string cannot be empty")
+
+        return datetime.datetime.strptime(f"{time}", "%S.%f").time()
