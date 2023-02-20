@@ -3,7 +3,7 @@
 import pytest
 from ergast_py.requester import Requester
 
-from tests import test_constants
+from tests import constants
 
 
 class TestRequester:
@@ -77,24 +77,24 @@ class TestRequester:
             )
 
     def test_get_circuit(self):
-        """Test the get_circuit function"""
-        expected = [test_constants.ISTANBUL]
+        """ Test the get_circuit function """
+        expected = [constants.ISTANBUL]
 
         params = self._construct_test_params(season=2008, round_no=5)
 
         assert self.r.get_circuits(params) == expected
 
     def test_get_constructors(self):
-        """Test the get_constructors function"""
-        expected = [test_constants.FERRARI]
+        """ Test the get_constructors function """
+        expected = [constants.FERRARI]
 
         params = self._construct_test_params(constructor="ferrari")
 
         assert self.r.get_constructors(params) == expected
 
     def test_get_drivers(self):
-        """Test the get_drivers function"""
-        expected = [test_constants.ALONSO]
+        """ Test the get_drivers function """
+        expected = [constants.ALONSO]
 
         params = self._construct_test_params(driver="alonso")
 
@@ -104,22 +104,22 @@ class TestRequester:
         """Test the get_qualifying function"""
         expected = [
             {
-                "season": "2008",
-                "round": "5",
-                "url": "http://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix",
-                "raceName": "Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
-                "date": "2008-05-11",
-                "time": "12:00:00Z",
-                "QualifyingResults": [
+                "season":"2008",
+                "round":"5",
+                "url":"http://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix",
+                "raceName":"Turkish Grand Prix",
+                "Circuit": constants.ISTANBUL,
+                "date":"2008-05-11",
+                "time":"12:00:00Z",
+                "QualifyingResults":[
                     {
-                        "number": "5",
-                        "position": "7",
-                        "Driver": test_constants.ALONSO,
-                        "Constructor": test_constants.RENAULT,
-                        "Q1": "1:26.836",
-                        "Q2": "1:26.522",
-                        "Q3": "1:28.422",
+                        "number":"5",
+                        "position":"7",
+                        "Driver": constants.ALONSO,
+                        "Constructor": constants.RENAULT,
+                        "Q1":"1:26.836",
+                        "Q2":"1:26.522",
+                        "Q3":"1:28.422"
                     }
                 ],
             }
@@ -133,26 +133,34 @@ class TestRequester:
         """Test the get_sprints function"""
         expected = [
             {
-                "season": "2021",
-                "round": "10",
-                "url": "http://en.wikipedia.org/wiki/2021_British_Grand_Prix",
-                "raceName": "British Grand Prix",
-                "Circuit": test_constants.SILVERSTONE,
-                "date": "2021-07-18",
-                "time": "14:00:00Z",
-                "SprintResults": [
+                "season":"2021",
+                "round":"10",
+                "url":"http://en.wikipedia.org/wiki/2021_British_Grand_Prix",
+                "raceName":"British Grand Prix",
+                "Circuit": constants.SILVERSTONE,
+                "date":"2021-07-18",
+                "time":"14:00:00Z",
+                "SprintResults":[
                     {
-                        "number": "14",
-                        "position": "7",
-                        "positionText": "7",
-                        "points": "0",
-                        "Driver": test_constants.ALONSO,
-                        "Constructor": test_constants.ALPINE,
-                        "grid": "11",
-                        "laps": "17",
-                        "status": "Finished",
-                        "Time": {"millis": "1581953", "time": "+43.527"},
-                        "FastestLap": {"lap": "17", "Time": {"time": "1:31.773"}},
+                        "number":"14",
+                        "position":"7",
+                        "positionText":"7",
+                        "points":"0",
+                        "Driver": constants.ALONSO,
+                        "Constructor": constants.ALPINE,
+                        "grid":"11",
+                        "laps":"17",
+                        "status":"Finished",
+                        "Time":{
+                            "millis":"1581953",
+                            "time":"+43.527"
+                        },
+                        "FastestLap":{
+                            "lap":"17",
+                            "Time":{
+                                "time":"1:31.773"
+                            }
+                        }
                     }
                 ],
             }
@@ -166,30 +174,35 @@ class TestRequester:
         """Test the get_results function"""
         expected = [
             {
-                "season": "2021",
-                "round": "16",
-                "url": "http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
-                "raceName": "Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
-                "date": "2021-10-10",
-                "time": "12:00:00Z",
-                "Results": [
+                "season":"2021",
+                "round":"16",
+                "url":"http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
+                "raceName":"Turkish Grand Prix",
+                "Circuit": constants.ISTANBUL,
+                "date":"2021-10-10",
+                "time":"12:00:00Z",
+                "Results":[
                     {
-                        "number": "14",
-                        "position": "16",
-                        "positionText": "16",
-                        "points": "0",
-                        "Driver": test_constants.ALONSO,
-                        "Constructor": test_constants.ALPINE,
-                        "grid": "5",
-                        "laps": "57",
-                        "status": "+1 Lap",
-                        "FastestLap": {
-                            "rank": "14",
-                            "lap": "55",
-                            "Time": {"time": "1:33.252"},
-                            "AverageSpeed": {"units": "kph", "speed": "206.073"},
-                        },
+                        "number":"14",
+                        "position":"16",
+                        "positionText":"16",
+                        "points":"0",
+                        "Driver": constants.ALONSO,
+                        "Constructor": constants.ALPINE,
+                        "grid":"5",
+                        "laps":"57",
+                        "status":"+1 Lap",
+                        "FastestLap":{
+                            "rank":"14",
+                            "lap":"55",
+                            "Time":{
+                                "time":"1:33.252"
+                            },
+                            "AverageSpeed":{
+                                "units":"kph",
+                                "speed":"206.073"
+                            }
+                        }
                     }
                 ],
             }
@@ -203,17 +216,25 @@ class TestRequester:
         """Test the get_races function"""
         expected = [
             {
-                "season": "2021",
-                "round": "16",
-                "url": "http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
-                "raceName": "Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
-                "date": "2021-10-10",
-                "time": "12:00:00Z",
-                "FirstPractice": {"date": "2021-10-08"},
-                "SecondPractice": {"date": "2021-10-08"},
-                "ThirdPractice": {"date": "2021-10-09"},
-                "Qualifying": {"date": "2021-10-09"},
+                "season":"2021",
+                "round":"16",
+                "url":"http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
+                "raceName":"Turkish Grand Prix",
+                "Circuit": constants.ISTANBUL,
+                "date":"2021-10-10",
+                "time":"12:00:00Z",
+                "FirstPractice":{
+                    "date":"2021-10-08"
+                },
+                "SecondPractice":{
+                    "date":"2021-10-08"
+                },
+                "ThirdPractice":{
+                    "date":"2021-10-09"
+                },
+                "Qualifying":{
+                    "date":"2021-10-09"
+                }
             }
         ]
 
@@ -250,12 +271,14 @@ class TestRequester:
                 "round": "16",
                 "DriverStandings": [
                     {
-                        "position": "10",
-                        "positionText": "10",
-                        "points": "58",
-                        "wins": "0",
-                        "Driver": test_constants.ALONSO,
-                        "Constructors": [test_constants.ALPINE],
+                        "position":"10",
+                        "positionText":"10",
+                        "points":"58",
+                        "wins":"0",
+                        "Driver": constants.ALONSO,
+                        "Constructors":[
+                            constants.ALPINE
+                        ]
                     }
                 ],
             }
@@ -273,11 +296,11 @@ class TestRequester:
                 "round": "16",
                 "ConstructorStandings": [
                     {
-                        "position": "5",
-                        "positionText": "5",
-                        "points": "104",
-                        "wins": "1",
-                        "Constructor": test_constants.ALPINE,
+                        "position":"5",
+                        "positionText":"5",
+                        "points":"104",
+                        "wins":"1",
+                        "Constructor": constants.ALPINE
                     }
                 ],
             }
@@ -291,14 +314,14 @@ class TestRequester:
         """Test the get_laps function"""
         expected = [
             {
-                "season": "2008",
-                "round": "5",
-                "url": "http://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix",
-                "raceName": "Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
-                "date": "2008-05-11",
-                "time": "12:00:00Z",
-                "Laps": [
+                "season":"2008",
+                "round":"5",
+                "url":"http://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix",
+                "raceName":"Turkish Grand Prix",
+                "Circuit": constants.ISTANBUL,
+                "date":"2008-05-11",
+                "time":"12:00:00Z",
+                "Laps":[
                     {
                         "number": "1",
                         "Timings": [
@@ -319,14 +342,14 @@ class TestRequester:
         """Test the get_pit_stops function"""
         expected = [
             {
-                "season": "2021",
-                "round": "16",
-                "url": "http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
-                "raceName": "Turkish Grand Prix",
-                "Circuit": test_constants.ISTANBUL,
-                "date": "2021-10-10",
-                "time": "12:00:00Z",
-                "PitStops": [
+                "season":"2021",
+                "round":"16",
+                "url":"http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix",
+                "raceName":"Turkish Grand Prix",
+                "Circuit": constants.ISTANBUL,
+                "date":"2021-10-10",
+                "time":"12:00:00Z",
+                "PitStops":[
                     {
                         "driverId": "alonso",
                         "lap": "30",
