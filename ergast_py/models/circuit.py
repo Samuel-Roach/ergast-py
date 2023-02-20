@@ -1,9 +1,8 @@
 """ Circuit class """
-
 from dataclasses import dataclass
 
-from ergast_py.models.location import Location
 from ergast_py.models.base_model import BaseModel
+from ergast_py.models.location import Location
 
 
 @dataclass

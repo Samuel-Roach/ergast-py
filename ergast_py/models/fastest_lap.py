@@ -1,5 +1,4 @@
 """ FastestLap class """
-
 import datetime
 from dataclasses import dataclass
 

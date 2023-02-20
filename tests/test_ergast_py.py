@@ -1,5 +1,4 @@
 """ Tests for Ergast Py """
-
 from ergast_py import __version__
 
 

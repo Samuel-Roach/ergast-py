@@ -1,9 +1,8 @@
 """ Lap class """
-
 from dataclasses import dataclass
 
-from ergast_py.models.timing import Timing
 from ergast_py.models.base_model import BaseModel
+from ergast_py.models.timing import Timing
 
 
 @dataclass

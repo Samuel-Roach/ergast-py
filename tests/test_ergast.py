@@ -1,5 +1,4 @@
 """ Tests for the Ergast class """
-
 import ergast_py
 
 

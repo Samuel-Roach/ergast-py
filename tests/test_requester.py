@@ -1,8 +1,7 @@
 """ Tests for the Requester class """
-
 import pytest
-from ergast_py.requester import Requester
 
+from ergast_py.requester import Requester
 from tests import constants
 
 

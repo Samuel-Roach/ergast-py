@@ -1,10 +1,9 @@
 """ StandingsList class """
-
 from dataclasses import dataclass
 
+from ergast_py.models.base_model import BaseModel
 from ergast_py.models.constructor_standing import ConstructorStanding
 from ergast_py.models.driver_standing import DriverStanding
-from ergast_py.models.base_model import BaseModel
 
 
 @dataclass

@@ -1,6 +1,6 @@
 """ Helpers class """
-
 import datetime
+
 import pytz
 
 
@@ -56,7 +56,7 @@ class Helpers:
             raise ValueError("Dictionary must contain key 'millis'")
 
         value = int(millis["millis"])
-        return datetime.datetime.fromtimestamp(value / 1000.0).time()
+        return datetime.datetime.fromtimestamp(value / 1000.0, pytz.utc).time()
 
     @staticmethod
     def format_lap_time(time: str) -> datetime.time:

@@ -25,7 +25,6 @@ Ergast-py extends the publicly available and free Ergast API. For more informati
 and a better understanding visit http://ergast.com/mrd/
 
 """
-
 from ergast_py.ergast import Ergast
 from ergast_py.models.average_speed import AverageSpeed
 from ergast_py.models.circuit import Circuit

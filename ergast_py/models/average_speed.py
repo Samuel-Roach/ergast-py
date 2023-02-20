@@ -1,5 +1,4 @@
 """ AverageSpeed class """
-
 from dataclasses import dataclass
 
 from ergast_py.models.base_model import BaseModel

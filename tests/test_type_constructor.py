@@ -1,5 +1,4 @@
 """ Tests for the Type Constructor class """
-
 import datetime
 
 from ergast_py.models.average_speed import AverageSpeed
@@ -20,7 +19,6 @@ from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
-
 from tests import constants
 
 

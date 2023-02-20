@@ -1,5 +1,4 @@
 """ TypeConstructor class """
-
 from ergast_py.constants.expected import Expected
 from ergast_py.constants.status_type import StatusType
 from ergast_py.helpers import Helpers

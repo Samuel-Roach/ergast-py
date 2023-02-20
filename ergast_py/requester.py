@@ -1,5 +1,4 @@
 """ Requester class """
-
 import json
 from typing import Callable
 

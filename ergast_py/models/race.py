@@ -1,13 +1,12 @@
 """ Race class """
-
 import datetime
 from dataclasses import dataclass
 
+from ergast_py.models.base_model import BaseModel
 from ergast_py.models.circuit import Circuit
 from ergast_py.models.lap import Lap
 from ergast_py.models.pit_stop import PitStop
 from ergast_py.models.result import Result
-from ergast_py.models.base_model import BaseModel
 
 
 @dataclass

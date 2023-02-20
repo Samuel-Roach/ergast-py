@@ -1,9 +1,8 @@
 """ ConstructorStanding class """
-
 from dataclasses import dataclass
 
-from ergast_py.models.constructor import Constructor
 from ergast_py.models.base_model import BaseModel
+from ergast_py.models.constructor import Constructor
 
 
 @dataclass
