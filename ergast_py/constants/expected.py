@@ -1,6 +1,7 @@
 """ Expected class """
 
-class Expected():
+
+class Expected:
     """
     Representations of the types expected to be found within a model.
 
@@ -10,8 +11,7 @@ class Expected():
         * "int"
         * "float"
         * "string"
-        * "dict"
-"""
+        * "dict" """
 
     @property
     def location(self):
@@ -183,11 +183,7 @@ class Expected():
         """
         Return the expected types of a Status
         """
-        return {
-            "statusId": "int",
-            "count": "int",
-            "status": "string"
-        }
+        return {"statusId": "int", "count": "int", "status": "string"}
 
     @property
     def driver_standing(self):
@@ -200,7 +196,7 @@ class Expected():
             "points": "float",
             "wins": "int",
             "Driver": "dict",
-            "Constructors": "dict"
+            "Constructors": "dict",
         }
 
     @property
@@ -213,7 +209,7 @@ class Expected():
             "positionText": "string",
             "points": "float",
             "wins": "int",
-            "Constructor": "dict"
+            "Constructor": "dict",
         }
 
     @property
@@ -225,5 +221,5 @@ class Expected():
             "season": "int",
             "round": "int",
             "DriverStandings": "dict",
-            "ConstructorStandings": "dict"
+            "ConstructorStandings": "dict",
         }

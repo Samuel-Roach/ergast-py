@@ -1,6 +1,7 @@
 """ StatusType class """
 
-class StatusType():
+
+class StatusType:
     """
     Mappings between ID and Strings for StatusType
     """
@@ -155,7 +156,7 @@ class StatusType():
         Return the map of StatusType ids to strings
         """
         return {
-            0 : "",
+            0: "",
             1: "Finished",
             2: "Disqualified",
             3: "Accident",

@@ -1,10 +1,11 @@
 """ Constructor class """
-
 from dataclasses import dataclass
+
+from ergast_py.models.base_model import BaseModel
 
 
 @dataclass
-class Constructor():
+class Constructor(BaseModel):
     """
     Representation of a Formula One Team
 
@@ -15,20 +16,7 @@ class Constructor():
         nationality: String
     """
 
-    def __init__(self, constructor_id: str, url: str, name: str, nationality: str) -> None:
-        self.constructor_id = constructor_id
-        self.url = url
-        self.name = name
-        self.nationality = nationality
-
-    def __repr__(self) -> str:
-        members = ', '.join(f"{key}={value}" for key, value in self.__dict__.items())
-        return f"{type(self).__name__}({members})"
-
-    def __eq__(self, __o: object) -> bool:
-        return isinstance(__o, Constructor) and (
-            self.constructor_id == __o.constructor_id and
-            self.url == __o.url and
-            self.name == __o.name and
-            self.nationality == __o.nationality
-        )
+    constructor_id: str
+    url: str
+    name: str
+    nationality: str

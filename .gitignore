@@ -1,9 +1,4 @@
-.vscode
 .venv
 __pycache__
 .pytest_cache
 dist
-
-# Miscellaneous
-test.py
-*.afphoto

@@ -9,12 +9,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-requests = "^2.27.1"
+requests = "^2.28.2"
 uritemplate = "^4.1.1"
 pytz = "^2022.5"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+black = "^23.1.0"
+reorder-python-imports = "^3.9.0"
+pre-commit = "^3.0.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
