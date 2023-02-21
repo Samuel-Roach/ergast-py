@@ -2,9 +2,9 @@ name: Black
 
 on:
   push:
-    branches: [ master, develop, actions ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master, develop, actions ]
+    branches: [ master, develop ]
 jobs:
   black:
     name: Black
