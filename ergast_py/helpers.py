@@ -26,7 +26,8 @@ class Helpers:
         new_datetime = new_datetime.replace(tzinfo=datetime.timezone.utc)
         return new_datetime
 
-    def construct_datetime_dict(self, datetime_dict: dict) -> datetime.datetime:
+    @staticmethod
+    def construct_datetime_dict(datetime_dict: dict) -> datetime.datetime:
         """
         Construct a datetime.datetime from a dictionary.
 
@@ -35,7 +36,9 @@ class Helpers:
         if "date" not in datetime_dict or "time" not in datetime_dict:
             raise ValueError("Dictionary must contain keys 'date' and 'time'")
 
-        return self.construct_datetime_str(datetime_dict["date"], datetime_dict["time"])
+        return Helpers.construct_datetime_str(
+            datetime_dict["date"], datetime_dict["time"]
+        )
 
     @staticmethod
     def construct_date(date: str) -> datetime.date:
@@ -68,7 +71,8 @@ class Helpers:
 
         return datetime.datetime.strptime(time, "%M:%S.%f").time()
 
-    def construct_lap_time(self, time: dict) -> datetime.time:
+    @staticmethod
+    def construct_lap_time(time: dict) -> datetime.time:
         """
         Construct a datetime.time (lap time) from a time dictionary
 
@@ -78,7 +82,7 @@ class Helpers:
             raise ValueError("Dictionary must contain key 'time'")
 
         value = time["time"]
-        return self.format_lap_time(value)
+        return Helpers.format_lap_time(value)
 
     @staticmethod
     def construct_local_time(time: str) -> datetime.time:
