@@ -1,0 +1,21 @@
+name: Pytest
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+jobs:
+  pytest:
+    name: Pytest
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - uses: snok/install-poetry@v1
+    - run: |
+        poetry install
+        poetry run pytest
