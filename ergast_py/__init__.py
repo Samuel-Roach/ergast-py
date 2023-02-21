@@ -25,7 +25,6 @@ Ergast-py extends the publicly available and free Ergast API. For more informati
 and a better understanding visit http://ergast.com/mrd/
 
 """
-
 from ergast_py.ergast import Ergast
 from ergast_py.models.average_speed import AverageSpeed
 from ergast_py.models.circuit import Circuit
@@ -44,4 +43,25 @@ from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
 
-__version__ = '0.7.0'
+__version__ = "0.7.0"
+
+__all__ = [
+    "__version__",
+    "Ergast",
+    "AverageSpeed",
+    "Circuit",
+    "Constructor",
+    "ConstructorStanding",
+    "Driver",
+    "DriverStanding",
+    "FastestLap",
+    "Lap",
+    "Location",
+    "PitStop",
+    "Race",
+    "Result",
+    "Season",
+    "StandingsList",
+    "Status",
+    "Timing",
+]

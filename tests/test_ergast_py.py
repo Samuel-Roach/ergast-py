@@ -1,17 +1,16 @@
 """ Tests for Ergast Py """
-
 from ergast_py import __version__
 
 
-class TestErgastPy():
+class TestErgastPy:
     """
     Tests for the Ergast-py package
     """
 
     def test_version(self):
-        """ Assert the version of the system """
-        assert __version__ == '0.7.0'
+        """Assert the version of the system"""
+        assert __version__ == "0.7.0"
 
     def test_ergast(self):
-        """ Basic test to check Ergast functions """
+        """Basic test to check Ergast functions"""
         pass

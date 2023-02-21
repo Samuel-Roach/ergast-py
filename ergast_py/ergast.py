@@ -1,5 +1,4 @@
 """ Ergast class """
-
 from __future__ import annotations
 
 from typing import Callable
@@ -16,8 +15,8 @@ from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
 
 
-#pylint: disable=too-many-public-methods
-class Ergast():
+# pylint: disable=too-many-public-methods
+class Ergast:
     """
     Ergast
     ~~~~~~
@@ -34,10 +33,10 @@ class Ergast():
     """
 
     def __init__(self) -> None:
+        self.params = {}
         self.reset()
         self.requester = Requester()
         self.type_constructor = TypeConstructor()
-
 
     def reset(self) -> None:
         """
@@ -70,7 +69,7 @@ class Ergast():
     #   FILTER FUNCTIONS
     #
 
-    def season(self, year: int="current") -> Ergast:
+    def season(self, year: int = "current") -> Ergast:
         """
         Add a season to the current query
 
@@ -79,7 +78,7 @@ class Ergast():
         self.params["season"] = year
         return self
 
-    def round(self, round_no: int="last") -> Ergast:
+    def round(self, round_no: int = "last") -> Ergast:
         """
         Add a round to the current query
 
@@ -98,7 +97,7 @@ class Ergast():
         if isinstance(driver, str):
             self.params["driver"] = driver
         elif isinstance(driver, Driver):
-            self.params["driver"] = driver.driverId
+            self.params["driver"] = driver.driver_id
         else:
             raise TypeError("Function parameter must be of type Driver or str")
         return self
@@ -113,7 +112,7 @@ class Ergast():
         if isinstance(constructor, str):
             self.params["constructor"] = constructor
         elif isinstance(constructor, Constructor):
-            self.params["constructor"] = constructor.constructorId
+            self.params["constructor"] = constructor.constructor_id
         else:
             raise TypeError("Function parameter must be of type Constructor or str")
         return self
@@ -173,7 +172,7 @@ class Ergast():
         if isinstance(circuit, str):
             self.params["circuit"] = circuit
         elif isinstance(circuit, Circuit):
-            self.params["circuit"] = circuit.circuitId
+            self.params["circuit"] = circuit.circuit_id
         else:
             raise TypeError("Function parameter must be of type Circuit or str")
         return self
@@ -257,8 +256,10 @@ class Ergast():
         items = self._get_items(get_items, construct_items)
         if len(items) == 1:
             return items[0]
-        raise Exception(f'Data loss will occur with this query. 1 item' \
-            f' requested but {len(items)} found.')
+        raise Exception(
+            f"Data loss will occur with this query. 1 item"
+            f" requested but {len(items)} found."
+        )
 
     #   Race and Results Queries
 
@@ -266,127 +267,147 @@ class Ergast():
         """
         Get a list of circuits from the current query
         """
-        return self._get_items(self.requester.get_circuits,
-                               self.type_constructor.construct_circuits)
+        return self._get_items(
+            self.requester.get_circuits, self.type_constructor.construct_circuits
+        )
 
     def get_circuit(self) -> Circuit:
         """
         Get a circuit from the current query
         """
-        return self._get_item(self.requester.get_circuits,
-                              self.type_constructor.construct_circuits)
+        return self._get_item(
+            self.requester.get_circuits, self.type_constructor.construct_circuits
+        )
 
     def get_constructors(self) -> list[Constructor]:
         """
         Get a list of constructors from the current query
         """
-        return self._get_items(self.requester.get_constructors,
-                               self.type_constructor.construct_constructors)
+        return self._get_items(
+            self.requester.get_constructors,
+            self.type_constructor.construct_constructors,
+        )
 
     def get_constructor(self) -> Constructor:
         """
         Get a constructor from the current query
         """
-        return self._get_item(self.requester.get_constructors,
-                              self.type_constructor.construct_constructors)
+        return self._get_item(
+            self.requester.get_constructors,
+            self.type_constructor.construct_constructors,
+        )
 
     def get_drivers(self) -> list[Driver]:
         """
         Get a list of drivers from the current query
         """
-        return self._get_items(self.requester.get_drivers,
-                               self.type_constructor.construct_drivers)
+        return self._get_items(
+            self.requester.get_drivers, self.type_constructor.construct_drivers
+        )
 
     def get_driver(self) -> Driver:
         """
         Get a driver from the current query
         """
-        return self._get_item(self.requester.get_drivers,
-                              self.type_constructor.construct_drivers)
+        return self._get_item(
+            self.requester.get_drivers, self.type_constructor.construct_drivers
+        )
 
     def get_qualifyings(self) -> list[Race]:
         """
         Get a list of qualifyings from the current query
         """
-        return self._get_items(self.requester.get_qualifying,
-                               self.type_constructor.construct_races)
+        return self._get_items(
+            self.requester.get_qualifying, self.type_constructor.construct_races
+        )
 
     def get_qualifying(self) -> Race:
         """
         Get a qualifying from the current query
         """
-        return self._get_item(self.requester.get_qualifying,
-                              self.type_constructor.construct_races)
+        return self._get_item(
+            self.requester.get_qualifying, self.type_constructor.construct_races
+        )
 
     def get_sprints(self) -> list[Race]:
         """
         Get a list of sprints from the current query
         """
-        return self._get_items(self.requester.get_sprints,
-                               self.type_constructor.construct_races)
+        return self._get_items(
+            self.requester.get_sprints, self.type_constructor.construct_races
+        )
 
     def get_sprint(self) -> Race:
         """
         Get a sprint from the current query
         """
-        return self._get_item(self.requester.get_sprints,
-                              self.type_constructor.construct_races)
+        return self._get_item(
+            self.requester.get_sprints, self.type_constructor.construct_races
+        )
 
     def get_results(self) -> list[Race]:
         """
         Get a list of results from the current query
         """
-        return self._get_items(self.requester.get_results,
-                               self.type_constructor.construct_races)
+        return self._get_items(
+            self.requester.get_results, self.type_constructor.construct_races
+        )
 
     def get_result(self) -> Race:
         """
         Get a result from the current query
         """
-        return self._get_item(self.requester.get_results,
-                              self.type_constructor.construct_races)
+        return self._get_item(
+            self.requester.get_results, self.type_constructor.construct_races
+        )
 
     def get_races(self) -> list[Race]:
         """
         Get a list of races from the current query
         """
-        return self._get_items(self.requester.get_races,
-                               self.type_constructor.construct_races)
+        return self._get_items(
+            self.requester.get_races, self.type_constructor.construct_races
+        )
 
     def get_race(self) -> Race:
         """
         Get a race from the current query
         """
-        return self._get_item(self.requester.get_races,
-                              self.type_constructor.construct_races)
+        return self._get_item(
+            self.requester.get_races, self.type_constructor.construct_races
+        )
 
     def get_seasons(self) -> list[Season]:
         """
         Get a list of seasons from the current query
         """
-        return self._get_items(self.requester.get_seasons,
-                               self.type_constructor.construct_seasons)
+        return self._get_items(
+            self.requester.get_seasons, self.type_constructor.construct_seasons
+        )
 
     def get_season(self) -> Season:
         """
         Get a season from the current query
         """
-        return self._get_item(self.requester.get_seasons,
-                              self.type_constructor.construct_seasons)
+        return self._get_item(
+            self.requester.get_seasons, self.type_constructor.construct_seasons
+        )
 
     def get_statuses(self) -> list[Status]:
         """
         Get a list of statuses from the current query
         """
-        return self._get_items(self.requester.get_statuses,
-                               self.type_constructor.construct_statuses)
+        return self._get_items(
+            self.requester.get_statuses, self.type_constructor.construct_statuses
+        )
 
     def get_status(self) -> Status:
         """
         Get a status from the current query
         """
-        return self._get_item(self.requester.get_statuses,
-                              self.type_constructor.construct_statuses)
+        return self._get_item(
+            self.requester.get_statuses, self.type_constructor.construct_statuses
+        )
 
     #   Standings Queries
 
@@ -394,29 +415,37 @@ class Ergast():
         """
         Get a list of driver standings from the current query
         """
-        return self._get_items(self.requester.get_driver_standings,
-                               self.type_constructor.construct_standings_lists)
+        return self._get_items(
+            self.requester.get_driver_standings,
+            self.type_constructor.construct_standings_lists,
+        )
 
     def get_driver_standing(self) -> StandingsList:
         """
         Get a driver standing from the current query
         """
-        return self._get_item(self.requester.get_driver_standings,
-                              self.type_constructor.construct_standings_lists)
+        return self._get_item(
+            self.requester.get_driver_standings,
+            self.type_constructor.construct_standings_lists,
+        )
 
     def get_constructor_standings(self) -> list[StandingsList]:
         """
         Get a list of constructor standings from the current query
         """
-        return self._get_items(self.requester.get_constructor_standings,
-                               self.type_constructor.construct_standings_lists)
+        return self._get_items(
+            self.requester.get_constructor_standings,
+            self.type_constructor.construct_standings_lists,
+        )
 
     def get_constructor_standing(self) -> StandingsList:
         """
         Get a constructor standing from the current query
         """
-        return self._get_item(self.requester.get_constructor_standings,
-                              self.type_constructor.construct_standings_lists)
+        return self._get_item(
+            self.requester.get_constructor_standings,
+            self.type_constructor.construct_standings_lists,
+        )
 
     #   Laps and Pit Stops Queries
 
@@ -424,26 +453,30 @@ class Ergast():
         """
         Get a list of laps from the current query
         """
-        return self._get_items(self.requester.get_laps,
-                               self.type_constructor.construct_races)
+        return self._get_items(
+            self.requester.get_laps, self.type_constructor.construct_races
+        )
 
     def get_lap(self) -> Race:
         """
         Get a lap from the current query
         """
-        return self._get_item(self.requester.get_laps,
-                              self.type_constructor.construct_races)
+        return self._get_item(
+            self.requester.get_laps, self.type_constructor.construct_races
+        )
 
     def get_pit_stops(self) -> list[Race]:
         """
         Get a list of pit stops from the current query
         """
-        return self._get_items(self.requester.get_pit_stops,
-                               self.type_constructor.construct_races)
+        return self._get_items(
+            self.requester.get_pit_stops, self.type_constructor.construct_races
+        )
 
     def get_pit_stop(self) -> Race:
         """
         Get a pit stop from the current query
         """
-        return self._get_item(self.requester.get_pit_stops,
-                              self.type_constructor.construct_races)
+        return self._get_item(
+            self.requester.get_pit_stops, self.type_constructor.construct_races
+        )
