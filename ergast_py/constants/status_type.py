@@ -148,6 +148,7 @@ class StatusType:
             "Damage": 137,
             "Debris": 138,
             "Illness": 139,
+            "Cooling system": 140,
         }
 
     @property
@@ -292,4 +293,5 @@ class StatusType:
             137: "Damage",
             138: "Debris",
             139: "Illness",
+            140: "Cooling system",
         }
