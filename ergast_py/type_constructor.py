@@ -186,6 +186,12 @@ class TypeConstructor:
         Construct a Race from a JSON dictionary
         """
         race = self._populate_missing_race(race)
+
+        try:
+            sprint = Helpers().construct_datetime_dict(race["Sprint"])
+        except ValueError:
+            sprint = None
+
         return Race(
             season=int(race["season"]),
             round_no=int(race["round"]),
@@ -197,7 +203,7 @@ class TypeConstructor:
             first_practice=Helpers().construct_datetime_dict(race["FirstPractice"]),
             second_practice=Helpers().construct_datetime_dict(race["SecondPractice"]),
             third_practice=Helpers().construct_datetime_dict(race["ThirdPractice"]),
-            sprint=Helpers().construct_datetime_dict(race["Sprint"]),
+            sprint=sprint,
             sprint_results=self.construct_results(race["SprintResults"]),
             qualifying=Helpers().construct_datetime_dict(race["Qualifying"]),
             qualifying_results=self.construct_results(race["QualifyingResults"]),
@@ -216,6 +222,15 @@ class TypeConstructor:
         Construct a Result from a JSON dictionary
         """
         result = self._populate_missing_result(result)
+
+        qualifying = {"Q1": None, "Q2": None, "Q3": None}
+        for key in qualifying:
+            try:
+                qualifying[key] = Helpers().format_lap_time(time=result[key])
+            except ValueError:
+                # Warn that the value isn't present
+                continue
+
         return Result(
             number=int(result["number"]),
             position=int(result["position"]),
@@ -228,9 +243,9 @@ class TypeConstructor:
             status=int(StatusType().string_to_id[result["status"]]),
             time=Helpers().construct_lap_time_millis(millis=result["Time"]),
             fastest_lap=self.construct_fastest_lap(result["FastestLap"]),
-            qual_1=Helpers().format_lap_time(time=result["Q1"]),
-            qual_2=Helpers().format_lap_time(time=result["Q2"]),
-            qual_3=Helpers().format_lap_time(time=result["Q3"]),
+            qual_1=qualifying["Q1"],
+            qual_2=qualifying["Q2"],
+            qual_3=qualifying["Q3"],
         )
 
     def construct_results(self, results: dict) -> list[Result]:

@@ -166,6 +166,7 @@ class TestTypeConstructor:
                     "rank": "1",
                     "lap": "51",
                     "Time": {"time": "1:34.570"},
+                    "AverageSpeed": {"units": "kph", "speed": "206.018"},
                 },
             }
         ]
@@ -199,7 +200,7 @@ class TestTypeConstructor:
                 number=16,
                 position=1,
                 position_text="1",
-                points=26,
+                points=26.0,
                 driver=driver,
                 constructor=constructor,
                 grid=1,
