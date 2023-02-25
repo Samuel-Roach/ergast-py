@@ -192,6 +192,19 @@ class TypeConstructor:
         except ValueError:
             sprint = None
 
+        sessions = {
+            "FirstPractice": None,
+            "SecondPractice": None,
+            "ThirdPractice": None,
+            "Qualifying": None,
+        }
+        for key in sessions:
+            try:
+                sessions[key] = Helpers().construct_datetime_dict(race[key])
+            except ValueError:
+                # Warn that the value isn't present
+                continue
+
         return Race(
             season=int(race["season"]),
             round_no=int(race["round"]),
@@ -200,12 +213,12 @@ class TypeConstructor:
             circuit=self.construct_circuit(race["Circuit"]),
             date=Helpers().construct_datetime_str(date=race["date"], time=race["time"]),
             results=self.construct_results(race["Results"]),
-            first_practice=Helpers().construct_datetime_dict(race["FirstPractice"]),
-            second_practice=Helpers().construct_datetime_dict(race["SecondPractice"]),
-            third_practice=Helpers().construct_datetime_dict(race["ThirdPractice"]),
+            first_practice=sessions["FirstPractice"],
+            second_practice=sessions["SecondPractice"],
+            third_practice=sessions["ThirdPractice"],
             sprint=sprint,
             sprint_results=self.construct_results(race["SprintResults"]),
-            qualifying=Helpers().construct_datetime_dict(race["Qualifying"]),
+            qualifying=sessions["Qualifying"],
             qualifying_results=self.construct_results(race["QualifyingResults"]),
             pit_stops=self.construct_pit_stops(race["PitStops"]),
             laps=self.construct_laps(race["Laps"]),
