@@ -186,6 +186,12 @@ class TypeConstructor:
         Construct a Race from a JSON dictionary
         """
         race = self._populate_missing_race(race)
+
+        try:
+            sprint = Helpers().construct_datetime_dict(race["Sprint"])
+        except ValueError:
+            sprint = None
+
         return Race(
             season=int(race["season"]),
             round_no=int(race["round"]),
@@ -197,7 +203,7 @@ class TypeConstructor:
             first_practice=Helpers().construct_datetime_dict(race["FirstPractice"]),
             second_practice=Helpers().construct_datetime_dict(race["SecondPractice"]),
             third_practice=Helpers().construct_datetime_dict(race["ThirdPractice"]),
-            sprint=Helpers().construct_datetime_dict(race["Sprint"]),
+            sprint=sprint,
             sprint_results=self.construct_results(race["SprintResults"]),
             qualifying=Helpers().construct_datetime_dict(race["Qualifying"]),
             qualifying_results=self.construct_results(race["QualifyingResults"]),
