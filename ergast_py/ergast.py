@@ -184,9 +184,9 @@ class Ergast:
         >>> e.driver("alonso").status(2)
         """
         if isinstance(status, str):
-            self.params["status"] = status
-        elif isinstance(status, int):
             self.params["status"] = StatusType().string_to_id[status]
+        elif isinstance(status, int):
+            self.params["status"] = status
         else:
             raise TypeError("Function parameter must be of type int or str")
         return self

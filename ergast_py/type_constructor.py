@@ -192,6 +192,19 @@ class TypeConstructor:
         except ValueError:
             sprint = None
 
+        sessions = {
+            "FirstPractice": None,
+            "SecondPractice": None,
+            "ThirdPractice": None,
+            "Qualifying": None,
+        }
+        for key in sessions:
+            try:
+                sessions[key] = Helpers().construct_datetime_dict(race[key])
+            except ValueError:
+                # Warn that the value isn't present
+                continue
+
         return Race(
             season=int(race["season"]),
             round_no=int(race["round"]),
@@ -200,12 +213,12 @@ class TypeConstructor:
             circuit=self.construct_circuit(race["Circuit"]),
             date=Helpers().construct_datetime_str(date=race["date"], time=race["time"]),
             results=self.construct_results(race["Results"]),
-            first_practice=Helpers().construct_datetime_dict(race["FirstPractice"]),
-            second_practice=Helpers().construct_datetime_dict(race["SecondPractice"]),
-            third_practice=Helpers().construct_datetime_dict(race["ThirdPractice"]),
+            first_practice=sessions["FirstPractice"],
+            second_practice=sessions["SecondPractice"],
+            third_practice=sessions["ThirdPractice"],
             sprint=sprint,
             sprint_results=self.construct_results(race["SprintResults"]),
-            qualifying=Helpers().construct_datetime_dict(race["Qualifying"]),
+            qualifying=sessions["Qualifying"],
             qualifying_results=self.construct_results(race["QualifyingResults"]),
             pit_stops=self.construct_pit_stops(race["PitStops"]),
             laps=self.construct_laps(race["Laps"]),
@@ -231,6 +244,12 @@ class TypeConstructor:
                 # Warn that the value isn't present
                 continue
 
+        try:
+            time = Helpers().construct_lap_time_millis(millis=result["Time"])
+        except ValueError:
+            # Warn that the value isn't present
+            time = None
+
         return Result(
             number=int(result["number"]),
             position=int(result["position"]),
@@ -241,7 +260,7 @@ class TypeConstructor:
             grid=int(result["grid"]),
             laps=int(result["laps"]),
             status=int(StatusType().string_to_id[result["status"]]),
-            time=Helpers().construct_lap_time_millis(millis=result["Time"]),
+            time=time,
             fastest_lap=self.construct_fastest_lap(result["FastestLap"]),
             qual_1=qualifying["Q1"],
             qual_2=qualifying["Q2"],
@@ -259,10 +278,17 @@ class TypeConstructor:
         Construct a FastestLap from a JSON dictionary
         """
         fastest_lap = self._populate_missing_fastest_lap(fastest_lap)
+
+        try:
+            time = Helpers().construct_lap_time(time=fastest_lap["Time"])
+        except ValueError:
+            # Warn that value doesnt exist
+            time = None
+
         return FastestLap(
             rank=int(fastest_lap["rank"]),
             lap=int(fastest_lap["lap"]),
-            time=Helpers().construct_lap_time(time=fastest_lap["Time"]),
+            time=time,
             average_speed=self.construct_average_speed(fastest_lap["AverageSpeed"]),
         )
 
