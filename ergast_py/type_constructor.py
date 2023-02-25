@@ -231,6 +231,12 @@ class TypeConstructor:
                 # Warn that the value isn't present
                 continue
 
+        try:
+            time = Helpers().construct_lap_time_millis(millis=result["Time"])
+        except ValueError:
+            # Warn that the value isn't present
+            time = None
+
         return Result(
             number=int(result["number"]),
             position=int(result["position"]),
@@ -241,7 +247,7 @@ class TypeConstructor:
             grid=int(result["grid"]),
             laps=int(result["laps"]),
             status=int(StatusType().string_to_id[result["status"]]),
-            time=Helpers().construct_lap_time_millis(millis=result["Time"]),
+            time=time,
             fastest_lap=self.construct_fastest_lap(result["FastestLap"]),
             qual_1=qualifying["Q1"],
             qual_2=qualifying["Q2"],
