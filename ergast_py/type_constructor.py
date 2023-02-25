@@ -216,6 +216,15 @@ class TypeConstructor:
         Construct a Result from a JSON dictionary
         """
         result = self._populate_missing_result(result)
+
+        qualifying = {"Q1": None, "Q2": None, "Q3": None}
+        for key in qualifying:
+            try:
+                qualifying[key] = Helpers().format_lap_time(time=result[key])
+            except ValueError:
+                # Warn that the value isn't present
+                continue
+
         return Result(
             number=int(result["number"]),
             position=int(result["position"]),
@@ -228,9 +237,9 @@ class TypeConstructor:
             status=int(StatusType().string_to_id[result["status"]]),
             time=Helpers().construct_lap_time_millis(millis=result["Time"]),
             fastest_lap=self.construct_fastest_lap(result["FastestLap"]),
-            qual_1=Helpers().format_lap_time(time=result["Q1"]),
-            qual_2=Helpers().format_lap_time(time=result["Q2"]),
-            qual_3=Helpers().format_lap_time(time=result["Q3"]),
+            qual_1=qualifying["Q1"],
+            qual_2=qualifying["Q2"],
+            qual_3=qualifying["Q3"],
         )
 
     def construct_results(self, results: dict) -> list[Result]:
