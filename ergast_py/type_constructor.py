@@ -265,10 +265,17 @@ class TypeConstructor:
         Construct a FastestLap from a JSON dictionary
         """
         fastest_lap = self._populate_missing_fastest_lap(fastest_lap)
+
+        try:
+            time = Helpers().construct_lap_time(time=fastest_lap["Time"])
+        except ValueError:
+            # Warn that value doesnt exist
+            time = None
+
         return FastestLap(
             rank=int(fastest_lap["rank"]),
             lap=int(fastest_lap["lap"]),
-            time=Helpers().construct_lap_time(time=fastest_lap["Time"]),
+            time=time,
             average_speed=self.construct_average_speed(fastest_lap["AverageSpeed"]),
         )
 
