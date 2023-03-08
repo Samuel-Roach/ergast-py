@@ -19,6 +19,7 @@ from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
+from ergast_py.models.time import Time
 
 
 #pylint: disable=too-many-public-methods
@@ -199,6 +200,18 @@ class TypeConstructor():
         """
         return [self.construct_race(race) for race in races]
 
+    def construct_time(self, time: dict) -> Time:
+        """
+        Construct a Time from a JSON dictionary
+        """
+        if time != {}:
+            return Time(
+                millis=Helpers().construct_lap_time_millis(millis=time),
+                time=time["time"]
+            )
+        else:
+            return Time(millis=None, time=None)
+
     def construct_result(self, result: dict) -> Result:
         """
         Construct a Result from a JSON dictionary
@@ -214,7 +227,7 @@ class TypeConstructor():
             grid=int(result["grid"]),
             laps=int(result["laps"]),
             status=int(StatusType().string_to_id[result["status"]]),
-            time=Helpers().construct_lap_time_millis(millis=result["Time"]),
+            time=self.construct_time(result["Time"]),
             fastest_lap=self.construct_fastest_lap(result["FastestLap"]),
             qual_1=Helpers().format_lap_time(time=result["Q1"]),
             qual_2=Helpers().format_lap_time(time=result["Q2"]),

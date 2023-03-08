@@ -18,6 +18,7 @@ from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
+from ergast_py.models.time import Time
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
 
@@ -178,10 +179,11 @@ class TestTypeConstructor():
                                   url="http://en.wikipedia.org/wiki/Scuderia_Ferrari",
                                   name="Ferrari", nationality="Italian")
 
+        time = Time(millis=datetime.time(20, 37, 33, 584000), time="1:37:33.584")
+
         expected = [Result(number=16, position=1, position_text="1", points=26, driver=driver,
                            constructor=constructor, grid=1, laps=57, status=1,
-                           time=datetime.time(hour=1, minute=37, second=33, microsecond=584000),
-                           fastest_lap=fastest_lap, qual_1=None, qual_2=None, qual_3=None)]
+                           time=time, fastest_lap=fastest_lap, qual_1=None, qual_2=None, qual_3=None)]
 
         assert expected == self.t.construct_results(params)
 
