@@ -16,7 +16,6 @@ class Helpers:
 
         Looking for the format of ``%Y-%m-%d %H:%M:%SZ``
         """
-
         if not time.strip():
             time = "00:00:00Z"
 
@@ -101,9 +100,14 @@ class Helpers:
         """
         Construct a datetime.time (pit stop duration) from a time string
 
-        Looking for the format of ``%S.%f``
+        Looking for one of the following formats:
+            ``%S.%f``
+            ``%M:%S.%f``
         """
         if time == "":
             raise ValueError("Time string cannot be empty")
+
+        if len(time.split(":")) - 1:
+            return datetime.datetime.strptime(f"{time}", "%M:%S.%f").time()
 
         return datetime.datetime.strptime(f"{time}", "%S.%f").time()
