@@ -19,6 +19,7 @@ from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
+from ergast_py.models.time import Time
 from tests import constants
 
 
@@ -206,7 +207,12 @@ class TestTypeConstructor:
                 grid=1,
                 laps=57,
                 status=1,
-                time=datetime.time(hour=1, minute=37, second=33, microsecond=584000),
+                time=Time(
+                    millis=datetime.time(
+                        hour=1, minute=37, second=33, microsecond=584000
+                    ),
+                    time="1:37:33.584",
+                ),
                 fastest_lap=fastest_lap,
                 qual_1=None,
                 qual_2=None,
