@@ -148,6 +148,17 @@ class TestTypeConstructor:
         ]
 
         assert expected == self.t.construct_races(params)
+    
+    def test_construct_time(self):
+        """Assert construct_time function works"""
+        params = {"millis": "5853584", "time": "1:37:33.584"}
+        
+        expected = Time(
+            millis=datetime.time(hour=1, minute=37, second=33, microsecond=584000),
+            time="1:37:33.584",
+        )
+        
+        assert expected == self.t.construct_time(params)
 
     def test_construct_results(self):
         """Assert construct_results function works"""

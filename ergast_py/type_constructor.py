@@ -107,6 +107,9 @@ class TypeConstructor:
         return self._populate_missing(
             expected=Expected().standings_list, actual=standings_list
         )
+    
+    def _populate_missing_time(self, time: dict) -> dict:
+        return self._populate_missing(expected=Expected().time, actual=time)
 
     #
     #   PUBLIC METHODS
@@ -229,6 +232,8 @@ class TypeConstructor:
         """
         Construct a Time object from a JSON dictionary
         """
+        time = self._populate_missing_time(time)
+        
         try:
             millis = Helpers().construct_lap_time_millis(millis=time)
         except ValueError:
