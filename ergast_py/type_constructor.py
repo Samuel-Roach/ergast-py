@@ -18,6 +18,7 @@ from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
+from ergast_py.models.time import Time
 
 
 # pylint: disable=too-many-public-methods
@@ -106,6 +107,9 @@ class TypeConstructor:
         return self._populate_missing(
             expected=Expected().standings_list, actual=standings_list
         )
+    
+    def _populate_missing_time(self, time: dict) -> dict:
+        return self._populate_missing(expected=Expected().time, actual=time)
 
     #
     #   PUBLIC METHODS
@@ -224,6 +228,18 @@ class TypeConstructor:
             laps=self.construct_laps(race["Laps"]),
         )
 
+    def construct_time(self, time: dict) -> Time:
+        """
+        Construct a Time object from a JSON dictionary
+        """
+        time = self._populate_missing_time(time)
+        
+        try:
+            millis = Helpers().construct_lap_time_millis(millis=time)
+        except ValueError:
+            millis = None
+        return Time(millis=millis, time=time["time"])
+
     def construct_races(self, races: dict) -> list[Race]:
         """
         Construct a list of Races from a JSON dictionary
@@ -244,12 +260,6 @@ class TypeConstructor:
                 # Warn that the value isn't present
                 continue
 
-        try:
-            time = Helpers().construct_lap_time_millis(millis=result["Time"])
-        except ValueError:
-            # Warn that the value isn't present
-            time = None
-
         return Result(
             number=int(result["number"]),
             position=int(result["position"]),
@@ -260,7 +270,7 @@ class TypeConstructor:
             grid=int(result["grid"]),
             laps=int(result["laps"]),
             status=int(StatusType().string_to_id[result["status"]]),
-            time=time,
+            time=self.construct_time(result["Time"]),
             fastest_lap=self.construct_fastest_lap(result["FastestLap"]),
             qual_1=qualifying["Q1"],
             qual_2=qualifying["Q2"],
