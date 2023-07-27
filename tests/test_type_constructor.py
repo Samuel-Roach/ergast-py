@@ -16,10 +16,10 @@ from ergast_py.models.result import Result
 from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
+from ergast_py.models.time import Time
 from ergast_py.models.timing import Timing
 from ergast_py.requester import Requester
 from ergast_py.type_constructor import TypeConstructor
-from ergast_py.models.time import Time
 from tests import constants
 
 
@@ -148,16 +148,16 @@ class TestTypeConstructor:
         ]
 
         assert expected == self.t.construct_races(params)
-    
+
     def test_construct_time(self):
         """Assert construct_time function works"""
         params = {"millis": "5853584", "time": "1:37:33.584"}
-        
+
         expected = Time(
             millis=datetime.time(hour=1, minute=37, second=33, microsecond=584000),
             time="1:37:33.584",
         )
-        
+
         assert expected == self.t.construct_time(params)
 
     def test_construct_results(self):
