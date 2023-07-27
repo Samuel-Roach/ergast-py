@@ -250,8 +250,14 @@ class TypeConstructor:
             # Warn that the value isn't present
             time = None
 
+        try:
+            number = int(result["number"])
+        except ValueError:
+            # Warn that the number isn't present
+            number = None
+
         return Result(
-            number=int(result["number"]),
+            number=number,
             position=int(result["position"]),
             position_text=result["positionText"],
             points=float(result["points"]),
