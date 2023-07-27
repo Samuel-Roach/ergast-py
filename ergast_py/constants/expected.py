@@ -223,3 +223,13 @@ class Expected:
             "DriverStandings": "dict",
             "ConstructorStandings": "dict",
         }
+    
+    @property
+    def time(self):
+        """
+        Return the expected types of a Time
+        """
+        return {
+            "millis": "datetime.time",
+            "time": "string",
+        }

@@ -42,6 +42,7 @@ from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
 from ergast_py.models.timing import Timing
+from ergast_py.models.time import Time
 
 __version__ = "0.7.0"
 
@@ -64,4 +65,5 @@ __all__ = [
     "StandingsList",
     "Status",
     "Timing",
+    "Time"
 ]

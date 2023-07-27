@@ -17,6 +17,7 @@ from ergast_py.models.result import Result
 from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
+from ergast_py.models.time import Time
 from ergast_py.models.timing import Timing
 
 
@@ -106,6 +107,9 @@ class TypeConstructor:
         return self._populate_missing(
             expected=Expected().standings_list, actual=standings_list
         )
+
+    def _populate_missing_time(self, time: dict) -> dict:
+        return self._populate_missing(expected=Expected().time, actual=time)
 
     #
     #   PUBLIC METHODS
@@ -223,6 +227,18 @@ class TypeConstructor:
             pit_stops=self.construct_pit_stops(race["PitStops"]),
             laps=self.construct_laps(race["Laps"]),
         )
+
+    def construct_time(self, time: dict) -> Time:
+        """
+        Construct a Time object from a JSON dictionary
+        """
+        time = self._populate_missing_time(time)
+
+        try:
+            millis = Helpers().construct_lap_time_millis(millis=time)
+        except ValueError:
+            millis = None
+        return Time(millis=millis, time=time["time"])
 
     def construct_races(self, races: dict) -> list[Race]:
         """
