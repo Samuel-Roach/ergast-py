@@ -223,7 +223,7 @@ class Expected:
             "DriverStandings": "dict",
             "ConstructorStandings": "dict",
         }
-    
+
     @property
     def time(self):
         """

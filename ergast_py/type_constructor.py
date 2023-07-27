@@ -17,8 +17,8 @@ from ergast_py.models.result import Result
 from ergast_py.models.season import Season
 from ergast_py.models.standings_list import StandingsList
 from ergast_py.models.status import Status
-from ergast_py.models.timing import Timing
 from ergast_py.models.time import Time
+from ergast_py.models.timing import Timing
 
 
 # pylint: disable=too-many-public-methods
@@ -107,7 +107,7 @@ class TypeConstructor:
         return self._populate_missing(
             expected=Expected().standings_list, actual=standings_list
         )
-    
+
     def _populate_missing_time(self, time: dict) -> dict:
         return self._populate_missing(expected=Expected().time, actual=time)
 
@@ -233,11 +233,12 @@ class TypeConstructor:
         Construct a Time object from a JSON dictionary
         """
         time = self._populate_missing_time(time)
-        
+
         try:
             millis = Helpers().construct_lap_time_millis(millis=time)
         except ValueError:
             millis = None
+
         return Time(millis=millis, time=time["time"])
 
     def construct_races(self, races: dict) -> list[Race]:
@@ -260,8 +261,14 @@ class TypeConstructor:
                 # Warn that the value isn't present
                 continue
 
+        try:
+            number = int(result["number"])
+        except ValueError:
+            # Warn that the number isn't present
+            number = None
+
         return Result(
-            number=int(result["number"]),
+            number=number,
             position=int(result["position"]),
             position_text=result["positionText"],
             points=float(result["points"]),
