@@ -6,7 +6,7 @@ import string
 import requests
 
 API_URL = "https://ergast.com/api/f1/status.json?limit=2000"
-
+CURRENT_STATUSES_PATH = "./utils/status-action/current_statuses.json"
 MISSING_STATUSES = []
 
 
@@ -25,7 +25,7 @@ def generate_output_string():
 def main():
     response = requests.get(API_URL).json()["MRData"]["StatusTable"]
 
-    with open("current_statuses.json", "r") as status_file:
+    with open(CURRENT_STATUSES_PATH, "r") as status_file:
         current = json.loads(status_file.read())
 
     if current != response:
