@@ -23,7 +23,7 @@ def generate_output_string():
 
 
 def main():
-    response = requests.get(API_URL).json["MRData"]["StatusTable"]
+    response = requests.get(API_URL).json()["MRData"]["StatusTable"]
 
     with open("current_statuses.json", "r") as status_file:
         current = json.loads(status_file.read())
