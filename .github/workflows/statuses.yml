@@ -9,7 +9,7 @@ on:
       - '**/**'
 jobs:
   statuses:
-    names: Statuses
+    name: Statuses
     runs-on: ubuntu-latest
 
     steps:
