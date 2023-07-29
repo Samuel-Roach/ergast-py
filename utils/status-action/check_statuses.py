@@ -28,13 +28,15 @@ def main():
     with open(CURRENT_STATUSES_PATH, "r") as status_file:
         current = json.loads(status_file.read())
 
-    if current != response:
-        for status in response["Status"]:
-            if status not in current:
-                missing_statuses += status
+    for status in response["Status"]:
+        if status["statusId"] not in current:
+            print(
+                f'Missing status found: { status["statusId"] } - { status["status"] }'
+            )
+            missing_statuses.append(status)
 
     if len(missing_statuses) > 0:
-        delim = generate_delimiter()
+        delim = generate_delimiter() + "\n"
         with open(os.environ["GITHUB_ENV"], "a") as environment_file:
             environment_file.write(f"MISSING_STATUSES<<{delim}")
             environment_file.write(generate_output_string(missing_statuses))
