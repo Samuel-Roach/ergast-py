@@ -38,7 +38,7 @@ def main():
     if len(missing_statuses) > 0:
         delim = generate_delimiter() + "\n"
         with open(os.environ["GITHUB_ENV"], "a") as environment_file:
-            environment_file.write(f"MISSING_STATUSES<<{delim}")
+            environment_file.write(f"MISSING_STATUSES_FORMATTED<<{delim}")
             environment_file.write(generate_output_string(missing_statuses))
             environment_file.write(delim)
 
