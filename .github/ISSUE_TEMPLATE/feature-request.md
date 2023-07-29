@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: Feature Request
 about: Suggest an idea for improving ergast-py
 title: "[FEATURE] Feature title"
 labels: enhancement
