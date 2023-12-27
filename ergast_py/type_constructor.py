@@ -38,11 +38,11 @@ class TypeConstructor:
     def _populate_missing(expected: dict, actual: dict) -> dict:
         for item in expected:
             if item not in actual:
-                if expected[item] == "dict":
+                if expected[item] == dict:
                     actual[item] = {}
-                elif expected[item] == "float":
+                elif expected[item] == float:
                     actual[item] = "0.0"
-                elif expected[item] == "int":
+                elif expected[item] == int:
                     actual[item] = "0"
                 else:
                     actual[item] = ""

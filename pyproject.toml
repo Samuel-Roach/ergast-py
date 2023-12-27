@@ -18,6 +18,7 @@ pytest = "^7.2.1"
 black = "^23.1.0"
 reorder-python-imports = "^3.9.0"
 pre-commit = "^3.0.4"
+hypothesis = "^6.82.0"
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]
