@@ -5,7 +5,6 @@ from typing import Callable
 import requests
 from uritemplate import URITemplate
 
-HOST = "https://ergast.com/api"
 SERIES = "f1"
 
 
@@ -114,11 +113,10 @@ class Requester:
         Run a request against the API and return the JSON dictionary result
         """
         url_tmpl = URITemplate(
-            "https://ergast.com/api{/series}{/season}{/round}"
+            "https://api.jolpi.ca/ergast{/series}{/season}{/round}"
             "{/criteria*}{/resource}{/value}.json{?limit,offset}"
         )
         url = url_tmpl.expand(
-            host=HOST,
             series=SERIES,
             season=season,
             round=round_no,

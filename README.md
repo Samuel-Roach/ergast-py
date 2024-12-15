@@ -12,7 +12,8 @@
 
 A comprehensive Python wrapper for the Ergast API. Built for easy use and functionality, Ergast-py aims to bring the Ergast API into the Python network as seemlessly as possible.
 
-> NOTE: Ergast-py will be wrapping up development this year. This is due to the Ergast API being currently deprecated, and shutdown at EOY 2024. For more information, read the Ergast [website](https://ergast.com/mrd/). Thanks for all the support.
+> NOTE: Ergast-py will continue development using a new publicly available API.
+[Jolpica](https://github.com/jolpica/jolpica-f1?tab=readme-ov-file) provides a drop-in replacement API for the Ergast API, and therefore development will continue with this new API in mind.
 
 <p align="center">
    <img width="500" src="images/../img/carbon.png" alt="Command prompt example of how to use Ergast">
