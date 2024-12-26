@@ -1,4 +1,5 @@
 """ Expected class """
+import datetime
 
 
 class Expected:
@@ -8,10 +9,10 @@ class Expected:
     Each model has a set of keys, and the types expected.
 
     Types are stored as one of the following strings:
-        * "int"
-        * "float"
-        * "string"
-        * "dict" """
+        * int
+        * float
+        * str
+        * dict"""
 
     @property
     def location(self):
@@ -19,10 +20,10 @@ class Expected:
         Return the expected types of a Location
         """
         return {
-            "lat": "float",
-            "long": "float",
-            "locality": "string",
-            "country": "string",
+            "lat": float,
+            "long": float,
+            "locality": str,
+            "country": str,
         }
 
     @property
@@ -31,10 +32,10 @@ class Expected:
         Return the expected types of a Circuit
         """
         return {
-            "circuitId": "string",
-            "url": "string",
-            "circuitName": "string",
-            "Location": "string",
+            "circuitId": str,
+            "url": str,
+            "circuitName": str,
+            "Location": str,
         }
 
     @property
@@ -43,10 +44,10 @@ class Expected:
         Return the expected types of a Constructor
         """
         return {
-            "constructorId": "string",
-            "url": "string",
-            "name": "string",
-            "nationality": "string",
+            "constructorId": str,
+            "url": str,
+            "name": str,
+            "nationality": str,
         }
 
     @property
@@ -55,14 +56,14 @@ class Expected:
         Return the expected types of a Driver
         """
         return {
-            "driverId": "string",
-            "permanentNumber": "int",
-            "code": "string",
-            "url": "string",
-            "givenName": "string",
-            "familyName": "string",
-            "dateOfBirth": "string",
-            "nationality": "string",
+            "driverId": str,
+            "permanentNumber": int,
+            "code": str,
+            "url": str,
+            "givenName": str,
+            "familyName": str,
+            "dateOfBirth": str,
+            "nationality": str,
         }
 
     @property
@@ -71,23 +72,23 @@ class Expected:
         Return the expected types of a Race
         """
         return {
-            "season": "int",
-            "round": "int",
-            "url": "string",
-            "raceName": "string",
-            "Circuit": "dict",
-            "date": "string",
-            "time": "string",
-            "Results": "dict",
-            "FirstPractice": "dict",
-            "SecondPractice": "dict",
-            "ThirdPractice": "dict",
-            "Sprint": "dict",
-            "SprintResults": "dict",
-            "Qualifying": "dict",
-            "QualifyingResults": "dict",
-            "PitStops": "dict",
-            "Laps": "dict",
+            "season": int,
+            "round": int,
+            "url": str,
+            "raceName": str,
+            "Circuit": dict,
+            "date": str,
+            "time": str,
+            "Results": dict,
+            "FirstPractice": dict,
+            "SecondPractice": dict,
+            "ThirdPractice": dict,
+            "Sprint": dict,
+            "SprintResults": dict,
+            "Qualifying": dict,
+            "QualifyingResults": dict,
+            "PitStops": dict,
+            "Laps": dict,
         }
 
     @property
@@ -96,20 +97,20 @@ class Expected:
         Return the expected types of a Result
         """
         return {
-            "number": "int",
-            "position": "int",
-            "positionText": "string",
-            "points": "float",
-            "Driver": "dict",
-            "Constructor": "dict",
-            "grid": "int",
-            "laps": "int",
-            "status": "string",
-            "Time": "dict",
-            "FastestLap": "dict",
-            "Q1": "string",
-            "Q2": "string",
-            "Q3": "string",
+            "number": int,
+            "position": int,
+            "positionText": str,
+            "points": float,
+            "Driver": dict,
+            "Constructor": dict,
+            "grid": int,
+            "laps": int,
+            "status": str,
+            "Time": dict,
+            "FastestLap": dict,
+            "Q1": str,
+            "Q2": str,
+            "Q3": str,
         }
 
     @property
@@ -118,10 +119,10 @@ class Expected:
         Return the expected types of a Fastest Lap
         """
         return {
-            "rank": "int",
-            "lap": "int",
-            "Time": "dict",
-            "AverageSpeed": "dict",
+            "rank": int,
+            "lap": int,
+            "Time": dict,
+            "AverageSpeed": dict,
         }
 
     @property
@@ -130,8 +131,8 @@ class Expected:
         Return the expected types of a Average Speed
         """
         return {
-            "units": "string",
-            "speed": "float",
+            "units": str,
+            "speed": float,
         }
 
     @property
@@ -140,11 +141,11 @@ class Expected:
         Return the expected types of a Pit Stop
         """
         return {
-            "driverId": "string",
-            "lap": "int",
-            "stop": "int",
-            "time": "string",
-            "duration": "string",
+            "driverId": str,
+            "lap": int,
+            "stop": int,
+            "time": str,
+            "duration": str,
         }
 
     @property
@@ -153,8 +154,8 @@ class Expected:
         Return the expected types of a Lap
         """
         return {
-            "number": "int",
-            "Timings": "dict",
+            "number": int,
+            "Timings": dict,
         }
 
     @property
@@ -163,9 +164,9 @@ class Expected:
         Return the expected types of a Timing
         """
         return {
-            "driverId": "string",
-            "position": "int",
-            "time": "string",
+            "driverId": str,
+            "position": int,
+            "time": str,
         }
 
     @property
@@ -174,8 +175,8 @@ class Expected:
         Return the expected types of a Season
         """
         return {
-            "season": "int",
-            "url": "string",
+            "season": int,
+            "url": str,
         }
 
     @property
@@ -183,7 +184,7 @@ class Expected:
         """
         Return the expected types of a Status
         """
-        return {"statusId": "int", "count": "int", "status": "string"}
+        return {"statusId": int, "count": int, "status": str}
 
     @property
     def driver_standing(self):
@@ -191,12 +192,12 @@ class Expected:
         Return the expected types of a Driver Standing
         """
         return {
-            "position": "int",
-            "positionText": "string",
-            "points": "float",
-            "wins": "int",
-            "Driver": "dict",
-            "Constructors": "dict",
+            "position": int,
+            "positionText": str,
+            "points": float,
+            "wins": int,
+            "Driver": dict,
+            "Constructors": dict,
         }
 
     @property
@@ -205,11 +206,11 @@ class Expected:
         Return the expected types of a Constructor Standing
         """
         return {
-            "position": "int",
-            "positionText": "string",
-            "points": "float",
-            "wins": "int",
-            "Constructor": "dict",
+            "position": int,
+            "positionText": str,
+            "points": float,
+            "wins": int,
+            "Constructor": dict,
         }
 
     @property
@@ -218,10 +219,10 @@ class Expected:
         Return the expected types of a Standings List
         """
         return {
-            "season": "int",
-            "round": "int",
-            "DriverStandings": "dict",
-            "ConstructorStandings": "dict",
+            "season": int,
+            "round": int,
+            "DriverStandings": dict,
+            "ConstructorStandings": dict,
         }
 
     @property
@@ -230,6 +231,6 @@ class Expected:
         Return the expected types of a Time
         """
         return {
-            "millis": "datetime.time",
-            "time": "string",
+            "millis": datetime.time,
+            "time": str,
         }
