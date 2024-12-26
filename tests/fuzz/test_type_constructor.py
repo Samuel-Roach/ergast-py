@@ -6,6 +6,7 @@ from ergast_py.models import circuit
 from ergast_py.models import constructor
 from ergast_py.models import driver
 from ergast_py.models import location
+from ergast_py.models import race
 from ergast_py.type_constructor import TypeConstructor
 
 
@@ -70,6 +71,12 @@ class TestFuzzTypeConstructor:
 
         assert result == expected
 
-    @given()
-    def test_construct_race(self, fuzz):
-        pass
+
+# TODO Finish adding race fuzz set. Currently it takes too long to run.
+# @given(fuzz=composites.race())
+# def test_construct_race(self, fuzz):
+#     result = self.t.construct_race(race=fuzz)
+#     expected = race.Race(
+#     )
+
+#     assert result == expected
